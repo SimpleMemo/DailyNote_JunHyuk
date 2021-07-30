@@ -2,16 +2,20 @@ package com.junhyuk.simplememojunhyuk.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.junhyuk.simplememojunhyuk.R
 import com.junhyuk.simplememojunhyuk.adapter.MemoRecyclerViewAdapter
 import com.junhyuk.simplememojunhyuk.databinding.ActivityMainBinding
 import com.junhyuk.simplememojunhyuk.viewmodel.MainActivityViewModel
 import com.junhyuk.simplememojunhyuk.viewmodel.MainActivityViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /*
 *
@@ -45,6 +49,26 @@ class MainActivity : AppCompatActivity() {
         ).get(MainActivityViewModel::class.java)
         binding.myViewModel = viewModel
 
+        //SwipeAction
+        val itemTouchCallback: ItemTouchHelper.SimpleCallback = object :
+            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    viewModel.deleteMemo(viewModel.getAllMemo().value?.get(viewHolder.adapterPosition)?.memoId)
+                }
+            }
+
+        }
+
         //view 접근
         binding.apply {
 
@@ -54,6 +78,8 @@ class MainActivity : AppCompatActivity() {
             //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
             viewModel.getAllMemo().observe(this@MainActivity, {
                 myAdapter = MemoRecyclerViewAdapter(it, this@MainActivity)
+                val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
+                itemTouchHelper.attachToRecyclerView(memoRecyclerView)
             })
 
             //메모를 추가하는 PostActivity 로 이동

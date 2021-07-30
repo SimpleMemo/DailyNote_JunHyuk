@@ -53,9 +53,7 @@ class PostActivity : AppCompatActivity() {
         binding.apply {
 
             //Boolean 변수 선언
-            val textNullCheck =
-                inputTitle.text.toString().isNotEmpty() and inputContent.text.toString()
-                    .isNotEmpty()
+            var textNullCheck: Boolean
             val objectNullCheck =
                 MemoObject.title != ""
 
@@ -67,6 +65,10 @@ class PostActivity : AppCompatActivity() {
 
             //Post
             postButton.setOnClickListener {
+
+                //textNullCheck 변수 초기화
+                textNullCheck = inputTitle.text.toString().isNotEmpty() and inputContent.text.toString().isNotEmpty()
+
                 //Text Null Check
                 if (textNullCheck) {
 
@@ -92,7 +94,11 @@ class PostActivity : AppCompatActivity() {
                 }
 
                 //만약 아무런 값도 입력이 안되어 있다면
-                else Toast.makeText(this@PostActivity, "Enter a title or content", Toast.LENGTH_LONG).show()
+                else Toast.makeText(
+                    this@PostActivity,
+                    "Enter a title or content",
+                    Toast.LENGTH_LONG
+                ).show()
 
             }
 
