@@ -44,7 +44,7 @@ class MemoRecyclerViewAdapter(private val memoList: List<MemoData>, private val 
         //메모 클릭시
         holder.itemView.setOnClickListener {
             val intent = Intent(context, PostActivity::class.java)
-            MemoObject.position = position.toLong() //position 저장
+            MemoObject.position = position //position 저장
             MemoObject.title = holder.memoTitle.text.toString() //title 저장
             MemoObject.content = holder.memoContent.text.toString() //content 저장
             context.startActivity(intent) //PostActivity 로 이동

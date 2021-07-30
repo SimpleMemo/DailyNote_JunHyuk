@@ -1,6 +1,7 @@
 package com.junhyuk.simplememojunhyuk.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,7 +35,7 @@ class PostActivityViewModel(application: Application) : ViewModel() {
 
     //Memo DB 수정
     // (UPDATE 'memo' SET title = :titleEdit, content = :contentEdit WHERE memoId = :id)
-    fun update(position: Int, title: String, content: String) {
+    fun update(position: Int?, title: String, content: String) {
         memoRepository.update(position, title, content)
     }
 

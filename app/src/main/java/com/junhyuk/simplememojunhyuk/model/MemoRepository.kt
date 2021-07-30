@@ -35,16 +35,12 @@ class MemoRepository(application: Application?) {
 
     //메모 삽입
     fun insert(memo: MemoData) {
-        val addRunnable = Runnable { memoDao.insert(memo) }
-        val diskIO: Executor = Executors.newSingleThreadExecutor()
-        diskIO.execute(addRunnable)
+        memoDao.insert(memo)
     }
 
     //메모 수정
-    fun update(position: Int, title: String, content: String){
-        val addRunnable = Runnable { memoDao.update(position, title, content) }
-        val diskIO: Executor = Executors.newSingleThreadExecutor()
-        diskIO.execute(addRunnable)
+    fun update(position: Int?, title: String, content: String){
+        memoDao.update(position, title, content)
     }
 
     //메모 삭제

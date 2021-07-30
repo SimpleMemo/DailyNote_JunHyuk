@@ -11,6 +11,9 @@ import com.junhyuk.simplememojunhyuk.model.MemoData
 import com.junhyuk.simplememojunhyuk.model.MemoObject
 import com.junhyuk.simplememojunhyuk.viewmodel.PostActivityViewModel
 import com.junhyuk.simplememojunhyuk.viewmodel.PostActivityViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /*
 *
@@ -46,6 +49,12 @@ class PostActivity : AppCompatActivity() {
 
         //update 에 필요한 변수 설정
         val position = MemoObject.position
+        var memoId = 0
+        viewModel.getAllMemo().observe(this@PostActivity, {
+            if (viewModel.getAllMemo().value?.isNotEmpty() == true) {
+                memoId = viewModel.getAllMemo().value?.get(position)?.memoId!!
+            }
+        })
         val updateTitle = MemoObject.title
         val updateContent = MemoObject.content
 
@@ -54,8 +63,7 @@ class PostActivity : AppCompatActivity() {
 
             //Boolean 변수 선언
             var textNullCheck: Boolean
-            val objectNullCheck =
-                MemoObject.title != ""
+            val objectNullCheck = MemoObject.title != ""
 
             //해당 position 에 해당하는 제목과 내용을 EditText 에 입력(Update)
             viewModel.apply {
@@ -67,25 +75,34 @@ class PostActivity : AppCompatActivity() {
             postButton.setOnClickListener {
 
                 //textNullCheck 변수 초기화
-                textNullCheck = inputTitle.text.toString().isNotEmpty() and inputContent.text.toString().isNotEmpty()
+                textNullCheck =
+                    inputTitle.text.toString().isNotEmpty() and inputContent.text.toString()
+                        .isNotEmpty()
 
                 //Text Null Check
                 if (textNullCheck) {
 
                     //MemoObject 안에 title 이 존재한다면 Update
-                    if (objectNullCheck) viewModel.update(
-                        ((position + 1).toInt()),
-                        inputTitle.text.toString(),
-                        inputContent.text.toString()
-                    )
+                    if (objectNullCheck)
+                        CoroutineScope(Dispatchers.IO).launch {
+                            viewModel.update(
+                                memoId,
+                                viewModel.title.value.toString(),
+                                viewModel.content.value.toString()
+                            )
+                        }
 
                     //MemoObject 안에 title 이 존재하지 않는다면 Insert
-                    else viewModel.insert(
-                        MemoData(
-                            inputTitle.text.toString(),
-                            inputContent.text.toString()
-                        )
-                    )
+                    else
+                        CoroutineScope(Dispatchers.IO).launch {
+                            viewModel.insert(
+                                MemoData(
+                                    inputTitle.text.toString(),
+                                    inputContent.text.toString()
+                                )
+                            )
+                        }
+
 
                     //해당 작업을 끝낸 후에는 MemoObject 의 값을 초기화
                     MemoObject.clear()

@@ -11,7 +11,7 @@ package com.junhyuk.simplememojunhyuk.model
 object MemoObject {
     var title: String = "" //titleData
     var content: String = "" //contentData
-    var position: Long = 0 //positionData
+    var position: Int = 0 //positionData
 
     //데이터 전체 초기화
     fun clear(){
