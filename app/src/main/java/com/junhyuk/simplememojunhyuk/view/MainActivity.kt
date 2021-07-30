@@ -43,17 +43,17 @@ class MainActivity : AppCompatActivity() {
             this@MainActivity,
             viewModelFactory
         ).get(MainActivityViewModel::class.java)
+        binding.myViewModel = viewModel
 
         //view 접근
         binding.apply {
+
             //recyclerView 가 고정된 사이즈를 가진다고 알려주는 함수
             memoRecyclerView.setHasFixedSize(true)
 
             //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
             viewModel.getAllMemo().observe(this@MainActivity, {
-                val memoAdapter = MemoRecyclerViewAdapter(it, this@MainActivity)
-                memoRecyclerView.adapter = memoAdapter
-                memoRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+                myAdapter = MemoRecyclerViewAdapter(it, this@MainActivity)
             })
 
             //메모를 추가하는 PostActivity 로 이동
@@ -61,6 +61,9 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, PostActivity::class.java)
                 startActivity(intent)
             }
+
         }
+
     }
+
 }

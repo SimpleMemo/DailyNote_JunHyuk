@@ -3,6 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="myViewModel"
+            type="com.junhyuk.simplememojunhyuk.viewmodel.MainActivityViewModel" />
+
+        <variable
+            name="myAdapter"
+            type="com.junhyuk.simplememojunhyuk.adapter.MemoRecyclerViewAdapter" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,6 +41,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="40dp"
+            android:adapter="@{myAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

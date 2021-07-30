@@ -1,11 +1,8 @@
 package com.junhyuk.simplememojunhyuk.view
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.junhyuk.simplememojunhyuk.R
@@ -32,7 +29,7 @@ class PostActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         //dataBinding 설정
         binding = DataBindingUtil.setContentView(
             this@PostActivity,
@@ -45,48 +42,62 @@ class PostActivity : AppCompatActivity() {
             this@PostActivity,
             viewModelFactory
         ).get(PostActivityViewModel::class.java)
+        binding.myViewModel = viewModel
 
         //update 에 필요한 변수 설정
         val position = MemoObject.position
-        val title = MemoObject.title
-        val content = MemoObject.content
+        val updateTitle = MemoObject.title
+        val updateContent = MemoObject.content
 
         //view 접근
         binding.apply {
 
-            //해당 position 에 해당하는 제목과 내용을 EditText 에 입력
-            inputTitle.setText(title)
-            inputContent.setText(content)
+            //Boolean 변수 선언
+            val textNullCheck =
+                inputTitle.text.toString().isNotEmpty() and inputContent.text.toString()
+                    .isNotEmpty()
+            val objectNullCheck =
+                MemoObject.title != ""
+
+            //해당 position 에 해당하는 제목과 내용을 EditText 에 입력(Update)
+            viewModel.apply {
+                title.value = updateTitle
+                content.value = updateContent
+            }
 
             //Post
             postButton.setOnClickListener {
                 //Text Null Check
-                if (inputTitle.text.toString().isNotEmpty()
-                    and inputContent.text.toString().isNotEmpty()
-                ) {
+                if (textNullCheck) {
+
                     //MemoObject 안에 title 이 존재한다면 Update
-                    if (MemoObject.title != "") {
+                    if (objectNullCheck) viewModel.update(
+                        ((position + 1).toInt()),
+                        inputTitle.text.toString(),
+                        inputContent.text.toString()
+                    )
 
-                        viewModel.update(((position + 1).toInt()), inputTitle.text.toString(), inputContent.text.toString())
-
-                    } else {
-
-                        //MemoObject 안에 title 이 존재하지 않는다면 Insert
-                        val memoData = MemoData(inputTitle.text.toString(), inputContent.text.toString())
-                        viewModel.insert(memoData)
-
-                    }
+                    //MemoObject 안에 title 이 존재하지 않는다면 Insert
+                    else viewModel.insert(
+                        MemoData(
+                            inputTitle.text.toString(),
+                            inputContent.text.toString()
+                        )
+                    )
 
                     //해당 작업을 끝낸 후에는 MemoObject 의 값을 초기화
                     MemoObject.clear()
                     finish()
-                    
-                } else {
-                    //만약 아무런 값도 입력이 안되어 있다면
-                    Toast.makeText(this@PostActivity, "Enter a title or content", Toast.LENGTH_LONG).show()
+
                 }
+
+                //만약 아무런 값도 입력이 안되어 있다면
+                else Toast.makeText(this@PostActivity, "Enter a title or content", Toast.LENGTH_LONG).show()
+
             }
+
         }
+
     }
 
     //뒤로가기 처리
@@ -94,4 +105,5 @@ class PostActivity : AppCompatActivity() {
         super.onBackPressed()
         MemoObject.clear()
     }
+
 }
