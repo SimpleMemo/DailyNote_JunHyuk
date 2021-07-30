@@ -13,32 +13,50 @@ import com.junhyuk.simplememojunhyuk.databinding.ActivityMainBinding
 import com.junhyuk.simplememojunhyuk.viewmodel.MainActivityViewModel
 import com.junhyuk.simplememojunhyuk.viewmodel.MainActivityViewModelFactory
 
+/*
+*
+* 파일명: MainActivity
+* 역할: MainActivity 메모를 RecyclerView 를 통해 띄워줌
+* 작성자: YangJunHyuk333
+*
+* */
+
 class MainActivity : AppCompatActivity() {
 
+    //binding, viewModel, viewModelFactory 선언
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
     private lateinit var viewModelFactory: MainActivityViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
+
+        //dataBinding 설정
+        binding = DataBindingUtil.setContentView(
+            this@MainActivity,
+            R.layout.activity_main
+        )
+
+        //viewModel 설정
         viewModelFactory = MainActivityViewModelFactory(application)
         viewModel = ViewModelProvider(
             this@MainActivity,
             viewModelFactory
         ).get(MainActivityViewModel::class.java)
 
-        Log.d("memoSize", "data: ${viewModel.getAllMemo().value?.get(0)?.memoTitle}")
-
+        //view 접근
         binding.apply {
+            //recyclerView 가 고정된 사이즈를 가진다고 알려주는 함수
             memoRecyclerView.setHasFixedSize(true)
 
+            //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
             viewModel.getAllMemo().observe(this@MainActivity, {
                 val memoAdapter = MemoRecyclerViewAdapter(it, this@MainActivity)
                 memoRecyclerView.adapter = memoAdapter
                 memoRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
             })
 
+            //메모를 추가하는 PostActivity 로 이동
             addButton.setOnClickListener {
                 val intent = Intent(this@MainActivity, PostActivity::class.java)
                 startActivity(intent)

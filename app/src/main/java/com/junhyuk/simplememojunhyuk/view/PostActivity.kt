@@ -15,8 +15,17 @@ import com.junhyuk.simplememojunhyuk.model.MemoObject
 import com.junhyuk.simplememojunhyuk.viewmodel.PostActivityViewModel
 import com.junhyuk.simplememojunhyuk.viewmodel.PostActivityViewModelFactory
 
+/*
+*
+* 파일명: PostActivity
+* 역할: Post(Insert, Update) 처리
+* 작성자: YangJunHyuk333
+*
+* */
+
 class PostActivity : AppCompatActivity() {
 
+    //binding, viewModel, viewModelFactory 선언
     private lateinit var binding: ActivityPostBinding
     private lateinit var viewModel: PostActivityViewModel
     private lateinit var viewModelFactory: PostActivityViewModelFactory
@@ -74,7 +83,7 @@ class PostActivity : AppCompatActivity() {
                     
                 } else {
                     //만약 아무런 값도 입력이 안되어 있다면
-                    Toast.makeText(this@PostActivity, "Enter a title or content!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@PostActivity, "Enter a title or content", Toast.LENGTH_LONG).show()
                 }
             }
         }

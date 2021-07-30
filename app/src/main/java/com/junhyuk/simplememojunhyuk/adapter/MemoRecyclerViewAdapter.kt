@@ -12,6 +12,14 @@ import com.junhyuk.simplememojunhyuk.model.MemoData
 import com.junhyuk.simplememojunhyuk.model.MemoObject
 import com.junhyuk.simplememojunhyuk.view.PostActivity
 
+/*
+*
+* 파일명: MemoRecyclerViewAdapter
+* 역할: RecyclerView 의 Adapter 로 RecyclerView 의 Data, Action 등을 관리
+* 작성자: YangJunHyuk333
+*
+* */
+
 class MemoRecyclerViewAdapter(private val memoList: List<MemoData>, private val context: Context) : RecyclerView.Adapter<MemoRecyclerViewAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -21,7 +29,7 @@ class MemoRecyclerViewAdapter(private val memoList: List<MemoData>, private val 
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         if (memoList.isNotEmpty()) {
-            val currentMemoData: MemoData = memoList!![position]
+            val currentMemoData: MemoData = memoList[position]
             holder.memoTitle.text = currentMemoData.memoTitle
             holder.memoContent.text = currentMemoData.memoContent
         }else{
