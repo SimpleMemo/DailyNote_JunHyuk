@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.junhyuk.simplememojunhyuk.R
 import com.junhyuk.simplememojunhyuk.model.MemoData
+import com.junhyuk.simplememojunhyuk.model.MemoObject
 import com.junhyuk.simplememojunhyuk.view.PostActivity
 
 class MemoRecyclerViewAdapter(private val memoList: List<MemoData>, private val context: Context) : RecyclerView.Adapter<MemoRecyclerViewAdapter.Holder>() {
@@ -30,9 +31,9 @@ class MemoRecyclerViewAdapter(private val memoList: List<MemoData>, private val 
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, PostActivity::class.java)
-            intent.putExtra("recyclerPosition", position)
-            intent.putExtra("recyclerTitle", holder.memoTitle.text)
-            intent.putExtra("recyclerContent", holder.memoContent.text)
+            MemoObject.position = position.toLong()
+            MemoObject.title = holder.memoTitle.text.toString()
+            MemoObject.content = holder.memoContent.text.toString()
             context.startActivity(intent)
         }
     }
