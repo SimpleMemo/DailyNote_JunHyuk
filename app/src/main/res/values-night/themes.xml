@@ -20,6 +20,7 @@
     </style>
 
     <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="behavior_peekHeight">512dp</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
 

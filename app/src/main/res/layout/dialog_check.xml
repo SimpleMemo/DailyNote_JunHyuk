@@ -2,69 +2,70 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="295dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:text="@string/delete_text"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="77dp"
+            android:gravity="center"
+            android:text="@string/Description_text"
+            android:textColor="#666666"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="295dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:id="@+id/deleteButton"
+            android:layout_width="327dp"
+            android:layout_height="51dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="166dp"
+            android:background="#5DB075"
+            app:cardBackgroundColor="#5DB075"
+            app:cardCornerRadius="100dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="32dp"
+                android:layout_gravity="center"
                 android:text="@string/delete_text"
-                android:textColor="@color/black"
-                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="77dp"
-                android:gravity="center"
-                android:text="@string/Description_text"
-                android:textColor="#666666"
-                android:textSize="16sp"
-                android:textStyle="normal" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/deleteButton"
-                android:layout_width="327dp"
-                android:layout_height="51dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="166dp"
-                app:cardBackgroundColor="#5DB075"
-                app:cardCornerRadius="100dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/delete_text"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <TextView
-                android:id="@+id/cancelButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="230dp"
-                android:layout_marginBottom="30dp"
-                android:text="@string/cancel_text"
-                android:textColor="#5DB075"
-                android:textSize="16sp"
-                android:textStyle="normal" />
-
         </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="230dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/cancel_text"
+            android:textColor="#5DB075"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>

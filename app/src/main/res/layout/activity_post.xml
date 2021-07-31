@@ -74,7 +74,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputTitle" />
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/postButton"
             android:layout_width="96dp"
             android:layout_height="51dp"
@@ -98,7 +98,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
