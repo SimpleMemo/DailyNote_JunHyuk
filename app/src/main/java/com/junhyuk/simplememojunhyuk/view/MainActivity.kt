@@ -2,12 +2,10 @@ package com.junhyuk.simplememojunhyuk.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.junhyuk.simplememojunhyuk.R
 import com.junhyuk.simplememojunhyuk.adapter.MemoRecyclerViewAdapter
@@ -37,17 +35,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         //dataBinding 설정
-        binding = DataBindingUtil.setContentView(
-            this@MainActivity,
-            R.layout.activity_main
-        )
+        binding = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
 
         //viewModel 설정
         viewModelFactory = MainActivityViewModelFactory(application)
-        viewModel = ViewModelProvider(
-            this@MainActivity,
-            viewModelFactory
-        ).get(MainActivityViewModel::class.java)
+        viewModel = ViewModelProvider(this@MainActivity, viewModelFactory).get(MainActivityViewModel::class.java)
         binding.myViewModel = viewModel
 
         //SwipeAction
@@ -78,15 +70,19 @@ class MainActivity : AppCompatActivity() {
 
             //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
             viewModel.getAllMemo().observe(this@MainActivity, {
+
                 myAdapter = MemoRecyclerViewAdapter(it, this@MainActivity)
                 val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
                 itemTouchHelper.attachToRecyclerView(memoRecyclerView)
+
             })
 
             //메모를 추가하는 PostActivity 로 이동
             addButton.setOnClickListener {
+
                 val intent = Intent(this@MainActivity, PostActivity::class.java)
                 startActivity(intent)
+
             }
 
         }

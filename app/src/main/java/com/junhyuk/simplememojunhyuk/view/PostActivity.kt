@@ -34,29 +34,25 @@ class PostActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         //dataBinding 설정
-        binding = DataBindingUtil.setContentView(
-            this@PostActivity,
-            R.layout.activity_post
-        )
+        binding = DataBindingUtil.setContentView(this@PostActivity, R.layout.activity_post)
 
         //viewModel 설정
         viewModelFactory = PostActivityViewModelFactory(application)
-        viewModel = ViewModelProvider(
-            this@PostActivity,
-            viewModelFactory
-        ).get(PostActivityViewModel::class.java)
+        viewModel = ViewModelProvider(this@PostActivity, viewModelFactory).get(PostActivityViewModel::class.java)
         binding.myViewModel = viewModel
 
         //update 에 필요한 변수 설정
         val position = MemoObject.position
+        val updateTitle = MemoObject.title
+        val updateContent = MemoObject.content
         var memoId = 0
+        
+        //memoId 초기화
         viewModel.getAllMemo().observe(this@PostActivity, {
             if (viewModel.getAllMemo().value?.isNotEmpty() == true) {
                 memoId = viewModel.getAllMemo().value?.get(position)?.memoId!!
             }
         })
-        val updateTitle = MemoObject.title
-        val updateContent = MemoObject.content
 
         //view 접근
         binding.apply {
@@ -83,26 +79,18 @@ class PostActivity : AppCompatActivity() {
                 if (textNullCheck) {
 
                     //MemoObject 안에 title 이 존재한다면 Update
-                    if (objectNullCheck)
+                    if (objectNullCheck) {
                         CoroutineScope(Dispatchers.IO).launch {
-                            viewModel.update(
-                                memoId,
-                                viewModel.title.value.toString(),
-                                viewModel.content.value.toString()
-                            )
+                            viewModel.update(memoId, viewModel.title.value.toString(), viewModel.content.value.toString())
                         }
+                    }
 
                     //MemoObject 안에 title 이 존재하지 않는다면 Insert
-                    else
+                    else {
                         CoroutineScope(Dispatchers.IO).launch {
-                            viewModel.insert(
-                                MemoData(
-                                    inputTitle.text.toString(),
-                                    inputContent.text.toString()
-                                )
-                            )
+                            viewModel.insert(MemoData(inputTitle.text.toString(), inputContent.text.toString()))
                         }
-
+                    }
 
                     //해당 작업을 끝낸 후에는 MemoObject 의 값을 초기화
                     MemoObject.clear()
@@ -111,11 +99,9 @@ class PostActivity : AppCompatActivity() {
                 }
 
                 //만약 아무런 값도 입력이 안되어 있다면
-                else Toast.makeText(
-                    this@PostActivity,
-                    "Enter a title or content",
-                    Toast.LENGTH_LONG
-                ).show()
+                else {
+                    Toast.makeText(this@PostActivity, "Enter a title or content", Toast.LENGTH_LONG).show()
+                }
 
             }
 
