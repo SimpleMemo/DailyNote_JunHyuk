@@ -29,9 +29,4 @@ class MainActivityViewModel(application: Application) : ViewModel() {
         return memoList
     }
 
-    //Memo 삭제
-    fun deleteMemo(memoId: Int?){
-        memoRepository.deleteMemo(memoId)
-    }
-
 }

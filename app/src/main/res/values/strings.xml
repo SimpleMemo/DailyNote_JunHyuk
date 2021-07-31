@@ -8,4 +8,7 @@
     <string name="edit_title">Title</string>
     <string name="edit_content">Content</string>
     <string name="post">post</string>
+    <string name="delete_text">Delete</string>
+    <string name="Description_text">해당 메모를 삭제하시겠습니까?\n삭제된 내용은 되돌릴수 없습니다.</string>
+    <string name="cancel_text">cancel</string>
 </resources>

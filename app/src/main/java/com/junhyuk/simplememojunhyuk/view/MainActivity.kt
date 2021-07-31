@@ -54,9 +54,13 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
 
+            //swipe action
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 CoroutineScope(Dispatchers.IO).launch {
-                    viewModel.deleteMemo(viewModel.getAllMemo().value?.get(viewHolder.adapterPosition)?.memoId)
+                    //삭제할 것인지 묻는 Dialog
+                    val checkDialog = CheckDialog()
+                    checkDialog.show(supportFragmentManager, viewModel.getAllMemo().value?.get(viewHolder.adapterPosition)?.memoId.toString())
+                    binding.myAdapter!!.notifyItemChanged(viewHolder.adapterPosition)
                 }
             }
 
@@ -70,11 +74,9 @@ class MainActivity : AppCompatActivity() {
 
             //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
             viewModel.getAllMemo().observe(this@MainActivity, {
-
                 myAdapter = MemoRecyclerViewAdapter(it, this@MainActivity)
                 val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
                 itemTouchHelper.attachToRecyclerView(memoRecyclerView)
-
             })
 
             //메모를 추가하는 PostActivity 로 이동
