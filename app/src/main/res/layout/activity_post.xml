@@ -38,7 +38,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginTop="33dp"
-            android:autofillHints=""
             android:background="@android:color/transparent"
             android:hint="@string/edit_title"
             android:inputType="text"
@@ -51,7 +50,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:autofillHints="text" />
 
         <EditText
             android:id="@+id/inputContent"
@@ -59,7 +59,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginTop="15dp"
-            android:autofillHints=""
             android:background="@android:color/transparent"
             android:ems="17"
             android:hint="@string/edit_content"
@@ -72,7 +71,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/inputTitle"
+            android:autofillHints="textMultiLine" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/postButton"
