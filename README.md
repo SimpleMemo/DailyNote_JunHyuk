@@ -1,2 +1,0 @@
-"# simpleMemoJunhyuk" 
-"# simpleMemoJunhyuk" 
