@@ -1,14 +1,18 @@
 <resources>
     <string name="app_name">simpleMemoJunhyuk</string>
-    <string name="AppName">Note</string>
+    <string name="AppName">DailyNote</string>
     <string name="PostName">Post</string>
     <string name="title_sample">2021.07.28 수요일 메모</string>
     <string name="content_sample">안녕하세요 저는 양준혁입니다. 저는 안드로이드 개...</string>
     <string name="add">Add</string>
     <string name="edit_title">Title</string>
     <string name="edit_content">Content</string>
-    <string name="post">post</string>
+    <string name="post">Post</string>
     <string name="delete_text">Delete</string>
     <string name="Description_text">해당 메모를 삭제하시겠습니까?\n삭제된 내용은 되돌릴수 없습니다.</string>
     <string name="cancel_text">cancel</string>
+    <string name="settings_text">Settings</string>
+    <string name="add_diary_text">Add Diary</string>
+    <string name="next_text">Next</string>
+    <string name="back_text">Back</string>
 </resources>

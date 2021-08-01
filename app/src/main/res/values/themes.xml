@@ -3,7 +3,7 @@
     <style name="Theme.SimpleMemoJunhyuk" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -11,10 +11,11 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
         <!-- Customize your theme here. -->
     </style>
 
+    <!--    bottom dialog-->
     <style name="CustomBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
     </style>
@@ -22,6 +23,49 @@
     <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="behavior_peekHeight">512dp</item>
         <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <!--    cardView-->
+    <style name="CustomButtonTheme" parent="Theme.MaterialComponents.Light">
+        <item name="materialCardViewStyle">@style/CustomButton</item>
+    </style>
+
+    <style name="CustomButton" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">#5DB075</item>
+        <item name="backgroundColor">@android:color/transparent</item>
+    </style>
+
+    <!--    textView-->
+    <style name="CustomTextTheme" parent="Theme.AppCompat.Light">
+        <item name="android:textViewStyle">@style/CustomText</item>
+    </style>
+
+    <style name="CustomText" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">#5DB075</item>
+    </style>
+
+<!--    recyclerViewItem-->
+    <style name="CustomRecyclerViewTheme" parent="Theme.MaterialComponents.Light">
+        <item name="materialCardViewStyle">@style/CustomItem</item>
+    </style>
+
+    <style name="CustomItemTextTheme" parent="Theme.AppCompat.Light">
+        <item name="android:textViewStyle">@style/CustomItemText</item>
+    </style>
+
+    <style name="CustomItemText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="CustomItem" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">#FFFFFF</item>
+        <item name="strokeColor">#E9E9E9</item>
+        <item name="cardCornerRadius">5dp</item>
+    </style>
+
+    <!--    background-->
+    <style name="CustomBackground" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:background">@color/white</item>
     </style>
 
 </resources>
