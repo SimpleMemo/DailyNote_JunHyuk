@@ -7,7 +7,7 @@
 
         <variable
             name="myViewModel"
-            type="com.junhyuk.simplememojunhyuk.viewmodel.MainActivityViewModel" />
+            type="com.junhyuk.simplememojunhyuk.viewmodel.main.MainActivityViewModel" />
 
         <variable
             name="myAdapter"
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:theme="@style/CustomBackground"
-        tools:context=".view.MainActivity">
+        tools:context=".view.main.MainActivity">
 
         <TextView
             android:id="@+id/textView"

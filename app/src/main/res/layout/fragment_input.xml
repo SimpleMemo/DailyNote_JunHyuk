@@ -6,7 +6,7 @@
 
         <variable
             name="myViewModel"
-            type="com.junhyuk.simplememojunhyuk.viewmodel.InputFragmentViewModel" />
+            type="com.junhyuk.simplememojunhyuk.viewmodel.post.InputFragmentViewModel" />
 
     </data>
 
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:theme="@style/CustomBackground"
-        tools:context=".view.PostActivity">
+        tools:context=".view.post.PostActivity">
 
         <TextView
             android:id="@+id/textView"

@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.junhyuk.simplememojunhyuk.R
-import com.junhyuk.simplememojunhyuk.model.MemoData
+import com.junhyuk.simplememojunhyuk.application.MyApplication
+import com.junhyuk.simplememojunhyuk.model.database.MemoData
 import com.junhyuk.simplememojunhyuk.model.MemoObject
-import com.junhyuk.simplememojunhyuk.view.PostActivity
+import com.junhyuk.simplememojunhyuk.view.post.PostActivity
 
 /*
 *

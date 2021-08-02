@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:theme="@style/CustomBackground"
-        tools:context=".view.PostActivity">
+        tools:context=".view.post.PostActivity">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"

@@ -1,9 +1,10 @@
-package com.junhyuk.simplememojunhyuk.model
+package com.junhyuk.simplememojunhyuk.model.repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
+import com.junhyuk.simplememojunhyuk.model.database.MemoDao
+import com.junhyuk.simplememojunhyuk.model.database.MemoData
+import com.junhyuk.simplememojunhyuk.model.database.MemoDataBase
 
 /*
 *

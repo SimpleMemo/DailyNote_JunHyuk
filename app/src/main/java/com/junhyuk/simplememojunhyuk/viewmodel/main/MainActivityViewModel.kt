@@ -1,11 +1,10 @@
-package com.junhyuk.simplememojunhyuk.viewmodel
+package com.junhyuk.simplememojunhyuk.viewmodel.main
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.junhyuk.simplememojunhyuk.model.MemoData
-import com.junhyuk.simplememojunhyuk.model.MemoRepository
+import com.junhyuk.simplememojunhyuk.model.database.MemoData
+import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 
 /*
 *

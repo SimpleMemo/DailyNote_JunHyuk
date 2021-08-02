@@ -1,9 +1,8 @@
-package com.junhyuk.simplememojunhyuk.viewmodel
+package com.junhyuk.simplememojunhyuk.viewmodel.post
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.junhyuk.simplememojunhyuk.view.PostActivity
 import java.lang.IllegalArgumentException
 
 /*

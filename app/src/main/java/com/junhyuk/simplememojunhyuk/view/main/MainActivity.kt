@@ -1,4 +1,4 @@
-package com.junhyuk.simplememojunhyuk.view
+package com.junhyuk.simplememojunhyuk.view.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,8 +11,10 @@ import com.junhyuk.simplememojunhyuk.R
 import com.junhyuk.simplememojunhyuk.adapter.MemoRecyclerViewAdapter
 import com.junhyuk.simplememojunhyuk.databinding.ActivityMainBinding
 import com.junhyuk.simplememojunhyuk.model.MemoObject
-import com.junhyuk.simplememojunhyuk.viewmodel.MainActivityViewModel
-import com.junhyuk.simplememojunhyuk.viewmodel.MainActivityViewModelFactory
+import com.junhyuk.simplememojunhyuk.view.dialog.CheckDialog
+import com.junhyuk.simplememojunhyuk.view.post.PostActivity
+import com.junhyuk.simplememojunhyuk.viewmodel.main.MainActivityViewModel
+import com.junhyuk.simplememojunhyuk.viewmodel.main.MainActivityViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,5 +1,6 @@
-package com.junhyuk.simplememojunhyuk.view
+package com.junhyuk.simplememojunhyuk.view.post
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.junhyuk.simplememojunhyuk.R
+import com.junhyuk.simplememojunhyuk.application.MyApplication
 import com.junhyuk.simplememojunhyuk.databinding.FragmentInputBinding
 import com.junhyuk.simplememojunhyuk.model.MemoObject
-import com.junhyuk.simplememojunhyuk.viewmodel.InputFragmentViewModel
-import com.junhyuk.simplememojunhyuk.viewmodel.InputFragmentViewModelFactory
+import com.junhyuk.simplememojunhyuk.viewmodel.post.InputFragmentViewModel
+import com.junhyuk.simplememojunhyuk.viewmodel.post.InputFragmentViewModelFactory
 
 /*
 *
@@ -30,6 +32,7 @@ class InputFragment : Fragment() {
     private lateinit var viewModel: InputFragmentViewModel
     private lateinit var viewModelFactory: InputFragmentViewModelFactory
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,7 +44,8 @@ class InputFragment : Fragment() {
 
         //viewModel 설정
         viewModelFactory = InputFragmentViewModelFactory(requireActivity().application)
-        viewModel = ViewModelProvider(this@InputFragment, viewModelFactory).get(InputFragmentViewModel::class.java)
+        viewModel = ViewModelProvider(this@InputFragment, viewModelFactory).get(
+            InputFragmentViewModel::class.java)
         binding.myViewModel = viewModel
 
         //state 저장
@@ -53,6 +57,12 @@ class InputFragment : Fragment() {
 
         //view 접근
         binding.apply {
+
+            //상단 Text 를 어떤 작업을 하느냐에 따라서 변경
+            when(viewModel.stateData.value){
+                "UPDATE" -> textView.text = "Edit Diary"
+                "INSERT" -> textView.text = "Add Diary"
+            }
 
             //Boolean 변수 선언
             var textNullCheck: Boolean
@@ -110,7 +120,7 @@ class InputFragment : Fragment() {
 
                         else -> {
                             //만약 중간에 state 값을 잃었다면
-                            Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
+                            Toast.makeText(MyApplication.applicationContext(), "Error", Toast.LENGTH_LONG).show()
                             requireActivity().finish()
                         }
                     }
@@ -119,7 +129,7 @@ class InputFragment : Fragment() {
 
                 //만약 아무런 값도 입력이 안되어 있다면
                 else {
-                    Toast.makeText(requireActivity(), "Enter a title or content", Toast.LENGTH_LONG).show()
+                    Toast.makeText(MyApplication.applicationContext(), "Enter a title or content", Toast.LENGTH_LONG).show()
                 }
 
             }

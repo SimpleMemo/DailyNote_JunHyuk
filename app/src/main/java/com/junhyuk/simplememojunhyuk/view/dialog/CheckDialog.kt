@@ -1,21 +1,17 @@
-package com.junhyuk.simplememojunhyuk.view
+package com.junhyuk.simplememojunhyuk.view.dialog
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.junhyuk.simplememojunhyuk.R
-import com.junhyuk.simplememojunhyuk.adapter.MemoRecyclerViewAdapter
 import com.junhyuk.simplememojunhyuk.databinding.DialogCheckBinding
-import com.junhyuk.simplememojunhyuk.viewmodel.CheckDialogViewModel
-import com.junhyuk.simplememojunhyuk.viewmodel.CheckDialogViewModelFactory
+import com.junhyuk.simplememojunhyuk.viewmodel.dialog.CheckDialogViewModel
+import com.junhyuk.simplememojunhyuk.viewmodel.dialog.CheckDialogViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

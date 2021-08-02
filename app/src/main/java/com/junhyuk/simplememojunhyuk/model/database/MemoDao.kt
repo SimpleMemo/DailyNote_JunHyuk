@@ -1,4 +1,4 @@
-package com.junhyuk.simplememojunhyuk.model
+package com.junhyuk.simplememojunhyuk.model.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

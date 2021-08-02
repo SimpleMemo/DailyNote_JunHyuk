@@ -1,5 +1,6 @@
-package com.junhyuk.simplememojunhyuk.view
+package com.junhyuk.simplememojunhyuk.view.post
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.junhyuk.simplememojunhyuk.R
+import com.junhyuk.simplememojunhyuk.application.MyApplication
 import com.junhyuk.simplememojunhyuk.databinding.FragmentPostBinding
-import com.junhyuk.simplememojunhyuk.model.MemoData
+import com.junhyuk.simplememojunhyuk.model.database.MemoData
 import com.junhyuk.simplememojunhyuk.model.MemoObject
-import com.junhyuk.simplememojunhyuk.viewmodel.PostFragmentViewModel
-import com.junhyuk.simplememojunhyuk.viewmodel.PostFragmentViewModelFactory
+import com.junhyuk.simplememojunhyuk.viewmodel.post.PostFragmentViewModel
+import com.junhyuk.simplememojunhyuk.viewmodel.post.PostFragmentViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,6 +35,7 @@ class PostFragment : Fragment() {
     private lateinit var viewModel: PostFragmentViewModel
     private lateinit var viewModelFactory: PostFragmentViewModelFactory
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,14 +51,29 @@ class PostFragment : Fragment() {
         binding.myViewModel = viewModel
 
         //state 저장
-        viewModel.setState(MemoObject.state)
+        if(viewModel.stateData.value?.isNotEmpty() == true){
+            MemoObject.state = viewModel.stateData.value.toString()
+        }else{
+            viewModel.setState(MemoObject.state)
+        }
 
         //view 접근
         binding.apply {
 
+            //상단 Text 를 어떤 작업을 하느냐에 따라서 변경
+            when(viewModel.stateData.value){
+                "UPDATE" -> textView.text = "Update Diary"
+                "INSERT" -> textView.text = "Post Diary"
+            }
+
             //해당 position 에 해당하는 제목과 내용을 EditText 에 입력(Update)
             viewModel.apply {
-                setTextValue(MemoObject.title, MemoObject.content)
+                if(MemoObject.title.isNotEmpty()) {
+                    setTextValue(MemoObject.title, MemoObject.content)
+                }else{
+                    MemoObject.title = titleData.value.toString()
+                    MemoObject.content = contentData.value.toString()
+                }
             }
 
             //Post
@@ -78,7 +96,7 @@ class PostFragment : Fragment() {
 
                     //만약 아무런 값도 입력이 안되어 있다면
                     else -> {
-                        Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
+                        Toast.makeText(MyApplication.applicationContext(), "Error", Toast.LENGTH_LONG).show()
                         requireActivity().finish()
                     }
                 }

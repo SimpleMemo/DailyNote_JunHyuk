@@ -1,8 +1,8 @@
-package com.junhyuk.simplememojunhyuk.viewmodel
+package com.junhyuk.simplememojunhyuk.viewmodel.dialog
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
-import com.junhyuk.simplememojunhyuk.model.MemoRepository
+import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 
 /*
 *
