@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.junhyuk.simplememojunhyuk.R
 import com.junhyuk.simplememojunhyuk.adapter.MemoRecyclerViewAdapter
 import com.junhyuk.simplememojunhyuk.databinding.ActivityMainBinding
+import com.junhyuk.simplememojunhyuk.model.MemoObject
 import com.junhyuk.simplememojunhyuk.viewmodel.MainActivityViewModel
 import com.junhyuk.simplememojunhyuk.viewmodel.MainActivityViewModelFactory
 import kotlinx.coroutines.CoroutineScope
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             //메모를 추가하는 PostActivity 로 이동
             addButton.setOnClickListener {
 
+                MemoObject.state = "INSERT"
                 val intent = Intent(this@MainActivity, PostActivity::class.java)
                 startActivity(intent)
 

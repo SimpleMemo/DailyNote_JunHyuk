@@ -1,0 +1,111 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="myViewModel"
+            type="com.junhyuk.simplememojunhyuk.viewmodel.InputFragmentViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/CustomBackground"
+        tools:context=".view.PostActivity">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/add_diary_text"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:theme="@style/CustomItemTextTheme"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <TextView
+            android:id="@+id/postButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:text="@string/next_text"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:theme="@style/CustomTextTheme"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+
+        <TextView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:text="@string/back_text"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:theme="@style/CustomTextTheme"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/inputTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="33dp"
+            android:autofillHints="text"
+            android:background="@android:color/transparent"
+            android:ems="17"
+            android:hint="@string/edit_title"
+            android:inputType="text"
+            android:maxLines="1"
+            android:text="@={myViewModel.title}"
+            android:textColorHint="#BDBDBD"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:theme="@style/Theme.MyApplication"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/inputContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="15dp"
+            android:autofillHints="textMultiLine"
+            android:background="@android:color/transparent"
+            android:ems="17"
+            android:hint="@string/edit_content"
+            android:inputType="textMultiLine"
+            android:text="@={myViewModel.content}"
+            android:textColorHint="#BDBDBD"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:theme="@style/Theme.MyApplication"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

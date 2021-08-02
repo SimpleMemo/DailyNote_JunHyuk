@@ -45,7 +45,7 @@ class CheckDialog : BottomSheetDialogFragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_check, container, false)
 
         //viewModel 설정
-        viewModelFactory = CheckDialogViewModelFactory(activity?.application)
+        viewModelFactory = CheckDialogViewModelFactory(requireActivity().application)
         viewModel = ViewModelProvider(this@CheckDialog, viewModelFactory).get(CheckDialogViewModel::class.java)
 
         //view 접근
