@@ -44,6 +44,13 @@ class InputFragment : Fragment() {
         viewModel = ViewModelProvider(this@InputFragment, viewModelFactory).get(InputFragmentViewModel::class.java)
         binding.myViewModel = viewModel
 
+        //state 저장
+        if(viewModel.stateData.value?.isNotEmpty() == true){
+            MemoObject.state = viewModel.stateData.value.toString()
+        }else{
+            viewModel.setState(MemoObject.state)
+        }
+
         //view 접근
         binding.apply {
 
@@ -51,9 +58,11 @@ class InputFragment : Fragment() {
             var textNullCheck: Boolean
 
             //해당 position 에 해당하는 제목과 내용을 EditText 에 입력(Update)
-            viewModel.apply {
-                title.value = MemoObject.title
-                content.value = MemoObject.content
+            if(MemoObject.title.isNotEmpty()){
+                viewModel.apply {
+                    title.value = MemoObject.title
+                    content.value = MemoObject.content
+                }
             }
 
             //Post
@@ -68,7 +77,7 @@ class InputFragment : Fragment() {
                 if (textNullCheck) {
 
                     //MemoObject 안에 title 이 존재한다면 Update
-                    when (MemoObject.state) {
+                    when (viewModel.stateData.value) {
                         "UPDATE" -> {
 
                             //title, content 초기화

@@ -47,6 +47,9 @@ class PostFragment : Fragment() {
         viewModel = ViewModelProvider(this@PostFragment, viewModelFactory).get(PostFragmentViewModel::class.java)
         binding.myViewModel = viewModel
 
+        //state 저장
+        viewModel.setState(MemoObject.state)
+
         //view 접근
         binding.apply {
 
@@ -59,7 +62,7 @@ class PostFragment : Fragment() {
             postButton.setOnClickListener {
 
                 //MemoObject.state == UPDATE
-                when (MemoObject.state) {
+                when (viewModel.stateData.value) {
                     "UPDATE" -> {
                         CoroutineScope(Dispatchers.IO).launch {
                             viewModel.update(MemoObject.position, MemoObject.title, MemoObject.content)
