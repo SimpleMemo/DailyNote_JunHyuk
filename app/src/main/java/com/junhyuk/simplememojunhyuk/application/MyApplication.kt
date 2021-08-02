@@ -2,11 +2,17 @@ package com.junhyuk.simplememojunhyuk.application
 
 import android.app.Application
 import android.content.Context
-import android.preference.PreferenceManager
-import androidx.appcompat.app.AppCompatDelegate
 import com.junhyuk.simplememojunhyuk.model.`object`.Constants
 import com.junhyuk.simplememojunhyuk.model.`object`.ThemeManager
 import com.junhyuk.simplememojunhyuk.model.database.SharedPreferenceData
+
+/*
+*
+* 파일명: MyApplication
+* 역할: Application Component 사이에서 공동으로 멤버들을 사용할 수 있게 해줌
+* 작성자: YangJunHyuk333
+*
+* */
 
 class MyApplication : Application() {
 
