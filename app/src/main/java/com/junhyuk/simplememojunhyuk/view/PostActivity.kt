@@ -104,6 +104,12 @@ class PostActivity : AppCompatActivity() {
                 }
 
             }
+            
+            backButton.setOnClickListener {
+                //해당 작업을 끝낸 후에는 MemoObject 의 값을 초기화
+                MemoObject.clear()
+                finish() //Activity 종료
+            }
 
         }
 

@@ -23,9 +23,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/add_diary_text"
-            android:theme="@style/CustomItemTextTheme"
             android:textSize="30sp"
             android:textStyle="bold"
+            android:theme="@style/CustomItemTextTheme"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -34,6 +34,7 @@
 
 
         <TextView
+            android:id="@+id/postButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="25dp"
@@ -49,6 +50,7 @@
 
 
         <TextView
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -68,21 +70,21 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginTop="33dp"
+            android:autofillHints="text"
             android:background="@android:color/transparent"
+            android:ems="17"
             android:hint="@string/edit_title"
             android:inputType="text"
             android:maxLines="1"
             android:text="@={myViewModel.title}"
-            android:theme="@style/Theme.MyApplication"
             android:textColorHint="#BDBDBD"
             android:textSize="18sp"
-            android:ems="17"
             android:textStyle="bold"
+            android:theme="@style/Theme.MyApplication"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            android:autofillHints="text" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <EditText
             android:id="@+id/inputContent"
@@ -90,47 +92,20 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginTop="15dp"
+            android:autofillHints="textMultiLine"
             android:background="@android:color/transparent"
             android:ems="17"
             android:hint="@string/edit_content"
             android:inputType="textMultiLine"
             android:text="@={myViewModel.content}"
-            android:theme="@style/Theme.MyApplication"
             android:textColorHint="#BDBDBD"
             android:textSize="18sp"
             android:textStyle="normal"
+            android:theme="@style/Theme.MyApplication"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputTitle"
-            android:autofillHints="textMultiLine" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/postButton"
-            android:layout_width="96dp"
-            android:layout_height="51dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="40dp"
-            android:elevation="4dp"
-            android:theme="@style/CustomButtonTheme"
-            app:cardCornerRadius="100dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:layout_gravity="center"
-                android:text="@string/post"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-
-        </com.google.android.material.card.MaterialCardView>
+            app:layout_constraintTop_toBottomOf="@+id/inputTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
