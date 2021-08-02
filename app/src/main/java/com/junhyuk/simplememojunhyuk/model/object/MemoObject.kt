@@ -1,4 +1,4 @@
-package com.junhyuk.simplememojunhyuk.model
+package com.junhyuk.simplememojunhyuk.model.`object`
 
 /*
 *
@@ -14,6 +14,15 @@ object MemoObject {
     var position: Int = 0 //positionData
     var dataIndex: Int = 0 //dataIndex
     var state: String = "" //Post Or Update State
+
+    //데이터 전체 설정
+    fun setAll(title: String, content: String, position: Int, dataIndex: Int, state: String){
+        this.title = title
+        this.content = content
+        this.position = position
+        this.dataIndex = dataIndex
+        this.state = state
+    }
 
     //데이터 전체 초기화
     fun clear(){

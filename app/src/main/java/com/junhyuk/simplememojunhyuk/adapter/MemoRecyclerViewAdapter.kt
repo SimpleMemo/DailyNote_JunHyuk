@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.junhyuk.simplememojunhyuk.R
-import com.junhyuk.simplememojunhyuk.application.MyApplication
 import com.junhyuk.simplememojunhyuk.model.database.MemoData
-import com.junhyuk.simplememojunhyuk.model.MemoObject
+import com.junhyuk.simplememojunhyuk.model.`object`.MemoObject
 import com.junhyuk.simplememojunhyuk.view.post.PostActivity
 
 /*
@@ -45,10 +44,7 @@ class MemoRecyclerViewAdapter(private val memoList: List<MemoData>, private val 
         //메모 클릭시
         holder.itemView.setOnClickListener {
             val intent = Intent(context, PostActivity::class.java)
-            MemoObject.dataIndex = position //position 저장
-            MemoObject.state = "UPDATE" //state 저장
-            MemoObject.title = holder.memoTitle.text.toString() //title 저장
-            MemoObject.content = holder.memoContent.text.toString() //content 저장
+            MemoObject.setAll(holder.memoTitle.text.toString(), holder.memoContent.text.toString(), position, 0, "UPDATE") //MemoObject Instance 전체 설정
             context.startActivity(intent) //PostActivity 로 이동
         }
         

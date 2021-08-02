@@ -17,7 +17,7 @@ import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 
 class PostFragmentViewModel(application: Application?) : ViewModel() {
 
-    //title, content, state 변수 선언
+    //title, content, state, dataIndex 변수 선언
     private val title = MutableLiveData<String>()
     val titleData: LiveData<String>
         get() = title
@@ -30,9 +30,18 @@ class PostFragmentViewModel(application: Application?) : ViewModel() {
     val stateData: LiveData<String>
         get() = state
 
+    private val dataIndex = MutableLiveData<Int>()
+    val dataIndexData: LiveData<Int>
+        get() = dataIndex
+
     //state 저장
     fun setState(state: String){
         this.state.value = state
+    }
+
+    //dataIndex 저장
+    fun setDataIndex(dataIndex: Int){
+        this.dataIndex.value = dataIndex
     }
 
     //title, content 초기화

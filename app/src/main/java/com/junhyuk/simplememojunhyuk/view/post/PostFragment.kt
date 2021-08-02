@@ -13,7 +13,7 @@ import com.junhyuk.simplememojunhyuk.R
 import com.junhyuk.simplememojunhyuk.application.MyApplication
 import com.junhyuk.simplememojunhyuk.databinding.FragmentPostBinding
 import com.junhyuk.simplememojunhyuk.model.database.MemoData
-import com.junhyuk.simplememojunhyuk.model.MemoObject
+import com.junhyuk.simplememojunhyuk.model.`object`.MemoObject
 import com.junhyuk.simplememojunhyuk.viewmodel.post.PostFragmentViewModel
 import com.junhyuk.simplememojunhyuk.viewmodel.post.PostFragmentViewModelFactory
 import kotlinx.coroutines.CoroutineScope
@@ -50,11 +50,13 @@ class PostFragment : Fragment() {
         viewModel = ViewModelProvider(this@PostFragment, viewModelFactory).get(PostFragmentViewModel::class.java)
         binding.myViewModel = viewModel
 
-        //state 저장
+        //state, dataIndex 저장
         if(viewModel.stateData.value?.isNotEmpty() == true){
             MemoObject.state = viewModel.stateData.value.toString()
+            MemoObject.position = viewModel.dataIndexData.value!!
         }else{
             viewModel.setState(MemoObject.state)
+            viewModel.setDataIndex(MemoObject.dataIndex)
         }
 
         //view 접근
@@ -83,7 +85,7 @@ class PostFragment : Fragment() {
                 when (viewModel.stateData.value) {
                     "UPDATE" -> {
                         CoroutineScope(Dispatchers.IO).launch {
-                            viewModel.update(MemoObject.position, MemoObject.title, MemoObject.content)
+                            viewModel.update(MemoObject.dataIndex, MemoObject.title, MemoObject.content)
                         }
                     }
 

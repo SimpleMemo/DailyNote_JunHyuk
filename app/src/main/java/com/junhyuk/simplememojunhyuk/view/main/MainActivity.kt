@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.junhyuk.simplememojunhyuk.R
 import com.junhyuk.simplememojunhyuk.adapter.MemoRecyclerViewAdapter
 import com.junhyuk.simplememojunhyuk.databinding.ActivityMainBinding
-import com.junhyuk.simplememojunhyuk.model.MemoObject
+import com.junhyuk.simplememojunhyuk.model.`object`.MemoObject
 import com.junhyuk.simplememojunhyuk.view.dialog.CheckDialog
 import com.junhyuk.simplememojunhyuk.view.post.PostActivity
+import com.junhyuk.simplememojunhyuk.view.setting.SettingActivity
 import com.junhyuk.simplememojunhyuk.viewmodel.main.MainActivityViewModel
 import com.junhyuk.simplememojunhyuk.viewmodel.main.MainActivityViewModelFactory
 import kotlinx.coroutines.CoroutineScope
@@ -87,6 +88,14 @@ class MainActivity : AppCompatActivity() {
 
                 MemoObject.state = "INSERT"
                 val intent = Intent(this@MainActivity, PostActivity::class.java)
+                startActivity(intent)
+
+            }
+
+            //설정을 하는 SettingActivity 로 이동
+            settingText.setOnClickListener {
+
+                val intent = Intent(this@MainActivity, SettingActivity::class.java)
                 startActivity(intent)
 
             }

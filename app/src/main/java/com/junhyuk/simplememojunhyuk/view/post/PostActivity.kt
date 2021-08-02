@@ -5,9 +5,8 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.junhyuk.simplememojunhyuk.R
-import com.junhyuk.simplememojunhyuk.application.MyApplication
 import com.junhyuk.simplememojunhyuk.databinding.ActivityPostBinding
-import com.junhyuk.simplememojunhyuk.model.MemoObject
+import com.junhyuk.simplememojunhyuk.model.`object`.MemoObject
 import com.junhyuk.simplememojunhyuk.viewmodel.post.PostActivityViewModel
 import com.junhyuk.simplememojunhyuk.viewmodel.post.PostActivityViewModelFactory
 

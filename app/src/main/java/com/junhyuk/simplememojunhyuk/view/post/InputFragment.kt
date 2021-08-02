@@ -13,7 +13,7 @@ import androidx.navigation.Navigation
 import com.junhyuk.simplememojunhyuk.R
 import com.junhyuk.simplememojunhyuk.application.MyApplication
 import com.junhyuk.simplememojunhyuk.databinding.FragmentInputBinding
-import com.junhyuk.simplememojunhyuk.model.MemoObject
+import com.junhyuk.simplememojunhyuk.model.`object`.MemoObject
 import com.junhyuk.simplememojunhyuk.viewmodel.post.InputFragmentViewModel
 import com.junhyuk.simplememojunhyuk.viewmodel.post.InputFragmentViewModelFactory
 
@@ -48,11 +48,13 @@ class InputFragment : Fragment() {
             InputFragmentViewModel::class.java)
         binding.myViewModel = viewModel
 
-        //state 저장
+        //state, position 저장
         if(viewModel.stateData.value?.isNotEmpty() == true){
             MemoObject.state = viewModel.stateData.value.toString()
+            MemoObject.position = viewModel.positionData.value!!
         }else{
             viewModel.setState(MemoObject.state)
+            viewModel.setPosition(MemoObject.position)
         }
 
         //view 접근
@@ -91,13 +93,13 @@ class InputFragment : Fragment() {
                         "UPDATE" -> {
 
                             //title, content 초기화
-                            MemoObject.title = inputTitle.text.toString()
-                            MemoObject.content = inputContent.text.toString()
+                            MemoObject.title = viewModel.title.value.toString()
+                            MemoObject.content = viewModel.content.value.toString()
 
                             //memoId 초기화
                             viewModel.getAllMemo().observe(requireActivity(), { list ->
                                 if (viewModel.getAllMemo().value?.isNotEmpty() == true) {
-                                    MemoObject.position = list[MemoObject.dataIndex].memoId
+                                    MemoObject.dataIndex = list[viewModel.positionData.value!!].memoId
                                 }
                             })
 
@@ -110,8 +112,8 @@ class InputFragment : Fragment() {
                         "INSERT" -> {
 
                             //title, content 초기화
-                            MemoObject.title = inputTitle.text.toString()
-                            MemoObject.content = inputContent.text.toString()
+                            MemoObject.title = viewModel.title.value.toString()
+                            MemoObject.content = viewModel.content.value.toString()
 
                             //PostFragment 로 이동
                             Navigation.findNavController(it).navigate(R.id.action_inputFragment_to_postFragment)

@@ -17,7 +17,7 @@ import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 
 class InputFragmentViewModel(application: Application?) : ViewModel() {
 
-    //title, content, state 변수 선언
+    //title, content, state, position 변수 선언
     var title = MutableLiveData<String>()
     var content = MutableLiveData<String>()
 
@@ -25,9 +25,18 @@ class InputFragmentViewModel(application: Application?) : ViewModel() {
     val stateData: LiveData<String>
         get() = state
 
+    private val position = MutableLiveData<Int>()
+    val positionData: LiveData<Int>
+        get() = position
+
     //state 저장
     fun setState(state: String){
         this.state.value = state
+    }
+    
+    //position 설정
+    fun setPosition(position: Int){
+        this.position.value = position
     }
 
     //MemoRepository 선언 및 초기화
