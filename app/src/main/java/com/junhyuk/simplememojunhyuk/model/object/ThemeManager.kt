@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatDelegate
 object ThemeManager {
     const val LIGHT = "LIGHT"
     const val DARK = "DARK"
-    private const val DEFAULT = "DEFAULT"
+    const val DEFAULT = "DEFAULT"
 
     fun applyTheme(themeMode: String) {
         when (themeMode) {

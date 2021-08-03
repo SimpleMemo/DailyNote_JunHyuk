@@ -3,7 +3,6 @@ package com.junhyuk.simplememojunhyuk.view.setting
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
 import androidx.databinding.DataBindingUtil
 import com.junhyuk.simplememojunhyuk.R
 import com.junhyuk.simplememojunhyuk.application.MyApplication
@@ -38,9 +37,23 @@ class SettingActivity : AppCompatActivity() {
             }
 
             //현재 테마 상태
-            when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-                Configuration.UI_MODE_NIGHT_NO -> lightCheck.isChecked = true //lightMode 라면 lightCheck 버튼 활성화
-                Configuration.UI_MODE_NIGHT_YES -> darkCheck.isChecked = true //darkMode 라면 darkCheck 버튼 활성화
+            if(MyApplication.pref.darkModeState != ThemeManager.DEFAULT){
+                when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                    Configuration.UI_MODE_NIGHT_NO -> lightCheck.isChecked = true //lightMode 라면 lightCheck 버튼 활성화
+                    Configuration.UI_MODE_NIGHT_YES -> darkCheck.isChecked = true //darkMode 라면 darkCheck 버튼 활성화
+                }
+            }else systemCheck.isChecked = true //위의 항목에 해당되지 않는다면 systemCheck 버튼 활성화
+
+            lightMode.setOnClickListener {
+                lightCheck.isChecked = true
+            }
+
+            darkMode.setOnClickListener {
+                darkCheck.isChecked = true
+            }
+
+            systemMode.setOnClickListener {
+                systemCheck.isChecked = true
             }
 
             //테마 설정 선택
@@ -49,20 +62,28 @@ class SettingActivity : AppCompatActivity() {
 
                     //lightMode
                     R.id.lightCheck -> {
-                        ThemeManager.applyTheme(ThemeManager.LIGHT)
-                        MyApplication.pref.darkModeState = ThemeManager.LIGHT
+                        setTheme(ThemeManager.LIGHT)
                     }
 
                     //darkMode
                     R.id.darkCheck -> {
-                        ThemeManager.applyTheme(ThemeManager.DARK)
-                        MyApplication.pref.darkModeState = ThemeManager.DARK
+                        setTheme(ThemeManager.DARK)
                     }
-                    
+
+                    //systemMode
+                    R.id.systemCheck -> {
+                        setTheme(ThemeManager.DEFAULT)
+                    }
+
                 }
             }
 
         }
+    }
+
+    private fun setTheme(themeState: String){
+        ThemeManager.applyTheme(themeState)
+        MyApplication.pref.darkModeState = themeState
     }
 
     //뒤로가기 액션
