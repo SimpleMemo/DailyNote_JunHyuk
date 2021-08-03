@@ -1,11 +1,14 @@
 package com.junhyuk.simplememojunhyuk.viewmodel.post
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.icu.text.SimpleDateFormat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.junhyuk.simplememojunhyuk.model.database.MemoData
 import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
+import java.util.*
 
 /*
 *
@@ -15,6 +18,7 @@ import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 *
 * */
 
+@SuppressLint("SimpleDateFormat")
 class InputFragmentViewModel(application: Application?) : ViewModel() {
 
     //title, content, state, position 변수 선언
@@ -37,6 +41,15 @@ class InputFragmentViewModel(application: Application?) : ViewModel() {
     //position 설정
     fun setPosition(position: Int){
         this.position.value = position
+    }
+
+    //생성자
+    init {
+        val now: Long = System.currentTimeMillis()
+        val mDate = Date(now)
+        val simpleDate = SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초")
+        val getTime: String = simpleDate.format(mDate)
+        title.value = getTime
     }
 
     //MemoRepository 선언 및 초기화
