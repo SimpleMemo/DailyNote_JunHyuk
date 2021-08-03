@@ -58,7 +58,7 @@
     </style>
 
     <style name="CustomItem" parent="Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">#1C1C1C</item>
+        <item name="cardBackgroundColor">#171717</item>
         <item name="cardCornerRadius">20dp</item>
     </style>
 
