@@ -17,23 +17,23 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
-            android:text="@string/delete_text"
             android:background="@android:color/transparent"
-            android:theme="@style/CustomItemTextTheme"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/delete_text"
             android:textSize="24sp"
-            android:fontFamily="@font/inter_bold"/>
+            android:theme="@style/CustomItemTextTheme" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="77dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/inter_medium"
             android:gravity="center"
             android:text="@string/Description_text"
-            android:theme="@style/CustomItemTextTheme"
             android:textSize="16sp"
-            android:fontFamily="@font/inter_medium"/>
+            android:theme="@style/CustomItemTextTheme" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/deleteButton"
@@ -48,11 +48,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/delete_text_kr"
                 android:background="@android:color/transparent"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/delete_text_kr"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:fontFamily="@font/inter_bold"/>
+                android:textSize="16sp" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -64,10 +64,10 @@
             android:layout_marginTop="230dp"
             android:layout_marginBottom="30dp"
             android:background="@android:color/transparent"
+            android:fontFamily="@font/inter_medium"
             android:text="@string/cancel_text"
-            android:theme="@style/CustomTextTheme"
             android:textSize="16sp"
-            android:fontFamily="@font/inter_medium"/>
+            android:theme="@style/CustomTextTheme" />
 
     </com.google.android.material.card.MaterialCardView>
 

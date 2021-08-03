@@ -20,4 +20,5 @@
     <string name="none_text">작셩한 일기가 존재하지 않습니다.</string>
     <string name="setting_text">Settings</string>
     <string name="delete_text_kr">삭제</string>
+    <string name="how_was_your_day">How was your day?</string>
 </resources>

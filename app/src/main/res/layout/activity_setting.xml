@@ -14,9 +14,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/inter_light"
             android:text="@string/setting_text"
             android:textSize="30sp"
-            android:fontFamily="@font/inter_bold"
             android:theme="@style/CustomItemTextTheme"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -29,9 +29,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
+            android:fontFamily="@font/inter_medium"
             android:text="@string/back_text"
             android:textSize="16sp"
-            android:fontFamily="@font/inter_medium"
             android:theme="@style/CustomTextTheme"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintEnd_toStartOf="@+id/textView"
@@ -55,16 +55,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_light_mode" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/darkMode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_dark_mode" />
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -72,9 +72,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_system_mode"
-                android:background="@android:color/transparent"/>
+                android:src="@drawable/ic_system_mode" />
 
         </LinearLayout>
 
@@ -94,24 +94,24 @@
                 android:id="@+id/lightCheck"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:button="@null"
                 android:layout_marginEnd="110dp"
-                android:background="@drawable/ic_check_box"/>
+                android:background="@drawable/ic_check_box"
+                android:button="@null" />
 
             <RadioButton
                 android:id="@+id/darkCheck"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginEnd="110dp"
-                android:button="@null"
-                android:background="@drawable/ic_check_box"/>
+                android:background="@drawable/ic_check_box"
+                android:button="@null" />
 
             <RadioButton
                 android:id="@+id/systemCheck"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:background="@drawable/ic_check_box"
-                android:button="@null"/>
+                android:button="@null" />
 
         </RadioGroup>
 
