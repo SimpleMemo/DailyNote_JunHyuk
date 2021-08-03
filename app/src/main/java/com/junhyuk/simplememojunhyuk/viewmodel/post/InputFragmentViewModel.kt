@@ -22,34 +22,55 @@ import java.util.*
 class InputFragmentViewModel(application: Application?) : ViewModel() {
 
     //title, content, state, position 변수 선언
-    var title = MutableLiveData<String>()
-    var content = MutableLiveData<String>()
+    var title = MutableLiveData<String>() //title
+    var content = MutableLiveData<String>() //content
 
+    //state
     private val state = MutableLiveData<String>()
     val stateData: LiveData<String>
         get() = state
 
+    //position
     private val position = MutableLiveData<Int>()
     val positionData: LiveData<Int>
         get() = position
 
     //state 저장
-    fun setState(state: String){
+    fun setState(state: String) {
         this.state.value = state
     }
-    
+
     //position 설정
-    fun setPosition(position: Int){
+    fun setPosition(position: Int) {
         this.position.value = position
     }
 
     //생성자
     init {
+        //시간 받아오기
         val now: Long = System.currentTimeMillis()
         val mDate = Date(now)
-        val simpleDate = SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초")
+        val simpleDate = SimpleDateFormat("yyyy년 MM월 dd일")
         val getTime: String = simpleDate.format(mDate)
-        title.value = getTime
+        
+        //요일 변환을 위해 Calendar 선언
+        val calendar = Calendar.getInstance()
+        calendar.time = mDate
+        
+        //요일 변환
+        var dayOfWeek = ""
+        when (calendar.get(Calendar.DAY_OF_WEEK)) {
+            1 -> dayOfWeek = "일"
+            2 -> dayOfWeek = "월"
+            3 -> dayOfWeek = "화"
+            4 -> dayOfWeek = "수"
+            5 -> dayOfWeek = "목"
+            6 -> dayOfWeek = "금"
+            7 -> dayOfWeek = "토"
+        }
+        
+        //날짜를 초반 Title EditText 의 Text 값으로 설정
+        title.value = getTime + " " + dayOfWeek + "요일"
     }
 
     //MemoRepository 선언 및 초기화
