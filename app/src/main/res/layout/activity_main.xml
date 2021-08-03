@@ -85,7 +85,7 @@
             android:background="#5DB075"
             android:elevation="4dp"
             android:theme="@style/CustomButtonTheme"
-            app:cardCornerRadius="100dp"
+            app:cardCornerRadius="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

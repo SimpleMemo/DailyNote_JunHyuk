@@ -42,7 +42,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="166dp"
             android:theme="@style/CustomButtonTheme"
-            app:cardCornerRadius="100dp">
+            app:cardCornerRadius="25dp">
 
             <TextView
                 android:layout_width="wrap_content"
