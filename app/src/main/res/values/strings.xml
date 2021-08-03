@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DailyNote</string>
-    <string name="AppName">DailyNote</string>
+    <string name="AppName">Daily Note</string>
     <string name="PostName">Post</string>
     <string name="title_sample">2021.07.28 수요일 메모</string>
     <string name="content_sample">안녕하세요 저는 양준혁입니다. 저는 안드로이드 개…</string>
