@@ -84,8 +84,10 @@ class MainActivity : AppCompatActivity() {
                 itemTouchHelper.attachToRecyclerView(memoRecyclerView)
                 if(it.isEmpty()){
                    memoRecyclerView.visibility = View.INVISIBLE
+                   basicText.visibility = View.VISIBLE
                 }else{
                     memoRecyclerView.visibility = View.VISIBLE
+                    basicText.visibility = View.INVISIBLE
                 }
             })
 

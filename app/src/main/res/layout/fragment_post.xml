@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="25dp"
-            android:text="@string/PostName"
+            android:text="@string/post"
             android:textSize="16sp"
             android:fontFamily="@font/inter_medium"
             android:theme="@style/CustomTextTheme"

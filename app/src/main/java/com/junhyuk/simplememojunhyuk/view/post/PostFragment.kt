@@ -98,7 +98,7 @@ class PostFragment : Fragment() {
 
                     //만약 아무런 값도 입력이 안되어 있다면
                     else -> {
-                        Toast.makeText(MyApplication.applicationContext(), "Error", Toast.LENGTH_LONG).show()
+                        Toast.makeText(MyApplication.applicationContext(), "오류가 생겼습니다. 개발자에게 문의해주세요!", Toast.LENGTH_LONG).show()
                         requireActivity().finish()
                     }
                 }

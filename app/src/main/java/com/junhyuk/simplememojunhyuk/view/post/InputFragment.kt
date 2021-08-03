@@ -32,6 +32,9 @@ class InputFragment : Fragment() {
     private lateinit var viewModel: InputFragmentViewModel
     private lateinit var viewModelFactory: InputFragmentViewModelFactory
 
+    //Boolean 변수 선언
+    private var textNullCheck: Boolean? = null
+
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,9 +69,6 @@ class InputFragment : Fragment() {
                 "INSERT" -> textView.text = "Add Diary"
             }
 
-            //Boolean 변수 선언
-            var textNullCheck: Boolean
-
             //해당 position 에 해당하는 제목과 내용을 EditText 에 입력(Update)
             if(MemoObject.title.isNotEmpty()){
                 viewModel.apply {
@@ -86,7 +86,7 @@ class InputFragment : Fragment() {
                         .isNotEmpty()
 
                 //Text Null Check
-                if (textNullCheck) {
+                if (textNullCheck!!) {
 
                     //MemoObject 안에 title 이 존재한다면 Update
                     when (viewModel.stateData.value) {
@@ -122,7 +122,7 @@ class InputFragment : Fragment() {
 
                         else -> {
                             //만약 중간에 state 값을 잃었다면
-                            Toast.makeText(MyApplication.applicationContext(), "Error", Toast.LENGTH_LONG).show()
+                            Toast.makeText(MyApplication.applicationContext(), "오류가 생겼습니다. 개발자에게 문의해주세요!", Toast.LENGTH_LONG).show()
                             requireActivity().finish()
                         }
                     }
@@ -131,7 +131,7 @@ class InputFragment : Fragment() {
 
                 //만약 아무런 값도 입력이 안되어 있다면
                 else {
-                    Toast.makeText(MyApplication.applicationContext(), "Enter a title or content", Toast.LENGTH_LONG).show()
+                    Toast.makeText(MyApplication.applicationContext(), "제목이나 내용을 입력해주세요!", Toast.LENGTH_LONG).show()
                 }
 
             }

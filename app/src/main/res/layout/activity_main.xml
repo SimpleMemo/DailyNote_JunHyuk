@@ -52,6 +52,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <TextView
+            android:id="@+id/basicText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/none_text"
