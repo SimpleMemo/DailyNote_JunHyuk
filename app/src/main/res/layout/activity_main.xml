@@ -29,7 +29,7 @@
             android:text="@string/AppName"
             android:theme="@style/CustomItemTextTheme"
             android:textSize="30sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/inter_bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -43,7 +43,7 @@
             android:layout_marginEnd="25dp"
             android:text="@string/settings_text"
             android:textSize="18sp"
-            android:textStyle="normal"
+            android:fontFamily="@font/inter_medium"
             android:theme="@style/CustomTextTheme"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +51,17 @@
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="@+id/textView" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/none_text"
+            android:theme="@style/CustomTextTheme"
+            android:fontFamily="@font/inter_light"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/memoRecyclerView"
@@ -89,7 +100,7 @@
                 android:background="@android:color/transparent"
                 android:text="@string/add"
                 android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:fontFamily="@font/inter_bold"/>
 
         </com.google.android.material.card.MaterialCardView>
 

@@ -17,4 +17,5 @@
     <string name="back_text">Back</string>
     <string name="post_diary">Post Diary</string>
     <string name="posting_this_memo">Posting this Memo?</string>
+    <string name="none_text">The note does not exist</string>
 </resources>

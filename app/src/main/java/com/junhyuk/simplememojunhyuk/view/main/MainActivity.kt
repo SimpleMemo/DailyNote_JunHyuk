@@ -2,6 +2,7 @@ package com.junhyuk.simplememojunhyuk.view.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -81,6 +82,11 @@ class MainActivity : AppCompatActivity() {
                 myAdapter = MemoRecyclerViewAdapter(it, this@MainActivity)
                 val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
                 itemTouchHelper.attachToRecyclerView(memoRecyclerView)
+                if(it.isEmpty()){
+                   memoRecyclerView.visibility = View.INVISIBLE
+                }else{
+                    memoRecyclerView.visibility = View.VISIBLE
+                }
             })
 
             //메모를 추가하는 PostActivity 로 이동

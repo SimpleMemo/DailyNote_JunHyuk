@@ -23,7 +23,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/post_diary"
             android:textSize="30sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/inter_bold"
             android:theme="@style/CustomItemTextTheme"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -39,7 +39,7 @@
             android:layout_marginEnd="25dp"
             android:text="@string/PostName"
             android:textSize="18sp"
-            android:textStyle="normal"
+            android:fontFamily="@font/inter_medium"
             android:theme="@style/CustomTextTheme"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
             android:layout_marginStart="25dp"
             android:text="@string/back_text"
             android:textSize="18sp"
-            android:textStyle="normal"
+            android:fontFamily="@font/inter_medium"
             android:theme="@style/CustomTextTheme"
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintEnd_toStartOf="@+id/textView"
@@ -69,6 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="@string/posting_this_memo"
+            android:fontFamily="@font/inter_light"
             android:theme="@style/CustomItemTextTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,31 +89,51 @@
             app:layout_constraintWidth_percent="0.9"
             app:strokeWidth="1dp">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="14dp"
-                android:background="@android:color/transparent"
-                android:text="@{myViewModel.titleData}"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:theme="@style/CustomItemTextTheme" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
-                android:background="@android:color/transparent"
-                android:maxEms="25"
-                android:maxLines="1"
-                android:text="@{myViewModel.contentData}"
-                android:textSize="15sp"
-                android:textStyle="normal"
-                android:theme="@style/CustomItemTextTheme" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="14dp"
+                    android:background="@android:color/transparent"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_bold"
+                    android:maxLines="1"
+                    android:text="@{myViewModel.titleData}"
+                    android:textSize="18sp"
+                    android:theme="@style/CustomItemTextTheme"
+                    app:layout_constraintBottom_toTopOf="@+id/content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintWidth_percent="0.9" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@android:color/transparent"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_light"
+                    android:maxLines="1"
+                    android:text="@{myViewModel.contentData}"
+                    android:textSize="15sp"
+                    android:theme="@style/CustomItemTextTheme"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintWidth_percent="0.9" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
