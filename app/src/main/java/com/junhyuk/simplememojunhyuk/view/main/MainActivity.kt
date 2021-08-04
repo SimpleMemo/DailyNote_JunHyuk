@@ -2,7 +2,6 @@ package com.junhyuk.simplememojunhyuk.view.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -94,13 +93,7 @@ class MainActivity : AppCompatActivity() {
 
                 adapter.refresh()
 
-                if(it.isEmpty()){
-                   memoRecyclerView.visibility = View.INVISIBLE
-                   basicText.visibility = View.VISIBLE
-                }else{
-                    memoRecyclerView.visibility = View.VISIBLE
-                    basicText.visibility = View.INVISIBLE
-                }
+                isNoneTextVisible = it.isEmpty()
 
             })
 

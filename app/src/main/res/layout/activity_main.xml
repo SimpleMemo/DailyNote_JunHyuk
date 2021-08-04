@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="myViewModel"
             type="com.junhyuk.simplememojunhyuk.viewmodel.main.MainActivityViewModel" />
@@ -12,6 +14,10 @@
         <variable
             name="myAdapter"
             type="com.junhyuk.simplememojunhyuk.adapter.MemoRecyclerViewAdapter" />
+
+        <variable
+            name="isNoneTextVisible"
+            type="java.lang.Boolean" />
 
     </data>
 
@@ -54,6 +60,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="25dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:fontFamily="@font/inter_medium"
             android:text="@string/settings_text"
             android:textSize="16sp"
@@ -71,6 +79,7 @@
             android:fontFamily="@font/inter_light"
             android:text="@string/none_text"
             android:textSize="16sp"
+            android:visibility="@{isNoneTextVisible ? View.VISIBLE : View.INVISIBLE}"
             android:theme="@style/CustomTextTheme"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,6 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="50dp"
+            android:visibility="@{isNoneTextVisible ?  View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
