@@ -52,11 +52,12 @@ class PostFragment : Fragment() {
 
         //state, dataIndex 저장
         if(viewModel.stateData.value?.isNotEmpty() == true){
-            MemoObject.state = viewModel.stateData.value.toString()
-            MemoObject.position = viewModel.dataIndexData.value!!
+            viewModel.setPosAndIndexObject()
         }else{
-            viewModel.setState(MemoObject.state)
-            viewModel.setDataIndex(MemoObject.dataIndex)
+            viewModel.apply {
+                setState(MemoObject.state)
+                setDataIndex(MemoObject.dataIndex)
+            }
         }
 
         //view 접근
@@ -68,13 +69,12 @@ class PostFragment : Fragment() {
                 "INSERT" -> textView.text = "Post Diary"
             }
 
-            //해당 position 에 해당하는 제목과 내용을 EditText 에 입력(Update)
+            //제목과 내용을 Text 에 입력
             viewModel.apply {
                 if(MemoObject.title.isNotEmpty()) {
                     setTextValue(MemoObject.title, MemoObject.content)
                 }else{
-                    MemoObject.title = titleData.value.toString()
-                    MemoObject.content = contentData.value.toString()
+                    setObject()
                 }
             }
 

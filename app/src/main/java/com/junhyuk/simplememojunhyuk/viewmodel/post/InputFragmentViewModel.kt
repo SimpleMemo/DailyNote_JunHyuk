@@ -6,6 +6,7 @@ import android.icu.text.SimpleDateFormat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.junhyuk.simplememojunhyuk.model.`object`.MemoObject
 import com.junhyuk.simplememojunhyuk.model.database.MemoData
 import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 import java.util.*
@@ -21,6 +22,12 @@ import java.util.*
 @SuppressLint("SimpleDateFormat")
 class InputFragmentViewModel(application: Application?) : ViewModel() {
 
+    //MemoRepository 선언 및 초기화
+    private var memoRepository: MemoRepository = MemoRepository(application)
+
+    //MemoList 불러오기
+    private var memoList: LiveData<List<MemoData>> = memoRepository.getAllMemos()
+
     //title, content, state, position 변수 선언
     var title = MutableLiveData<String>() //title
     var content = MutableLiveData<String>() //content
@@ -34,16 +41,6 @@ class InputFragmentViewModel(application: Application?) : ViewModel() {
     private val position = MutableLiveData<Int>()
     val positionData: LiveData<Int>
         get() = position
-
-    //state 저장
-    fun setState(state: String) {
-        this.state.value = state
-    }
-
-    //position 설정
-    fun setPosition(position: Int) {
-        this.position.value = position
-    }
 
     //생성자
     init {
@@ -73,11 +70,26 @@ class InputFragmentViewModel(application: Application?) : ViewModel() {
         title.value = getTime + " " + dayOfWeek + "요일"
     }
 
-    //MemoRepository 선언 및 초기화
-    private var memoRepository: MemoRepository = MemoRepository(application)
+    //state 저장
+    fun setState(state: String) {
+        this.state.value = state
+    }
 
-    //MemoList 불러오기
-    private var memoList: LiveData<List<MemoData>> = memoRepository.getAllMemos()
+    //position 설정
+    fun setPosition(position: Int) {
+        this.position.value = position
+    }
+
+    //text, content 설정
+    fun setTitleAndContent(title: String, content: String){
+        this.title.value = title
+        this.content.value = content
+    }
+
+    fun setObject(){
+        MemoObject.title = title.value.toString()
+        MemoObject.content = content.value.toString()
+    }
 
     //MemoList 모두 불러오기
     fun getAllMemo(): LiveData<List<MemoData>> {

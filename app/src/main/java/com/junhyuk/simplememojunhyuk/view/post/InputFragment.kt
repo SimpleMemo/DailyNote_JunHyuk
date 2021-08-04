@@ -34,6 +34,7 @@ class InputFragment : Fragment() {
 
     //Boolean 변수 선언
     private var textNullCheck: Boolean? = null
+    private val isUpdate: Boolean = MemoObject.title.isNotEmpty()
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -56,8 +57,10 @@ class InputFragment : Fragment() {
             MemoObject.state = viewModel.stateData.value.toString()
             MemoObject.position = viewModel.positionData.value!!
         }else{
-            viewModel.setState(MemoObject.state)
-            viewModel.setPosition(MemoObject.position)
+            viewModel.apply {
+                setState(MemoObject.state)
+                setPosition(MemoObject.position)
+            }
         }
 
         //view 접근
@@ -70,11 +73,8 @@ class InputFragment : Fragment() {
             }
 
             //해당 position 에 해당하는 제목과 내용을 EditText 에 입력(Update)
-            if(MemoObject.title.isNotEmpty()){
-                viewModel.apply {
-                    title.value = MemoObject.title
-                    content.value = MemoObject.content
-                }
+            if(isUpdate){
+                viewModel.setTitleAndContent(MemoObject.title, MemoObject.content)
             }
 
             //Post
@@ -92,16 +92,16 @@ class InputFragment : Fragment() {
                     when (viewModel.stateData.value) {
                         "UPDATE" -> {
 
-                            //title, content 초기화
-                            MemoObject.title = viewModel.title.value.toString()
-                            MemoObject.content = viewModel.content.value.toString()
+                            //object 초기화
+                            viewModel.apply {
+                                setObject()
 
-                            //memoId 초기화
-                            viewModel.getAllMemo().observe(requireActivity(), { list ->
-                                if (viewModel.getAllMemo().value?.isNotEmpty() == true) {
-                                    MemoObject.dataIndex = list[viewModel.positionData.value!!].memoId
-                                }
-                            })
+                                getAllMemo().observe(requireActivity(), { list ->
+                                    if (getAllMemo().value?.isNotEmpty() == true) {
+                                        MemoObject.dataIndex = list[positionData.value!!].memoId
+                                    }
+                                })
+                            }
 
                             //PostFragment 로 이동
                             Navigation.findNavController(it).navigate(R.id.action_inputFragment_to_postFragment)
@@ -112,8 +112,7 @@ class InputFragment : Fragment() {
                         "INSERT" -> {
 
                             //title, content 초기화
-                            MemoObject.title = viewModel.title.value.toString()
-                            MemoObject.content = viewModel.content.value.toString()
+                            viewModel.setObject()
 
                             //PostFragment 로 이동
                             Navigation.findNavController(it).navigate(R.id.action_inputFragment_to_postFragment)

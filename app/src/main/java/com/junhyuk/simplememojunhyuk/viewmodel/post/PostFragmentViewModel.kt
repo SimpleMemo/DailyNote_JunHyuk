@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.junhyuk.simplememojunhyuk.model.`object`.MemoObject
 import com.junhyuk.simplememojunhyuk.model.database.MemoData
 import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 
@@ -53,6 +54,16 @@ class PostFragmentViewModel(application: Application?) : ViewModel() {
     fun setTextValue(title: String, content: String){
         this.title.value = title
         this.content.value = content
+    }
+
+    fun setObject(){
+        MemoObject.title = title.value.toString()
+        MemoObject.content = content.value.toString()
+    }
+
+    fun setPosAndIndexObject(){
+        MemoObject.state = stateData.value.toString()
+        MemoObject.position = dataIndexData.value!!
     }
 
     //MemoRepository 선언 및 초기화
