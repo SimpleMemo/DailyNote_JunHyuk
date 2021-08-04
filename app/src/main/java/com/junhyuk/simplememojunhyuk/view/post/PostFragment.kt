@@ -46,7 +46,7 @@ class PostFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_post, container, false)
 
         //viewModel 설정
-        viewModelFactory = PostFragmentViewModelFactory(requireActivity().application)
+        viewModelFactory = PostFragmentViewModelFactory()
         viewModel = ViewModelProvider(this@PostFragment, viewModelFactory).get(PostFragmentViewModel::class.java)
         binding.myViewModel = viewModel
 

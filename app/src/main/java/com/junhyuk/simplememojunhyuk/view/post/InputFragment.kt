@@ -47,7 +47,7 @@ class InputFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_input, container, false)
 
         //viewModel 설정
-        viewModelFactory = InputFragmentViewModelFactory(requireActivity().application)
+        viewModelFactory = InputFragmentViewModelFactory()
         viewModel = ViewModelProvider(this@InputFragment, viewModelFactory).get(
             InputFragmentViewModel::class.java)
         binding.myViewModel = viewModel

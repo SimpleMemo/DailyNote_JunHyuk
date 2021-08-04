@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel
 * */
 
 //PostActivityViewModel
-class PostActivityViewModel(application: Application) : ViewModel() {
+class PostActivityViewModel() : ViewModel() {
 
 
 }

@@ -1,6 +1,5 @@
 package com.junhyuk.simplememojunhyuk.viewmodel.post
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import java.lang.IllegalArgumentException
@@ -13,11 +12,11 @@ import java.lang.IllegalArgumentException
 *
 * */
 
-class InputFragmentViewModelFactory(private val application: Application?) : ViewModelProvider.Factory{
+class InputFragmentViewModelFactory() : ViewModelProvider.Factory{
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(InputFragmentViewModel::class.java)){
-            return InputFragmentViewModel(application) as T
+            return InputFragmentViewModel() as T
         }
         throw IllegalArgumentException("Unknown View Model Class")
     }

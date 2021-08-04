@@ -1,8 +1,7 @@
 package com.junhyuk.simplememojunhyuk.viewmodel.dialog
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
-import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
+import com.junhyuk.simplememojunhyuk.application.MyApplication
 
 /*
 *
@@ -12,14 +11,11 @@ import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 *
 * */
 
-class CheckDialogViewModel(application: Application?) : ViewModel() {
-
-    //MemoRepository 선언 및 초기화
-    private var memoRepository: MemoRepository = MemoRepository(application)
+class CheckDialogViewModel() : ViewModel() {
 
     //Memo 삭제
     fun deleteMemo(memoId: Int?){
-        memoRepository.deleteMemo(memoId)
+        MyApplication.memoRepository.deleteMemo(memoId)
     }
 
 }

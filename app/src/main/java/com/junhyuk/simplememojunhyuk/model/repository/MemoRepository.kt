@@ -49,4 +49,8 @@ class MemoRepository(application: Application?) {
         memoDao.delete(position)
     }
 
+    fun getDao(): MemoDao{
+        return memoDao
+    }
+
 }

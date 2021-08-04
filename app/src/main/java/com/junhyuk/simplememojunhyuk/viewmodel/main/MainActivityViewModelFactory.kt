@@ -1,6 +1,5 @@
 package com.junhyuk.simplememojunhyuk.viewmodel.main
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import java.lang.IllegalArgumentException
@@ -14,11 +13,11 @@ import java.lang.IllegalArgumentException
 * */
 
 
-class MainActivityViewModelFactory(private val application: Application) : ViewModelProvider.Factory{
+class MainActivityViewModelFactory() : ViewModelProvider.Factory{
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainActivityViewModel::class.java)){
-            return MainActivityViewModel(application) as T
+            return MainActivityViewModel() as T
         }
         throw IllegalArgumentException("Unknown View Model Class")
     }

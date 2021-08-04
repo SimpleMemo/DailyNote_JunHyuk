@@ -14,11 +14,11 @@ import java.lang.IllegalArgumentException
 * */
 
 
-class PostActivityViewModelFactory(private val application: Application) : ViewModelProvider.Factory{
+class PostActivityViewModelFactory() : ViewModelProvider.Factory{
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(PostActivityViewModel::class.java)){
-            return PostActivityViewModel(application) as T
+            return PostActivityViewModel() as T
         }
         throw IllegalArgumentException("Unknown View Model Class")
     }

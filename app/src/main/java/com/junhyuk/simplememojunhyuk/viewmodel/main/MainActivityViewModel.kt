@@ -1,10 +1,14 @@
 package com.junhyuk.simplememojunhyuk.viewmodel.main
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.junhyuk.simplememojunhyuk.application.MyApplication
 import com.junhyuk.simplememojunhyuk.model.database.MemoData
-import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
+import com.junhyuk.simplememojunhyuk.paging.MemoPageRepository
+import kotlinx.coroutines.flow.Flow
 
 /*
 *
@@ -16,12 +20,17 @@ import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 
 
 //MainActivityViewModel
-class MainActivityViewModel(application: Application) : ViewModel() {
+class MainActivityViewModel() : ViewModel() {
 
-    //MemoRepository 선언 및 초기화
-    private var memoRepository: MemoRepository = MemoRepository(application)
     //MemoList 불러오기
-    private var memoList: LiveData<List<MemoData>> = memoRepository.getAllMemos()
+    private var memoList: LiveData<List<MemoData>> = MyApplication.memoRepository.getAllMemos()
+
+    //pagingRepository 선언 및 초기화
+    private var memoPageRepository: MemoPageRepository = MemoPageRepository(MyApplication.memoRepository.getDao())
+
+    fun getContent(): Flow<PagingData<MemoData>> {
+        return memoPageRepository.getTodoContentItemsByPaging().cachedIn(viewModelScope)
+    }
 
     //MemoList 모두 불러오기
     fun getAllMemo() : LiveData<List<MemoData>>{

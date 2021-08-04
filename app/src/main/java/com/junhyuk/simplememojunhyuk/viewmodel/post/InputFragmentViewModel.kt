@@ -1,14 +1,13 @@
 package com.junhyuk.simplememojunhyuk.viewmodel.post
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.icu.text.SimpleDateFormat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.junhyuk.simplememojunhyuk.application.MyApplication
 import com.junhyuk.simplememojunhyuk.model.`object`.MemoObject
 import com.junhyuk.simplememojunhyuk.model.database.MemoData
-import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 import java.util.*
 
 /*
@@ -20,13 +19,10 @@ import java.util.*
 * */
 
 @SuppressLint("SimpleDateFormat")
-class InputFragmentViewModel(application: Application?) : ViewModel() {
-
-    //MemoRepository 선언 및 초기화
-    private var memoRepository: MemoRepository = MemoRepository(application)
+class InputFragmentViewModel() : ViewModel() {
 
     //MemoList 불러오기
-    private var memoList: LiveData<List<MemoData>> = memoRepository.getAllMemos()
+    private var memoList: LiveData<List<MemoData>> = MyApplication.memoRepository.getAllMemos()
 
     //title, content, state, position 변수 선언
     var title = MutableLiveData<String>() //title

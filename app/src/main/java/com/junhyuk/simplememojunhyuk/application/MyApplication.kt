@@ -5,6 +5,7 @@ import android.content.Context
 import com.junhyuk.simplememojunhyuk.model.`object`.Constants
 import com.junhyuk.simplememojunhyuk.model.`object`.ThemeManager
 import com.junhyuk.simplememojunhyuk.model.database.SharedPreferenceData
+import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 
 /*
 *
@@ -22,9 +23,12 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
         pref = SharedPreferenceData(this)
         if(pref.darkModeState == Constants.DARK_MODE_STATE) ThemeManager.applyTheme(pref.darkModeState)
         else ThemeManager.applyTheme(pref.darkModeState)
+
+        memoRepository = MemoRepository(INSTANCE)
     }
 
     companion object {
@@ -33,6 +37,7 @@ class MyApplication : Application() {
             return INSTANCE.applicationContext
         }
         lateinit var pref: SharedPreferenceData
+        lateinit var memoRepository: MemoRepository
     }
 
 }

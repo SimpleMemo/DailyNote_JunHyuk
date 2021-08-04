@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import javax.sql.DataSource
 
 /*
 *
@@ -17,7 +18,7 @@ import androidx.room.Query
 @Dao
 interface MemoDao {
 
-    @Query("SELECT * FROM memo")
+    @Query("SELECT * FROM memo ORDER BY memoId DESC")
     fun getAll(): LiveData<List<MemoData>> //모든 Data 를 불러옴
 
     @Query("UPDATE 'memo' SET title = :titleEdit, content = :contentEdit WHERE memoId = :id")
@@ -25,6 +26,9 @@ interface MemoDao {
 
     @Query("DELETE FROM 'memo' WHERE memoId = :id")
     fun delete(id: Int?) //메모장 Delete
+
+    @Query("SELECT * FROM memo ORDER BY memoId DESC LIMIT :loadSize OFFSET (:page-1) * :loadSize")
+    suspend fun getMemoContentsByPaging(page: Int, loadSize: Int): List<MemoData> //paging
 
     @Insert
     fun insert(memo: MemoData) //메모장 Insert

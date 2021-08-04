@@ -1,12 +1,11 @@
 package com.junhyuk.simplememojunhyuk.viewmodel.post
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.junhyuk.simplememojunhyuk.application.MyApplication
 import com.junhyuk.simplememojunhyuk.model.`object`.MemoObject
 import com.junhyuk.simplememojunhyuk.model.database.MemoData
-import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 
 /*
 *
@@ -16,7 +15,7 @@ import com.junhyuk.simplememojunhyuk.model.repository.MemoRepository
 *
 * */
 
-class PostFragmentViewModel(application: Application?) : ViewModel() {
+class PostFragmentViewModel() : ViewModel() {
 
     //title, content, state, dataIndex 변수 선언
 
@@ -66,17 +65,14 @@ class PostFragmentViewModel(application: Application?) : ViewModel() {
         MemoObject.position = dataIndexData.value!!
     }
 
-    //MemoRepository 선언 및 초기화
-    private var memoRepository: MemoRepository = MemoRepository(application)
-
     //Memo DB 수정
     // (UPDATE 'memo' SET title = :titleEdit, content = :contentEdit WHERE memoId = :id)
     fun update(position: Int?, title: String, content: String) {
-        memoRepository.update(position, title, content)
+        MyApplication.memoRepository.update(position, title, content)
     }
 
     //Memo DB 삽입
     fun insert(memo: MemoData) {
-        memoRepository.insert(memo)
+        MyApplication.memoRepository.insert(memo)
     }
 }

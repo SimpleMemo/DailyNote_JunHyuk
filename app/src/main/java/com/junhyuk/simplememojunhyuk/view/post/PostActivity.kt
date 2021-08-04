@@ -32,7 +32,7 @@ class PostActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this@PostActivity, R.layout.activity_post)
 
         //viewModel 설정
-        viewModelFactory = PostActivityViewModelFactory(application)
+        viewModelFactory = PostActivityViewModelFactory()
         viewModel = ViewModelProvider(this@PostActivity, viewModelFactory).get(PostActivityViewModel::class.java)
 
     }

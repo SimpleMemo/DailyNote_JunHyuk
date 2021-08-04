@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.junhyuk.simplememojunhyuk.R
@@ -19,6 +20,7 @@ import com.junhyuk.simplememojunhyuk.viewmodel.main.MainActivityViewModel
 import com.junhyuk.simplememojunhyuk.viewmodel.main.MainActivityViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 /*
@@ -30,11 +32,14 @@ import kotlinx.coroutines.launch
 * */
 
 class MainActivity : AppCompatActivity() {
+    
+    
 
-    //binding, viewModel, viewModelFactory 선언
+    //binding, viewModel, viewModelFactory, adapter 선언
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
     private lateinit var viewModelFactory: MainActivityViewModelFactory
+    private lateinit var adapter: MemoRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,9 +48,12 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
 
         //viewModel 설정
-        viewModelFactory = MainActivityViewModelFactory(application)
+        viewModelFactory = MainActivityViewModelFactory()
         viewModel = ViewModelProvider(this@MainActivity, viewModelFactory).get(MainActivityViewModel::class.java)
         binding.myViewModel = viewModel
+
+        //adapter 초기화
+        initAdapter()
 
         //SwipeAction
         val itemTouchCallback: ItemTouchHelper.SimpleCallback = object :
@@ -77,11 +85,14 @@ class MainActivity : AppCompatActivity() {
             //recyclerView 가 고정된 사이즈를 가진다고 알려주는 함수
             memoRecyclerView.setHasFixedSize(true)
 
+            val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
+            itemTouchHelper.attachToRecyclerView(memoRecyclerView)
+
             //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
             viewModel.getAllMemo().observe(this@MainActivity, {
-                myAdapter = MemoRecyclerViewAdapter(it, this@MainActivity)
-                val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
-                itemTouchHelper.attachToRecyclerView(memoRecyclerView)
+
+                adapter.refresh()
+
                 if(it.isEmpty()){
                    memoRecyclerView.visibility = View.INVISIBLE
                    basicText.visibility = View.VISIBLE
@@ -89,6 +100,7 @@ class MainActivity : AppCompatActivity() {
                     memoRecyclerView.visibility = View.VISIBLE
                     basicText.visibility = View.INVISIBLE
                 }
+
             })
 
             //메모를 추가하는 PostActivity 로 이동
@@ -108,8 +120,28 @@ class MainActivity : AppCompatActivity() {
 
             }
 
+            //refresh
+            refreshLayout.setOnRefreshListener {
+                adapter.refresh()
+                refreshLayout.isRefreshing = false
+            }
+
         }
 
+    }
+
+    private fun initMemoJob(){
+        lifecycleScope.launch {
+            viewModel.getContent().collectLatest {
+                adapter.submitData(it)
+            }
+        }
+    }
+
+    private fun initAdapter() {
+        adapter = MemoRecyclerViewAdapter(this@MainActivity)
+        binding.myAdapter = adapter
+        initMemoJob()
     }
 
 }
