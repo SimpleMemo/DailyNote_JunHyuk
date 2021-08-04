@@ -85,6 +85,7 @@ class MainActivity : AppCompatActivity() {
             //recyclerView 가 고정된 사이즈를 가진다고 알려주는 함수
             memoRecyclerView.setHasFixedSize(true)
 
+            //itemTouchHelper 초기화
             val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
             itemTouchHelper.attachToRecyclerView(memoRecyclerView)
 
@@ -130,6 +131,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //ViewModel 에서 전달 받은 데이터를 Adapter 로 전달
     private fun initMemoJob(){
         lifecycleScope.launch {
             viewModel.getContent().collectLatest {
@@ -138,6 +140,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Adapter 초기화
     private fun initAdapter() {
         adapter = MemoRecyclerViewAdapter(this@MainActivity)
         binding.myAdapter = adapter

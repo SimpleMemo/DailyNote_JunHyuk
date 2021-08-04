@@ -31,6 +31,7 @@ class MemoRecyclerViewAdapter(private val context: Context) :
 
         private var positionData: Int = 0
 
+        //binding
         fun bind(item: MemoData, position: Int){
             with(binding){
                 entity = item

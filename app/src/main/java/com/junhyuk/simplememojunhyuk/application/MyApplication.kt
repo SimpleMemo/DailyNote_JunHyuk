@@ -24,11 +24,12 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        //SharedPreference 설정
         pref = SharedPreferenceData(this)
         if(pref.darkModeState == Constants.DARK_MODE_STATE) ThemeManager.applyTheme(pref.darkModeState)
         else ThemeManager.applyTheme(pref.darkModeState)
 
-        memoRepository = MemoRepository(INSTANCE)
+        memoRepository = MemoRepository(INSTANCE) //Repository 선언
     }
 
     companion object {

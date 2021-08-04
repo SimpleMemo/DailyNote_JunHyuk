@@ -5,6 +5,14 @@ import androidx.paging.PagingState
 import com.junhyuk.simplememojunhyuk.model.database.MemoDao
 import com.junhyuk.simplememojunhyuk.model.database.MemoData
 
+/*
+*
+* 파일명: MemoPagingSource
+* 역할: 페이징된 데이터를 얻어올 데이터 소스를 정의
+* 작성자: YangJunHyuk333
+*
+* */
+
 class MemoPagingSource (
     private val dao: MemoDao
 ): PagingSource<Int, MemoData>(){
