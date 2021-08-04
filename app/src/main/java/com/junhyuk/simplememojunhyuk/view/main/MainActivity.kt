@@ -72,8 +72,8 @@ class MainActivity : AppCompatActivity() {
                 CoroutineScope(Dispatchers.IO).launch {
                     //삭제할 것인지 묻는 Dialog
                     val checkDialog = CheckDialog()
-                    checkDialog.show(supportFragmentManager, viewModel.getAllMemo().value?.get(viewHolder.adapterPosition)?.memoId.toString())
-                    binding.myAdapter!!.notifyItemChanged(viewHolder.adapterPosition)
+                    checkDialog.show(supportFragmentManager, viewModel.getAllMemo().value?.get(viewHolder.absoluteAdapterPosition)?.memoId.toString())
+                    binding.myAdapter!!.notifyItemChanged(viewHolder.absoluteAdapterPosition)
                 }
             }
 
