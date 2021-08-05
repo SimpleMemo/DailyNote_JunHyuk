@@ -80,16 +80,15 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_marginTop="50dp"
             android:theme="@style/CustomRecyclerViewTheme"
             app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:layout_constraintVertical_bias="0.0"
             app:layout_constraintWidth_percent="0.9">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -140,6 +139,22 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/contentText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/inter_light"
+            android:paddingHorizontal="15dp"
+            android:paddingTop="15dp"
+            android:theme="@style/CustomItemTextTheme"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent="0.9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

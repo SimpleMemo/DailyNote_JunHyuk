@@ -144,4 +144,5 @@ class InputFragment : Fragment() {
 
         return binding.root
     }
+
 }

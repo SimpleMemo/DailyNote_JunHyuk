@@ -19,7 +19,7 @@ import java.util.*
 * */
 
 @SuppressLint("SimpleDateFormat")
-class InputFragmentViewModel() : ViewModel() {
+class InputFragmentViewModel : ViewModel() {
 
     //MemoList 불러오기
     private var memoList: LiveData<List<MemoData>> = MyApplication.memoRepository.getAllMemos()

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="295dp"
+        android:theme="@style/CustomRecyclerViewTheme"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/share_text"
+            android:textSize="24sp"
+            android:theme="@style/CustomItemTextTheme" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="77dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/inter_medium"
+            android:gravity="center"
+            android:text="@string/Description_text2"
+            android:textSize="16sp"
+            android:theme="@style/CustomItemTextTheme" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/shareButton"
+            android:layout_width="327dp"
+            android:layout_height="51dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="166dp"
+            android:theme="@style/CustomButtonTheme"
+            app:cardCornerRadius="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/share_text_kr"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="230dp"
+            android:layout_marginBottom="30dp"
+            android:paddingBottom="10dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/cancel_text"
+            android:textSize="16sp"
+            android:theme="@style/CustomTextTheme" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

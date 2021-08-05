@@ -92,7 +92,6 @@ class MainActivity : AppCompatActivity() {
             viewModel.getAllMemo().observe(this@MainActivity, {
 
                 adapter.refresh()
-
                 isNoneTextVisible = it.isEmpty()
 
             })

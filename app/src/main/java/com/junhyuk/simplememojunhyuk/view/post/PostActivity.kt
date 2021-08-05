@@ -2,6 +2,7 @@ package com.junhyuk.simplememojunhyuk.view.post
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.junhyuk.simplememojunhyuk.R
@@ -39,7 +40,10 @@ class PostActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+
         MemoObject.clear()
     }
+
+
 
 }

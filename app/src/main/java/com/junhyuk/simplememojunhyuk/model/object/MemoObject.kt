@@ -1,5 +1,7 @@
 package com.junhyuk.simplememojunhyuk.model.`object`
 
+import android.graphics.Bitmap
+
 /*
 *
 * 파일명: MemoObject
@@ -14,6 +16,7 @@ object MemoObject {
     var position: Int = 0 //positionData
     var dataIndex: Int = 0 //dataIndex
     var state: String = "" //Post Or Update State
+    var bitmap: Bitmap? = null //bitmapData
 
     //데이터 전체 설정
     fun setAll(title: String, content: String, position: Int, dataIndex: Int, state: String){
@@ -22,6 +25,7 @@ object MemoObject {
         this.position = position
         this.dataIndex = dataIndex
         this.state = state
+        this.bitmap = null
     }
 
     //데이터 전체 초기화
