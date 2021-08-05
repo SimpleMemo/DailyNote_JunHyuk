@@ -55,6 +55,7 @@ class PostFragmentViewModel : ViewModel() {
         this.content.value = content
     }
 
+    //Object 저장
     fun setObject(){
         MemoObject.title = title.value.toString()
         MemoObject.content = content.value.toString()

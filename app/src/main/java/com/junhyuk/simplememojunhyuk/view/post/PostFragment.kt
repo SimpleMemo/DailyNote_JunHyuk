@@ -78,23 +78,13 @@ class PostFragment : Fragment() {
             if(MemoObject.title.isNotEmpty()) {
 
                 setTextValue(MemoObject.title, MemoObject.content)
-
-                val contentTextData = "\n${contentData.value}"
-
-                val content = "## **${titleData.value}** $contentTextData"
-
-                val mark = Markwon.builder(requireContext()).usePlugin(object : AbstractMarkwonPlugin() {
-                    override fun configureTheme(builder: MarkwonTheme.Builder) {
-                        builder.headingBreakColor(typed.data)
-                    }
-                })
-                    .usePlugin(SoftBreakAddsNewLinePlugin.create())
-                    .build()
-
-                mark.setMarkdown(binding.contentText, content)
+                setContentTextData()
 
             }else{
+
                 setObject()
+                setContentTextData()
+
             }
         }
 
@@ -129,6 +119,23 @@ class PostFragment : Fragment() {
         canvas.drawColor(defaultColor)
         view.draw(canvas)
         return bitmap
+    }
+
+    //contentTextData
+    private fun setContentTextData(){
+        val contentTextData = "\n${viewModel.contentData.value}"
+
+        val content = "## **${viewModel.titleData.value}** $contentTextData"
+
+        val mark = Markwon.builder(requireContext()).usePlugin(object : AbstractMarkwonPlugin() {
+            override fun configureTheme(builder: MarkwonTheme.Builder) {
+                builder.headingBreakColor(typed.data)
+            }
+        })
+            .usePlugin(SoftBreakAddsNewLinePlugin.create())
+            .build()
+
+        mark.setMarkdown(binding.contentText, content)
     }
 
 }
