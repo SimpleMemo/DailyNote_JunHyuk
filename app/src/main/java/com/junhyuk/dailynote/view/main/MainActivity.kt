@@ -1,8 +1,13 @@
 package com.junhyuk.dailynote.view.main
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -51,6 +56,9 @@ class MainActivity : AppCompatActivity() {
 
         //adapter 초기화
         initAdapter()
+
+        //권한 허용
+        checkSelfPermission()
 
         //SwipeAction
         val itemTouchCallback: ItemTouchHelper.SimpleCallback = object :
@@ -135,6 +143,41 @@ class MainActivity : AppCompatActivity() {
         adapter = MemoRecyclerViewAdapter(this@MainActivity)
         binding.myAdapter = adapter
         initMemoJob()
+    }
+
+    //권한 허용
+    private fun checkSelfPermission() {
+
+        var temp = ""
+
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            temp += Manifest.permission.READ_EXTERNAL_STORAGE + " "
+        }
+
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            temp += Manifest.permission.WRITE_EXTERNAL_STORAGE + " "
+        }
+
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            temp += Manifest.permission.WRITE_EXTERNAL_STORAGE + " "
+        }
+
+        if (!TextUtils.isEmpty(temp)) {
+            ActivityCompat.requestPermissions(this, temp.trim().split(" ").toTypedArray(), 1)
+        }
+
     }
 
 }
