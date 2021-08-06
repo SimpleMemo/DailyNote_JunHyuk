@@ -6,8 +6,8 @@ import java.lang.IllegalArgumentException
 
 /*
 *
-* 파일명: CheckDialogViewModelFactory
-* 역할: CheckDialog 의 viewModel 이 파라미터를 소유하고 생성이 됨
+* 파일명: ShareDialogViewModelFactory
+* 역할: ShareDialog 의 viewModel 이 파라미터를 소유하고 생성이 됨
 * 작성자: YangJunHyuk333
 *
 * */

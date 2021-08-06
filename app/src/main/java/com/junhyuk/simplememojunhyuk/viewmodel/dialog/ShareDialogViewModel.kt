@@ -10,8 +10,8 @@ import com.junhyuk.simplememojunhyuk.model.database.MemoData
 
 /*
 *
-* 파일명: CheckDialogViewModel
-* 역할: CheckDialog 의 ViewModel 로 View 에서 필요한 데이터를 처리
+* 파일명: ShareDialogViewModel
+* 역할: ShareDialog 의 ViewModel 로 View 에서 필요한 데이터를 처리
 * 작성자: YangJunHyuk333
 *
 * */
