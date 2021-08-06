@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/inputFragment"
-        android:name="com.junhyuk.simplememojunhyuk.view.post.InputFragment"
+        android:name="com.junhyuk.dailynote.view.post.InputFragment"
         android:label="InputFragment" >
         <action
             android:id="@+id/action_inputFragment_to_postFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/postFragment"
-        android:name="com.junhyuk.simplememojunhyuk.view.post.PostFragment"
+        android:name="com.junhyuk.dailynote.view.post.PostFragment"
         android:label="PostFragment" />
 
 </navigation>

@@ -6,7 +6,7 @@
 
         <variable
             name="myViewModel"
-            type="com.junhyuk.simplememojunhyuk.viewmodel.post.InputFragmentViewModel" />
+            type="com.junhyuk.dailynote.viewmodel.post.InputFragmentViewModel" />
 
     </data>
 

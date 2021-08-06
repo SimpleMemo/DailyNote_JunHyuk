@@ -9,11 +9,11 @@
 
         <variable
             name="myViewModel"
-            type="com.junhyuk.simplememojunhyuk.viewmodel.main.MainActivityViewModel" />
+            type="com.junhyuk.dailynote.viewmodel.main.MainActivityViewModel" />
 
         <variable
             name="myAdapter"
-            type="com.junhyuk.simplememojunhyuk.adapter.MemoRecyclerViewAdapter" />
+            type="com.junhyuk.dailynote.adapter.MemoRecyclerViewAdapter" />
 
         <variable
             name="isNoneTextVisible"

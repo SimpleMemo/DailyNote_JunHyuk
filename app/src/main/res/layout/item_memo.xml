@@ -6,7 +6,7 @@
 
         <variable
             name="entity"
-            type="com.junhyuk.simplememojunhyuk.model.database.MemoData"/>
+            type="com.junhyuk.dailynote.model.database.MemoData"/>
 
     </data>
 
