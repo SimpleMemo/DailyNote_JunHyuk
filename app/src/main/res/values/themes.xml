@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MyApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.MyApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">[7
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">#F5F4F4</item>
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -26,7 +26,7 @@
     </style>
 
     <!--    cardView-->
-    <style name="CustomButtonTheme" parent="Theme.MaterialComponents.Light">
+    <style name="CustomButtonTheme" parent="Theme.MaterialComponents.DayNight">
         <item name="materialCardViewStyle">@style/CustomButton</item>
     </style>
 
@@ -36,7 +36,7 @@
     </style>
 
     <!--    textView-->
-    <style name="CustomTextTheme" parent="Theme.AppCompat.Light">
+    <style name="CustomTextTheme" parent="Theme.AppCompat.DayNight">
         <item name="android:textViewStyle">@style/CustomText</item>
     </style>
 
@@ -45,11 +45,11 @@
     </style>
 
 <!--    recyclerViewItem-->
-    <style name="CustomRecyclerViewTheme" parent="Theme.MaterialComponents.Light">
+    <style name="CustomRecyclerViewTheme" parent="Theme.MaterialComponents.DayNight">
         <item name="materialCardViewStyle">@style/CustomItem</item>
     </style>
 
-    <style name="CustomItemTextTheme" parent="Theme.AppCompat.Light">
+    <style name="CustomItemTextTheme" parent="Theme.AppCompat.DayNight">
         <item name="android:textViewStyle">@style/CustomItemText</item>
     </style>
 
