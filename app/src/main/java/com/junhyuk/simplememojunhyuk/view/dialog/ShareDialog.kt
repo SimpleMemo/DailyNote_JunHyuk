@@ -94,8 +94,8 @@ class ShareDialog : BottomSheetDialogFragment() {
                 startActivity(Intent.createChooser(intent, "Share"))
                 Toast.makeText(MyApplication.INSTANCE, "Saved", Toast.LENGTH_SHORT).show()
 
-                insertOrUpdate()
-                dismiss()
+                insertOrUpdate() //저장 혹은 수정(수정)
+                dismiss() //다이얼로그 종료
                 requireActivity().finish() //Activity 종료
 
             }
@@ -103,8 +103,8 @@ class ShareDialog : BottomSheetDialogFragment() {
             //cancelButtonClickAction
             cancelButton.setOnClickListener {
 
-                insertOrUpdate()
-                dismiss()
+                insertOrUpdate() //저장 혹은 수정(수정)
+                dismiss() //다이얼로그 종료
                 requireActivity().finish() //Activity 종료
 
             }
@@ -113,6 +113,7 @@ class ShareDialog : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    //Theme 적용
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme)

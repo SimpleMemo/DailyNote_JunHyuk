@@ -31,8 +31,6 @@ import kotlinx.coroutines.launch
 * */
 
 class MainActivity : AppCompatActivity() {
-    
-    
 
     //binding, viewModel, viewModelFactory, adapter 선언
     private lateinit var binding: ActivityMainBinding

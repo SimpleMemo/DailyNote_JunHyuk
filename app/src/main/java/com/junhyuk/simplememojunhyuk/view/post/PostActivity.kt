@@ -41,6 +41,7 @@ class PostActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
 
+        //엑티비티 종료시 MemoObject Clear
         MemoObject.clear()
     }
 
