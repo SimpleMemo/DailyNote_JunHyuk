@@ -28,7 +28,7 @@
         tools:context=".view.main.MainActivity">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
@@ -44,16 +44,16 @@
 
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/subContentText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:fontFamily="@font/inter_light"
             android:text="@string/how_was_your_day"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintEnd_toEndOf="@+id/titleText"
+            app:layout_constraintStart_toStartOf="@+id/titleText"
+            app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
         <TextView
             android:id="@+id/settingText"
@@ -65,11 +65,11 @@
             android:text="@string/settings_text"
             android:textSize="16sp"
             android:theme="@style/CustomTextTheme"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintBottom_toBottomOf="@+id/titleText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintStart_toEndOf="@+id/titleText"
+            app:layout_constraintTop_toTopOf="@+id/titleText" />
 
         <TextView
             android:id="@+id/basicText"
@@ -94,7 +94,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3">
+            app:layout_constraintTop_toBottomOf="@+id/subContentText">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/memoRecyclerView"
