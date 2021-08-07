@@ -23,6 +23,6 @@
     <string name="delete_text_kr">삭제</string>
     <string name="how_was_your_day">How was your day?</string>
     <string name="share_text">Share</string>
-    <string name="Description_text2">해당 일기를 인스타그램에 공유하시겠습니까?</string>
+    <string name="Description_text2">해당 일기를 공유하시겠습니까?</string>
     <string name="share_text_kr">공유하고 저장</string>
 </resources>
