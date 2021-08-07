@@ -68,8 +68,8 @@ class InputFragment : Fragment() {
 
             //상단 Text 를 어떤 작업을 하느냐에 따라서 변경
             when(viewModel.stateData.value){
-                "UPDATE" -> textView.text = "Edit Diary"
-                "INSERT" -> textView.text = "Add Diary"
+                "UPDATE" -> titleText.text = "Edit Diary"
+                "INSERT" -> titleText.text = "Add Diary"
             }
 
             //해당 position 에 해당하는 제목과 내용을 EditText 에 입력(Update)
