@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.junhyuk.dailynote.R
+import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.databinding.ActivitySettingBinding
 import com.junhyuk.dailynote.model.`object`.ThemeManager
 
@@ -36,7 +37,7 @@ class SettingActivity : AppCompatActivity() {
             }
 
             //현재 테마 상태
-            if(com.junhyuk.dailynote.application.MyApplication.pref.darkModeState != ThemeManager.DEFAULT){
+            if(MyApplication.pref.darkModeState != ThemeManager.DEFAULT){
                 when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                     Configuration.UI_MODE_NIGHT_NO -> lightCheck.isChecked = true //lightMode 라면 lightCheck 버튼 활성화
                     Configuration.UI_MODE_NIGHT_YES -> darkCheck.isChecked = true //darkMode 라면 darkCheck 버튼 활성화
@@ -82,7 +83,7 @@ class SettingActivity : AppCompatActivity() {
 
     private fun setTheme(themeState: String){
         ThemeManager.applyTheme(themeState)
-        com.junhyuk.dailynote.application.MyApplication.pref.darkModeState = themeState
+        MyApplication.pref.darkModeState = themeState
     }
 
     //뒤로가기 액션

@@ -17,8 +17,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.junhyuk.dailynote.R
+import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.databinding.DialogShareBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
+import com.junhyuk.dailynote.model.database.MemoData
 import com.junhyuk.dailynote.viewmodel.dialog.ShareDialogViewModel
 import com.junhyuk.dailynote.viewmodel.dialog.ShareDialogViewModelFactory
 import kotlinx.coroutines.CoroutineScope
@@ -31,7 +33,7 @@ import java.io.OutputStream
 /*
 *
 * 파일명: ShareDialog
-* 역할: 정말 공유할 것인지 묻는 Dialog
+* 역할: 정말 공유할 것인지 묻는 Dialog, 이미지 파일을 공유 및 갤러리에 저장
 * 작성자: YangJunHyuk333
 *
 * */
@@ -90,7 +92,7 @@ class ShareDialog : BottomSheetDialogFragment() {
                 intent.type = "image/png"
                 intent.putExtra(Intent.EXTRA_STREAM, uri)
                 startActivity(Intent.createChooser(intent, "Share"))
-                Toast.makeText(com.junhyuk.dailynote.application.MyApplication.INSTANCE, "Saved", Toast.LENGTH_SHORT).show()
+                Toast.makeText(MyApplication.INSTANCE, "갤러리에 일기가 저장되었습니다.", Toast.LENGTH_SHORT).show()
 
                 insertOrUpdate() //저장 혹은 수정(수정)
                 dismiss() //다이얼로그 종료
@@ -125,33 +127,34 @@ class ShareDialog : BottomSheetDialogFragment() {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)
         }
 
+        //안드로이드 버전이 Q 이상일 때
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val contentValues = ContentValues().apply {
                 put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
                 put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
-                put(
-                    MediaStore.MediaColumns.RELATIVE_PATH,
-                    "${Environment.DIRECTORY_DCIM}/$albumName"
-                )
+                put(MediaStore.MediaColumns.RELATIVE_PATH, "${Environment.DIRECTORY_DCIM}/$albumName")
             }
 
             val uri = context.contentResolver.insert(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 contentValues
             ) ?: return Uri.EMPTY
+
             context.contentResolver.openOutputStream(uri)?.let(write)
             return uri
 
-        } else {
-            val imagesDir =
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
-                    .toString() + File.separator + albumName
+        } else { //안드로이드 버전이 Q 미만일 때
+
+            val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + albumName
+
             val file = File(imagesDir)
             if (!file.exists()) {
                 file.mkdir()
             }
+
             val image = File(imagesDir, filename)
             write(FileOutputStream(image))
+
             return Uri.parse(imagesDir)
         }
     }
@@ -169,18 +172,13 @@ class ShareDialog : BottomSheetDialogFragment() {
             //MemoObject.state == INSERT
             "INSERT" -> {
                 CoroutineScope(Dispatchers.IO).launch {
-                    viewModel.insert(
-                        com.junhyuk.dailynote.model.database.MemoData(
-                            MemoObject.title,
-                            MemoObject.content
-                        )
-                    )
+                    viewModel.insert(MemoData(MemoObject.title, MemoObject.content))
                 }
             }
 
             //만약 아무런 값도 입력이 안되어 있다면
             else -> {
-                Toast.makeText(com.junhyuk.dailynote.application.MyApplication.applicationContext(), "오류가 생겼습니다. 개발자에게 문의해주세요!", Toast.LENGTH_LONG).show()
+                Toast.makeText(MyApplication.applicationContext(), "오류가 생겼습니다. 개발자에게 문의해주세요!", Toast.LENGTH_LONG).show()
                 requireActivity().finish()
             }
         }

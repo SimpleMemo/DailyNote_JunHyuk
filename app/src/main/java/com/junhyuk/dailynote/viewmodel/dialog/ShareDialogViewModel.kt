@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.model.`object`.MemoObject
+import com.junhyuk.dailynote.model.database.MemoData
 
 /*
 *
@@ -86,7 +87,7 @@ class ShareDialogViewModel : ViewModel() {
     }
 
     //Memo DB 삽입
-    fun insert(memo: com.junhyuk.dailynote.model.database.MemoData) {
+    fun insert(memo: MemoData) {
         MyApplication.memoRepository.insert(memo)
     }
 

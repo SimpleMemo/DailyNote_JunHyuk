@@ -31,15 +31,11 @@ class MemoRecyclerViewAdapter(private val context: Context) :
     //view 객체 선언
     inner class Holder(private val binding: ItemMemoBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        private var positionData: Int = 0
-
         //binding
         fun bind(item: MemoData, position: Int){
             with(binding){
                 entity = item
                 executePendingBindings()
-
-                positionData = position
 
                 //메모 클릭시
                 itemView.setOnClickListener {
