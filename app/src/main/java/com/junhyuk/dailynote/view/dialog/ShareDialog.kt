@@ -13,15 +13,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.databinding.DialogShareBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.model.database.MemoData
-import com.junhyuk.dailynote.viewmodel.dialog.ShareDialogViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,42 +37,13 @@ import java.io.OutputStream
 class ShareDialog : BottomSheetDialogFragment() {
 
     //binding, viewModel, viewModelFactory 선언
-    private lateinit var binding: DialogShareBinding
-    private lateinit var viewModel: ShareDialogViewModel
+    private val binding by lazy { DialogShareBinding.inflate(layoutInflater) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        //dataBinding 설정
-        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_share, container, false)
-
-        //viewModel 설정
-        viewModel = ViewModelProvider(this@ShareDialog).get(ShareDialogViewModel::class.java)
-
-        //제목과 내용을 Object 에 입력, bitmap, state 랑 dataIndex 저장
-        viewModel.apply {
-            if(MemoObject.title.isNotEmpty()) {
-                setTextValue(MemoObject.title, MemoObject.content)
-            }else{
-                setObject()
-            }
-
-            if(MemoObject.bitmap != null){
-                setBitmap(MemoObject.bitmap!!)
-            }else{
-                setBitmapObject()
-            }
-
-            if(stateData.value?.isNotEmpty() == true){
-                setPosAndIndexObject()
-            }else{
-                setState(MemoObject.state)
-                setDataIndex(MemoObject.dataIndex)
-            }
-        }
 
         //view 접근
         binding.apply {
@@ -159,17 +127,17 @@ class ShareDialog : BottomSheetDialogFragment() {
     //Insert 혹은 Update
     private fun insertOrUpdate(){
         //MemoObject.state == UPDATE
-        when (viewModel.stateData.value) {
+        when (MemoObject.state) {
             "UPDATE" -> {
                 CoroutineScope(Dispatchers.IO).launch {
-                    viewModel.update(MemoObject.dataIndex, MemoObject.title, MemoObject.content)
+                    update(MemoObject.dataIndex, MemoObject.title, MemoObject.content)
                 }
             }
 
             //MemoObject.state == INSERT
             "INSERT" -> {
                 CoroutineScope(Dispatchers.IO).launch {
-                    viewModel.insert(MemoData(MemoObject.title, MemoObject.content))
+                    insert(MemoData(MemoObject.title, MemoObject.content))
                 }
             }
 
@@ -179,6 +147,17 @@ class ShareDialog : BottomSheetDialogFragment() {
                 requireActivity().finish()
             }
         }
+    }
+
+    //Memo DB 수정
+    // (UPDATE 'memo' SET title = :titleEdit, content = :contentEdit WHERE memoId = :id)
+    private fun update(position: Int?, title: String, content: String) {
+        MyApplication.memoRepository.update(position, title, content)
+    }
+
+    //Memo DB 삽입
+    private fun insert(memo: MemoData) {
+        MyApplication.memoRepository.insert(memo)
     }
 
 }
