@@ -22,7 +22,6 @@ import com.junhyuk.dailynote.databinding.DialogShareBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.model.database.MemoData
 import com.junhyuk.dailynote.viewmodel.dialog.ShareDialogViewModel
-import com.junhyuk.dailynote.viewmodel.dialog.ShareDialogViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,7 +42,6 @@ class ShareDialog : BottomSheetDialogFragment() {
     //binding, viewModel, viewModelFactory 선언
     private lateinit var binding: DialogShareBinding
     private lateinit var viewModel: ShareDialogViewModel
-    private lateinit var viewModelFactory: ShareDialogViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,8 +53,7 @@ class ShareDialog : BottomSheetDialogFragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_share, container, false)
 
         //viewModel 설정
-        viewModelFactory = ShareDialogViewModelFactory()
-        viewModel = ViewModelProvider(this@ShareDialog, viewModelFactory).get(ShareDialogViewModel::class.java)
+        viewModel = ViewModelProvider(this@ShareDialog).get(ShareDialogViewModel::class.java)
 
         //제목과 내용을 Object 에 입력, bitmap, state 랑 dataIndex 저장
         viewModel.apply {

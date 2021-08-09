@@ -8,7 +8,6 @@ import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.databinding.ActivityPostBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.viewmodel.post.PostActivityViewModel
-import com.junhyuk.dailynote.viewmodel.post.PostActivityViewModelFactory
 
 /*
 *
@@ -23,7 +22,6 @@ class PostActivity : AppCompatActivity() {
     //binding, viewModel, viewModelFactory 선언
     private lateinit var binding: ActivityPostBinding
     private lateinit var viewModel: PostActivityViewModel
-    private lateinit var viewModelFactory: PostActivityViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +30,7 @@ class PostActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this@PostActivity, R.layout.activity_post)
 
         //viewModel 설정
-        viewModelFactory = PostActivityViewModelFactory()
-        viewModel = ViewModelProvider(this@PostActivity, viewModelFactory).get(PostActivityViewModel::class.java)
+        viewModel = ViewModelProvider(this@PostActivity).get(PostActivityViewModel::class.java)
 
     }
 

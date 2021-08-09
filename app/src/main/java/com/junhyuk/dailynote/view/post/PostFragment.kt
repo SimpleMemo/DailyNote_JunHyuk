@@ -16,7 +16,6 @@ import com.junhyuk.dailynote.databinding.FragmentPostBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.view.dialog.ShareDialog
 import com.junhyuk.dailynote.viewmodel.post.PostFragmentViewModel
-import com.junhyuk.dailynote.viewmodel.post.PostFragmentViewModelFactory
 import io.noties.markwon.AbstractMarkwonPlugin
 import io.noties.markwon.Markwon
 import io.noties.markwon.SoftBreakAddsNewLinePlugin
@@ -35,7 +34,6 @@ class PostFragment : Fragment() {
     //binding, viewModel, viewModelFactory 선언
     private lateinit var binding: FragmentPostBinding
     private lateinit var viewModel: PostFragmentViewModel
-    private lateinit var viewModelFactory: PostFragmentViewModelFactory
 
     private val typed = TypedValue()
 
@@ -50,11 +48,7 @@ class PostFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_post, container, false)
 
         //viewModel 설정
-        viewModelFactory = PostFragmentViewModelFactory()
-        viewModel = ViewModelProvider(
-            this@PostFragment,
-            viewModelFactory
-        ).get(PostFragmentViewModel::class.java)
+        viewModel = ViewModelProvider(this@PostFragment,).get(PostFragmentViewModel::class.java)
         binding.myViewModel = viewModel
 
         //theme 설정

@@ -21,7 +21,6 @@ import com.junhyuk.dailynote.view.dialog.CheckDialog
 import com.junhyuk.dailynote.view.post.PostActivity
 import com.junhyuk.dailynote.view.setting.SettingActivity
 import com.junhyuk.dailynote.viewmodel.main.MainActivityViewModel
-import com.junhyuk.dailynote.viewmodel.main.MainActivityViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -40,7 +39,6 @@ class MainActivity : AppCompatActivity() {
     //binding, viewModel, viewModelFactory, adapter 선언
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
-    private lateinit var viewModelFactory: MainActivityViewModelFactory
     private lateinit var adapter: MemoRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +48,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
 
         //viewModel 설정
-        viewModelFactory = MainActivityViewModelFactory()
-        viewModel = ViewModelProvider(this@MainActivity, viewModelFactory).get(MainActivityViewModel::class.java)
+        viewModel = ViewModelProvider(this@MainActivity).get(MainActivityViewModel::class.java)
         binding.myViewModel = viewModel
 
         //adapter 초기화

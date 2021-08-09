@@ -15,7 +15,6 @@ import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.databinding.FragmentInputBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.viewmodel.post.InputFragmentViewModel
-import com.junhyuk.dailynote.viewmodel.post.InputFragmentViewModelFactory
 
 /*
 *
@@ -30,7 +29,6 @@ class InputFragment : Fragment() {
     //binding, viewModel, viewModelFactory 선언
     private lateinit var binding: FragmentInputBinding
     private lateinit var viewModel: InputFragmentViewModel
-    private lateinit var viewModelFactory: InputFragmentViewModelFactory
 
     //Boolean 변수 선언
     private var textNullCheck: Boolean? = null
@@ -47,8 +45,7 @@ class InputFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_input, container, false)
 
         //viewModel 설정
-        viewModelFactory = InputFragmentViewModelFactory()
-        viewModel = ViewModelProvider(this@InputFragment, viewModelFactory).get(
+        viewModel = ViewModelProvider(this@InputFragment).get(
             InputFragmentViewModel::class.java)
         binding.myViewModel = viewModel
 

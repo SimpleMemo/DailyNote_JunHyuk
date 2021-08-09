@@ -11,7 +11,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.databinding.DialogCheckBinding
 import com.junhyuk.dailynote.viewmodel.dialog.CheckDialogViewModel
-import com.junhyuk.dailynote.viewmodel.dialog.CheckDialogViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,7 +28,6 @@ class CheckDialog : BottomSheetDialogFragment() {
     //binding, viewModel, viewModelFactory 선언
     private lateinit var binding: DialogCheckBinding
     private lateinit var viewModel: CheckDialogViewModel
-    private lateinit var viewModelFactory: CheckDialogViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,9 +38,7 @@ class CheckDialog : BottomSheetDialogFragment() {
         //dataBinding 설정
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_check, container, false)
 
-        //viewModel 설정
-        viewModelFactory = CheckDialogViewModelFactory()
-        viewModel = ViewModelProvider(this@CheckDialog, viewModelFactory).get(CheckDialogViewModel::class.java)
+        viewModel = ViewModelProvider(this@CheckDialog).get(CheckDialogViewModel::class.java)
 
         //view 접근
         binding.apply {
