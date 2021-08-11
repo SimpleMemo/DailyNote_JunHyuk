@@ -46,7 +46,7 @@ class ShareDialog : BottomSheetDialogFragment() {
     ): View {
 
         //view 접근
-        binding.apply {
+        with(binding) {
 
             //shareButtonClickAction
             shareButton.setOnClickListener {
@@ -151,12 +151,12 @@ class ShareDialog : BottomSheetDialogFragment() {
 
     //Memo DB 수정
     // (UPDATE 'memo' SET title = :titleEdit, content = :contentEdit WHERE memoId = :id)
-    private fun update(position: Int?, title: String, content: String) {
+    private suspend fun update(position: Int?, title: String, content: String) {
         MyApplication.memoRepository.update(position, title, content)
     }
 
     //Memo DB 삽입
-    private fun insert(memo: MemoData) {
+    private suspend fun insert(memo: MemoData) {
         MyApplication.memoRepository.insert(memo)
     }
 

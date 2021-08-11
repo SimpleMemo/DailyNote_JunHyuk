@@ -12,6 +12,7 @@
             android:id="@+id/action_inputFragment_to_postFragment"
             app:destination="@id/postFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/postFragment"
         android:name="com.junhyuk.dailynote.view.post.PostFragment"

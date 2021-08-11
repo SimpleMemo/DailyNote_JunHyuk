@@ -5,15 +5,13 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.text.TextUtils
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.databinding.ActivityMainBinding
 import com.junhyuk.dailynote.adapter.MemoRecyclerViewAdapter
 import com.junhyuk.dailynote.model.`object`.MemoObject
@@ -21,7 +19,6 @@ import com.junhyuk.dailynote.view.dialog.CheckDialog
 import com.junhyuk.dailynote.view.post.PostActivity
 import com.junhyuk.dailynote.view.setting.SettingActivity
 import com.junhyuk.dailynote.viewmodel.main.MainActivityViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -37,18 +34,15 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     //binding, viewModel, viewModelFactory, adapter 선언
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: MainActivityViewModel
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private val viewModel by viewModels<MainActivityViewModel>()
     private lateinit var adapter: MemoRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //dataBinding 설정
-        binding = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
+        setContentView(binding.root)
 
         //viewModel 설정
-        viewModel = ViewModelProvider(this@MainActivity).get(MainActivityViewModel::class.java)
         binding.myViewModel = viewModel
 
         //adapter 초기화
@@ -71,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
             //swipe action
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                CoroutineScope(Dispatchers.IO).launch {
+                lifecycleScope.launch(Dispatchers.IO) {
                     //삭제할 것인지 묻는 Dialog
                     val checkDialog = CheckDialog()
                     checkDialog.show(supportFragmentManager, viewModel.getAllMemo().value?.get(viewHolder.absoluteAdapterPosition)?.memoId.toString())
@@ -82,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //view 접근
-        binding.apply {
+        with(binding) {
 
             //recyclerView 가 고정된 사이즈를 가진다고 알려주는 함수
             memoRecyclerView.setHasFixedSize(true)

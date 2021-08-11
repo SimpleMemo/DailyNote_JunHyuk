@@ -33,7 +33,7 @@ class CheckDialog : BottomSheetDialogFragment() {
     ): View {
 
         //view 접근
-        binding.apply {
+        with(binding) {
 
             //deleteButtonClickAction
             deleteButton.setOnClickListener {

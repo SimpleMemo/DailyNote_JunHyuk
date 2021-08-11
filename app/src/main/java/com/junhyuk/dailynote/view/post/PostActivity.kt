@@ -1,13 +1,9 @@
 package com.junhyuk.dailynote.view.post
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import com.junhyuk.dailynote.R
+import androidx.appcompat.app.AppCompatActivity
 import com.junhyuk.dailynote.databinding.ActivityPostBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
-import com.junhyuk.dailynote.viewmodel.post.PostActivityViewModel
 
 /*
 *
@@ -19,19 +15,11 @@ import com.junhyuk.dailynote.viewmodel.post.PostActivityViewModel
 
 class PostActivity : AppCompatActivity() {
 
-    //binding, viewModel, viewModelFactory 선언
-    private lateinit var binding: ActivityPostBinding
-    private lateinit var viewModel: PostActivityViewModel
+    private val binding by lazy { ActivityPostBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //dataBinding 설정
-        binding = DataBindingUtil.setContentView(this@PostActivity, R.layout.activity_post)
-
-        //viewModel 설정
-        viewModel = ViewModelProvider(this@PostActivity).get(PostActivityViewModel::class.java)
-
+        setContentView(binding.root)
     }
 
     override fun onDestroy() {
@@ -40,7 +28,5 @@ class PostActivity : AppCompatActivity() {
         //엑티비티 종료시 MemoObject Clear
         MemoObject.clear()
     }
-
-
 
 }

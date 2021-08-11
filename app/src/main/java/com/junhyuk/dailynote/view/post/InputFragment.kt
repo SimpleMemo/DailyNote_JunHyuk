@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.application.MyApplication
@@ -27,8 +26,8 @@ import com.junhyuk.dailynote.viewmodel.post.InputFragmentViewModel
 class InputFragment : Fragment() {
 
     //binding, viewModel, viewModelFactory 선언
-    private lateinit var binding: FragmentInputBinding
-    private lateinit var viewModel: InputFragmentViewModel
+    private val binding by lazy { FragmentInputBinding.inflate(layoutInflater) }
+    private val viewModel  by viewModels<InputFragmentViewModel>()
 
     //Boolean 변수 선언
     private var textNullCheck: Boolean? = null
@@ -41,27 +40,22 @@ class InputFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        //dataBinding 설정
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_input, container, false)
-
         //viewModel 설정
-        viewModel = ViewModelProvider(this@InputFragment).get(
-            InputFragmentViewModel::class.java)
         binding.myViewModel = viewModel
 
         //state, position 저장
-        if(viewModel.stateData.value?.isNotEmpty() == true){
-            MemoObject.state = viewModel.stateData.value.toString()
-            MemoObject.position = viewModel.positionData.value!!
-        }else{
-            viewModel.apply {
+        with(viewModel){
+            if(stateData.value?.isNotEmpty() == true){
+                MemoObject.state = stateData.value.toString()
+                MemoObject.position = positionData.value!!
+            }else{
                 setState(MemoObject.state)
                 setPosition(MemoObject.position)
             }
         }
 
         //view 접근
-        binding.apply {
+        with(binding) {
 
             //상단 Text 를 어떤 작업을 하느냐에 따라서 변경
             when(viewModel.stateData.value){
@@ -90,7 +84,7 @@ class InputFragment : Fragment() {
                         "UPDATE" -> {
 
                             //object 초기화
-                            viewModel.apply {
+                            with(viewModel) {
                                 setObject()
 
                                 getAllMemo().observe(requireActivity(), { list ->

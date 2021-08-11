@@ -3,7 +3,6 @@ package com.junhyuk.dailynote.view.setting
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
 import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.databinding.ActivitySettingBinding
@@ -20,16 +19,14 @@ import com.junhyuk.dailynote.model.`object`.ThemeManager
 class SettingActivity : AppCompatActivity() {
 
     //binding 선언
-    private lateinit var binding: ActivitySettingBinding
+    private val binding by lazy { ActivitySettingBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //dataBinding 설정
-        binding = DataBindingUtil.setContentView(this@SettingActivity, R.layout.activity_setting)
+        setContentView(binding.root)
 
         //view 접근
-        binding.apply {
+        with(binding) {
             
             //뒤로가기 버튼
             backButton.setOnClickListener {
