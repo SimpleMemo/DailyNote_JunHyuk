@@ -32,35 +32,23 @@ class PostFragmentViewModel : ViewModel() {
     val stateData: LiveData<String>
         get() = state
 
-    //dataIndex
-    private val dataIndex = MutableLiveData<Int>()
-    private val dataIndexData: LiveData<Int>
-        get() = dataIndex
-
-    //state 저장
-    fun setState(state: String){
-        this.state.value = state
-    }
-
-    //dataIndex 저장
-    fun setDataIndex(dataIndex: Int){
-        this.dataIndex.value = dataIndex
-    }
+    //id
+    private val id = MutableLiveData<Int>()
 
     //title, content 초기화
-    fun setTextValue(title: String, content: String){
+    fun setTextValue(id: Int, title: String, content: String){
+        this.id.value = id
         this.title.value = title
         this.content.value = content
     }
 
     //Object 저장
     fun setObject(){
+        if(id.value != null){
+            MemoObject.id = id.value!!
+        }
         MemoObject.title = title.value.toString()
         MemoObject.content = content.value.toString()
-    }
-
-    fun setPosAndIndexObject(){
         MemoObject.state = stateData.value.toString()
-        MemoObject.position = dataIndexData.value!!
     }
 }

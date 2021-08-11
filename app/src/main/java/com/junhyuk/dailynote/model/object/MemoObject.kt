@@ -11,28 +11,27 @@ import android.graphics.Bitmap
 * */
 
 object MemoObject {
+    var id: Int = 0 //ID
     var title: String = "" //titleData
     var content: String = "" //contentData
-    var position: Int = 0 //positionData
-    var dataIndex: Int = 0 //dataIndex
     var state: String = "" //Post Or Update State
     var bitmap: Bitmap? = null //bitmapData
 
     //데이터 전체 설정
-    fun setAll(title: String, content: String, position: Int, dataIndex: Int, state: String){
+    fun setAll(id: Int, title: String, content: String, state: String){
         this.title = title
         this.content = content
-        this.position = position
-        this.dataIndex = dataIndex
         this.state = state
         this.bitmap = null
+        this.id = id
     }
 
     //데이터 전체 초기화
     fun clear(){
+        id = 0
         title = ""
         content = ""
         state = ""
-        position = 0
+        bitmap = null
     }
 }

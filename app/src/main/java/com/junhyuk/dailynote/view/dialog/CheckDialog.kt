@@ -9,6 +9,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.databinding.DialogCheckBinding
+import com.junhyuk.dailynote.model.`object`.MemoObject
+import com.junhyuk.dailynote.model.database.MemoData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -44,7 +46,7 @@ class CheckDialog : BottomSheetDialogFragment() {
                 //delete
                 CoroutineScope(Dispatchers.IO).launch {
                     if(tag?.isNotEmpty() == true){
-                        deleteMemo(memoId)
+                        deleteMemo(MemoData(memoId!!, MemoObject.title,  MemoObject.content))
                         dismiss()
                     }else{
                         Toast.makeText(activity, "Error", Toast.LENGTH_LONG).show()
@@ -69,8 +71,8 @@ class CheckDialog : BottomSheetDialogFragment() {
     }
 
     //Memo 삭제
-    fun deleteMemo(memoId: Int?){
-        MyApplication.memoRepository.deleteMemo(memoId)
+    private fun deleteMemo(memo: MemoData){
+        MyApplication.memoRepository.deleteMemo(memo)
     }
 
 }

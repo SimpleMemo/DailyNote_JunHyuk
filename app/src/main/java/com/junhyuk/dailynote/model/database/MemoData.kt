@@ -13,9 +13,8 @@ import androidx.room.PrimaryKey
 * */
 
 @Entity(tableName = "memo")
-class MemoData(
+data class MemoData(
+    @PrimaryKey var memoId: Int, //기본키, memoId
     @ColumnInfo(name = "title") val memoTitle: String, //title
     @ColumnInfo(name = "content") val memoContent: String //content
-) {
-    @PrimaryKey(autoGenerate = true) var memoId: Int = 0 //기본키, memoId
-}
+)

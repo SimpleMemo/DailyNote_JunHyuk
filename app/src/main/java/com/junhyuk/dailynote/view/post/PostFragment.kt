@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.databinding.FragmentPostBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
@@ -50,17 +49,6 @@ class PostFragment : Fragment() {
         //theme 설정
         requireActivity().theme.resolveAttribute(R.attr.colorPrimary, typed, true)
 
-        //state, dataIndex 저장
-        with(viewModel){
-            if (stateData.value?.isNotEmpty() == true) {
-                setPosAndIndexObject()
-            } else {
-                setState(MemoObject.state)
-                setDataIndex(MemoObject.dataIndex)
-            }
-        }
-
-
         //상단 Text 를 어떤 작업을 하느냐에 따라서 변경
         when (viewModel.stateData.value) {
             "UPDATE" -> binding.titleText.text = "Update Diary"
@@ -71,7 +59,7 @@ class PostFragment : Fragment() {
         with(viewModel) {
             if (MemoObject.title.isNotEmpty()) {
 
-                setTextValue(MemoObject.title, MemoObject.content)
+                setTextValue(MemoObject.id, MemoObject.title, MemoObject.content)
                 setContentTextData()
 
             } else {

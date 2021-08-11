@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +18,6 @@ import com.junhyuk.dailynote.view.setting.SettingActivity
 import com.junhyuk.dailynote.viewmodel.main.MainActivityViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 /*
@@ -68,8 +66,9 @@ class MainActivity : AppCompatActivity() {
                 lifecycleScope.launch(Dispatchers.IO) {
                     //삭제할 것인지 묻는 Dialog
                     val checkDialog = CheckDialog()
-                    checkDialog.show(supportFragmentManager, viewModel.getAllMemo().first()[viewHolder.absoluteAdapterPosition].memoId.toString())
+                    checkDialog.show(supportFragmentManager, adapter.list.currentList[viewHolder.absoluteAdapterPosition].memoId.toString())
                     binding.myAdapter!!.notifyItemChanged(viewHolder.absoluteAdapterPosition)
+                    adapter.refresh()
                 }
             }
 
@@ -86,12 +85,7 @@ class MainActivity : AppCompatActivity() {
             itemTouchHelper.attachToRecyclerView(memoRecyclerView)
 
             //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
-            viewModel.getAllMemo().asLiveData().observe(this@MainActivity, {
-
-                adapter.refresh()
-                isNoneTextVisible = it.isEmpty()
-
-            })
+            isNoneTextVisible = adapter.itemCount != 0
 
             //메모를 추가하는 PostActivity 로 이동
             addButton.setOnClickListener {

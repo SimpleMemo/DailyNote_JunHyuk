@@ -8,17 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.databinding.FragmentInputBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.viewmodel.post.InputFragmentViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-
 /*
 *
 * 파일명: InputFragment
@@ -49,12 +44,18 @@ class InputFragment : Fragment() {
 
         //state, position 저장
         with(viewModel){
+
+            MemoObject.title = title.value.toString()
+
             if(stateData.value?.isNotEmpty() == true){
-                MemoObject.state = stateData.value.toString()
-                MemoObject.position = positionData.value!!
+                setObject()
             }else{
-                setState(MemoObject.state)
-                setPosition(MemoObject.position)
+                setTitleAndContent(MemoObject.id, MemoObject.title, MemoObject.content, MemoObject.state)
+            }
+
+            //해당 position 에 해당하는 제목과 내용을 EditText 에 입력(Update)
+            if(isUpdate){
+                viewModel.setTitleAndContent(MemoObject.id, MemoObject.title, MemoObject.content, MemoObject.state)
             }
         }
 
@@ -65,11 +66,6 @@ class InputFragment : Fragment() {
             when(viewModel.stateData.value){
                 "UPDATE" -> titleText.text = "Edit Diary"
                 "INSERT" -> titleText.text = "Add Diary"
-            }
-
-            //해당 position 에 해당하는 제목과 내용을 EditText 에 입력(Update)
-            if(isUpdate){
-                viewModel.setTitleAndContent(MemoObject.title, MemoObject.content)
             }
 
             //Post
@@ -90,12 +86,6 @@ class InputFragment : Fragment() {
                             //object 초기화
                             with(viewModel) {
                                 setObject()
-
-                                lifecycleScope.launch(Dispatchers.IO){
-                                    if (getAllMemo().first().isNotEmpty()) {
-                                        MemoObject.dataIndex = getAllMemo().first()[positionData.value!!].memoId
-                                    }
-                                }
                             }
 
                             //PostFragment 로 이동
@@ -106,8 +96,10 @@ class InputFragment : Fragment() {
                         //MemoObject 안에 title 이 존재하지 않는다면 Insert
                         "INSERT" -> {
 
-                            //title, content 초기화
-                            viewModel.setObject()
+                            //object 초기화
+                            with(viewModel) {
+                                setObject()
+                            }
 
                             //PostFragment 로 이동
                             findNavController().navigate(R.id.action_inputFragment_to_postFragment)

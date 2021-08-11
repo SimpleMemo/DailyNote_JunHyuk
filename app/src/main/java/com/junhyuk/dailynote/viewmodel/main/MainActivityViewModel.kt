@@ -21,19 +21,12 @@ import kotlinx.coroutines.flow.Flow
 //MainActivityViewModel
 class MainActivityViewModel: ViewModel() {
 
-    //MemoList 불러오기
-    private var memoList: Flow<List<MemoData>> = MyApplication.memoRepository.getAllMemos()
 
     //pagingRepository 선언 및 초기화
     private var memoPageRepository: MemoPageRepository = MemoPageRepository(MyApplication.memoRepository.getDao())
 
     fun getContent(): Flow<PagingData<MemoData>> {
         return memoPageRepository.getTodoContentItemsByPaging().cachedIn(viewModelScope)
-    }
-
-    //MemoList 모두 불러오기
-    fun getAllMemo() : Flow<List<MemoData>>{
-        return memoList
     }
 
 }

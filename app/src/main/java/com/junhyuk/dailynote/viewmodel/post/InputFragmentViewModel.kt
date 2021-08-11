@@ -5,10 +5,7 @@ import android.icu.text.SimpleDateFormat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.model.`object`.MemoObject
-import com.junhyuk.dailynote.model.database.MemoData
-import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 /*
@@ -22,9 +19,6 @@ import java.util.*
 @SuppressLint("SimpleDateFormat")
 class InputFragmentViewModel : ViewModel() {
 
-    //MemoList 불러오기
-    private var memoList: Flow<List<MemoData>> = MyApplication.memoRepository.getAllMemos()
-
     //title, content, state, position 변수 선언
     var title = MutableLiveData<String>() //title
     var content = MutableLiveData<String>() //content
@@ -34,10 +28,8 @@ class InputFragmentViewModel : ViewModel() {
     val stateData: LiveData<String>
         get() = state
 
-    //position
-    private val position = MutableLiveData<Int>()
-    val positionData: LiveData<Int>
-        get() = position
+    //id
+    private val id = MutableLiveData<Int>()
 
     //생성자
     init {
@@ -67,29 +59,20 @@ class InputFragmentViewModel : ViewModel() {
         title.value = getTime + " " + dayOfWeek + "요일"
     }
 
-    //state 저장
-    fun setState(state: String) {
+    //text, content 설정
+    fun setTitleAndContent(id: Int, title: String, content: String, state: String){
+        this.id.value = id
+        this.title.value = title
+        this.content.value = content
         this.state.value = state
     }
 
-    //position 설정
-    fun setPosition(position: Int) {
-        this.position.value = position
-    }
-
-    //text, content 설정
-    fun setTitleAndContent(title: String, content: String){
-        this.title.value = title
-        this.content.value = content
-    }
-
     fun setObject(){
+        if(id.value != null){
+            MemoObject.id = id.value!!
+        }
         MemoObject.title = title.value.toString()
         MemoObject.content = content.value.toString()
-    }
-
-    //MemoList 모두 불러오기
-    fun getAllMemo(): Flow<List<MemoData>> {
-        return memoList
+        MemoObject.state = state.value.toString()
     }
 }

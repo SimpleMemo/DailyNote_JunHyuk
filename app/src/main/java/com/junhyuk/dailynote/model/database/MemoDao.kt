@@ -1,10 +1,6 @@
 package com.junhyuk.dailynote.model.database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
+import androidx.room.*
 
 /*
 *
@@ -17,22 +13,16 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface MemoDao {
 
-    @Query("SELECT * FROM memo ORDER BY memoId DESC")
-    fun getAll(): Flow<List<MemoData>> //모든 Data 를 불러옴
-
-    @Query("UPDATE 'memo' SET title = :titleEdit, content = :contentEdit WHERE memoId = :id")
-    suspend fun update(id: Int?, titleEdit: String, contentEdit: String) //메모장 Update
-
-    @Query("DELETE FROM 'memo' WHERE memoId = :id")
-    fun delete(id: Int?) //메모장 Delete
-
     @Query("SELECT * FROM memo ORDER BY memoId DESC LIMIT :loadSize OFFSET (:page-1) * :loadSize")
     suspend fun getMemoContentsByPaging(page: Int, loadSize: Int): List<MemoData> //paging
+
+    @Update
+    suspend fun update(memo: MemoData) //메모장 Update
 
     @Insert
     suspend fun insert(memo: MemoData) //메모장 Insert
 
     @Delete
-    fun deleteAll(memo: MemoData?) //메모장 전체 Delete
+    fun delete(memo: MemoData) //메모장 전체 Delete
 
 }

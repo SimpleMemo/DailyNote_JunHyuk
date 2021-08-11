@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.Environment.getExternalStoragePublicDirectory
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
@@ -110,7 +111,7 @@ class ShareDialog : BottomSheetDialogFragment() {
 
         } else { //안드로이드 버전이 Q 미만일 때
 
-            val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + albumName
+            val imagesDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + albumName
 
             val file = File(imagesDir)
             if (!file.exists()) {
@@ -130,14 +131,15 @@ class ShareDialog : BottomSheetDialogFragment() {
         when (MemoObject.state) {
             "UPDATE" -> {
                 CoroutineScope(Dispatchers.IO).launch {
-                    update(MemoObject.dataIndex, MemoObject.title, MemoObject.content)
+                    update(MemoData(MemoObject.id, MemoObject.title, MemoObject.content))
                 }
             }
 
             //MemoObject.state == INSERT
             "INSERT" -> {
                 CoroutineScope(Dispatchers.IO).launch {
-                    insert(MemoData(MemoObject.title, MemoObject.content))
+                    val now: Long = System.currentTimeMillis()
+                    insert(MemoData(now.toInt(), MemoObject.title, MemoObject.content))
                 }
             }
 
@@ -151,8 +153,8 @@ class ShareDialog : BottomSheetDialogFragment() {
 
     //Memo DB 수정
     // (UPDATE 'memo' SET title = :titleEdit, content = :contentEdit WHERE memoId = :id)
-    private suspend fun update(position: Int?, title: String, content: String) {
-        MyApplication.memoRepository.update(position, title, content)
+    private suspend fun update(memo: MemoData) {
+        MyApplication.memoRepository.update(memo)
     }
 
     //Memo DB 삽입
