@@ -1,6 +1,5 @@
 package com.junhyuk.dailynote.viewmodel.main
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -23,7 +22,7 @@ import kotlinx.coroutines.flow.Flow
 class MainActivityViewModel: ViewModel() {
 
     //MemoList 불러오기
-    private var memoList: LiveData<List<MemoData>> = MyApplication.memoRepository.getAllMemos()
+    private var memoList: Flow<List<MemoData>> = MyApplication.memoRepository.getAllMemos()
 
     //pagingRepository 선언 및 초기화
     private var memoPageRepository: MemoPageRepository = MemoPageRepository(MyApplication.memoRepository.getDao())
@@ -33,7 +32,7 @@ class MainActivityViewModel: ViewModel() {
     }
 
     //MemoList 모두 불러오기
-    fun getAllMemo() : LiveData<List<MemoData>>{
+    fun getAllMemo() : Flow<List<MemoData>>{
         return memoList
     }
 

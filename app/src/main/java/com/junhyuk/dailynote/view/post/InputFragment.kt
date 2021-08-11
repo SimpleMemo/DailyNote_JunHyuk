@@ -8,12 +8,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.databinding.FragmentInputBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.viewmodel.post.InputFragmentViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 /*
 *
@@ -87,11 +91,11 @@ class InputFragment : Fragment() {
                             with(viewModel) {
                                 setObject()
 
-                                getAllMemo().observe(requireActivity(), { list ->
-                                    if (getAllMemo().value?.isNotEmpty() == true) {
-                                        MemoObject.dataIndex = list[positionData.value!!].memoId
+                                lifecycleScope.launch(Dispatchers.IO){
+                                    if (getAllMemo().first().isNotEmpty()) {
+                                        MemoObject.dataIndex = getAllMemo().first()[positionData.value!!].memoId
                                     }
-                                })
+                                }
                             }
 
                             //PostFragment 로 이동

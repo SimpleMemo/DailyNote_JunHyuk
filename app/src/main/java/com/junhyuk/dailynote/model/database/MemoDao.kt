@@ -1,10 +1,10 @@
 package com.junhyuk.dailynote.model.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 /*
 *
@@ -18,7 +18,7 @@ import androidx.room.Query
 interface MemoDao {
 
     @Query("SELECT * FROM memo ORDER BY memoId DESC")
-    fun getAll(): LiveData<List<MemoData>> //모든 Data 를 불러옴
+    fun getAll(): Flow<List<MemoData>> //모든 Data 를 불러옴
 
     @Query("UPDATE 'memo' SET title = :titleEdit, content = :contentEdit WHERE memoId = :id")
     suspend fun update(id: Int?, titleEdit: String, contentEdit: String) //메모장 Update

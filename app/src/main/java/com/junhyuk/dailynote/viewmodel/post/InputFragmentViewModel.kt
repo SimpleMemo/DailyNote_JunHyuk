@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.model.database.MemoData
+import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 /*
@@ -22,7 +23,7 @@ import java.util.*
 class InputFragmentViewModel : ViewModel() {
 
     //MemoList 불러오기
-    private var memoList: LiveData<List<MemoData>> = MyApplication.memoRepository.getAllMemos()
+    private var memoList: Flow<List<MemoData>> = MyApplication.memoRepository.getAllMemos()
 
     //title, content, state, position 변수 선언
     var title = MutableLiveData<String>() //title
@@ -88,7 +89,7 @@ class InputFragmentViewModel : ViewModel() {
     }
 
     //MemoList 모두 불러오기
-    fun getAllMemo(): LiveData<List<MemoData>> {
+    fun getAllMemo(): Flow<List<MemoData>> {
         return memoList
     }
 }

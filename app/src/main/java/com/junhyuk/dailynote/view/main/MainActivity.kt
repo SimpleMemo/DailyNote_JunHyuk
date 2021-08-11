@@ -2,13 +2,11 @@ package com.junhyuk.dailynote.view.main
 
 import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.text.TextUtils
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +19,7 @@ import com.junhyuk.dailynote.view.setting.SettingActivity
 import com.junhyuk.dailynote.viewmodel.main.MainActivityViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 /*
@@ -49,7 +48,8 @@ class MainActivity : AppCompatActivity() {
         initAdapter()
 
         //권한 허용
-        checkSelfPermission()
+        val permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()){}
+        permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
 
         //SwipeAction
         val itemTouchCallback: ItemTouchHelper.SimpleCallback = object :
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 lifecycleScope.launch(Dispatchers.IO) {
                     //삭제할 것인지 묻는 Dialog
                     val checkDialog = CheckDialog()
-                    checkDialog.show(supportFragmentManager, viewModel.getAllMemo().value?.get(viewHolder.absoluteAdapterPosition)?.memoId.toString())
+                    checkDialog.show(supportFragmentManager, viewModel.getAllMemo().first()[viewHolder.absoluteAdapterPosition].memoId.toString())
                     binding.myAdapter!!.notifyItemChanged(viewHolder.absoluteAdapterPosition)
                 }
             }
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             itemTouchHelper.attachToRecyclerView(memoRecyclerView)
 
             //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
-            viewModel.getAllMemo().observe(this@MainActivity, {
+            viewModel.getAllMemo().asLiveData().observe(this@MainActivity, {
 
                 adapter.refresh()
                 isNoneTextVisible = it.isEmpty()
@@ -134,41 +134,6 @@ class MainActivity : AppCompatActivity() {
         adapter = MemoRecyclerViewAdapter(this@MainActivity)
         binding.myAdapter = adapter
         initMemoJob()
-    }
-
-    //권한 허용
-    private fun checkSelfPermission() {
-
-        var temp = ""
-
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            temp += Manifest.permission.READ_EXTERNAL_STORAGE + " "
-        }
-
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            temp += Manifest.permission.WRITE_EXTERNAL_STORAGE + " "
-        }
-
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            temp += Manifest.permission.WRITE_EXTERNAL_STORAGE + " "
-        }
-
-        if (!TextUtils.isEmpty(temp)) {
-            ActivityCompat.requestPermissions(this, temp.trim().split(" ").toTypedArray(), 1)
-        }
-
     }
 
 }
