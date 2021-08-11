@@ -21,7 +21,7 @@ interface MemoDao {
     fun getAll(): LiveData<List<MemoData>> //모든 Data 를 불러옴
 
     @Query("UPDATE 'memo' SET title = :titleEdit, content = :contentEdit WHERE memoId = :id")
-    fun update(id: Int?, titleEdit: String, contentEdit: String) //메모장 Update
+    suspend fun update(id: Int?, titleEdit: String, contentEdit: String) //메모장 Update
 
     @Query("DELETE FROM 'memo' WHERE memoId = :id")
     fun delete(id: Int?) //메모장 Delete
@@ -30,7 +30,7 @@ interface MemoDao {
     suspend fun getMemoContentsByPaging(page: Int, loadSize: Int): List<MemoData> //paging
 
     @Insert
-    fun insert(memo: MemoData) //메모장 Insert
+    suspend fun insert(memo: MemoData) //메모장 Insert
 
     @Delete
     fun deleteAll(memo: MemoData?) //메모장 전체 Delete

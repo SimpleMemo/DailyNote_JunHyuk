@@ -35,12 +35,12 @@ class MemoRepository(application: Application?) {
     }
 
     //메모 삽입
-    fun insert(memo: MemoData) {
+    suspend fun insert(memo: MemoData) {
         memoDao.insert(memo)
     }
 
     //메모 수정
-    fun update(position: Int?, title: String, content: String){
+    suspend fun update(position: Int?, title: String, content: String){
         memoDao.update(position, title, content)
     }
 
