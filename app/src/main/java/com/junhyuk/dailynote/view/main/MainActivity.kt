@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         //권한 허용
         val permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()){}
-        permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+        permissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
         //SwipeAction
         val itemTouchCallback: ItemTouchHelper.SimpleCallback = object :

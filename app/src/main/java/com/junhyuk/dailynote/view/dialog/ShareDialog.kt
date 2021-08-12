@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.os.Environment.getExternalStoragePublicDirectory
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
@@ -111,7 +110,7 @@ class ShareDialog : BottomSheetDialogFragment() {
 
         } else { //안드로이드 버전이 Q 미만일 때
 
-            val imagesDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + albumName
+            val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + File.separator + albumName
 
             val file = File(imagesDir)
             if (!file.exists()) {
