@@ -59,20 +59,24 @@ class SettingActivity : AppCompatActivity() {
 
                     //lightMode
                     R.id.lightCheck -> {
+                        group.check(R.id.lightCheck)
                         setTheme(ThemeManager.LIGHT)
                     }
 
                     //darkMode
                     R.id.darkCheck -> {
+                        group.check(R.id.darkCheck)
                         setTheme(ThemeManager.DARK)
                     }
 
                     //systemMode
                     R.id.systemCheck -> {
+                        group.check(R.id.systemCheck)
                         setTheme(ThemeManager.DEFAULT)
                     }
 
                 }
+
             }
 
         }
