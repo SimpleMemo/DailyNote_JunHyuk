@@ -4,7 +4,10 @@ import android.app.Application
 import com.junhyuk.dailynote.model.database.MemoDao
 import com.junhyuk.dailynote.model.database.MemoData
 import com.junhyuk.dailynote.model.database.MemoDataBase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 /*
 *
@@ -46,7 +49,9 @@ class MemoRepository(application: Application?) {
 
     //메모 삭제
     fun deleteMemo(memo: MemoData){
-        memoDao.delete(memo)
+        CoroutineScope(Dispatchers.IO).launch {
+            memoDao.delete(memo)
+        }
     }
 
     fun getDao(): MemoDao {

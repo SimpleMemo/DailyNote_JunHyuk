@@ -72,4 +72,9 @@
         <item name="android:src">@drawable/ic_settings_dark</item>
     </style>
 
+    <!--    backButtonIcon-->
+    <style name="CustomBackButtonTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:src">@drawable/ic_back_dark</item>
+    </style>
+
 </resources>

@@ -16,7 +16,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/inter_bold"
             android:text="@string/setting_text"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:theme="@style/CustomItemTextTheme"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -24,31 +24,30 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
+        <ImageButton
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:fontFamily="@font/inter_medium"
-            android:padding="10dp"
-            android:text="@string/back_text"
-            android:textSize="16sp"
-            android:theme="@style/CustomTextTheme"
+            android:padding="5dp"
+            android:theme="@style/CustomBackButtonTheme"
+            android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="@+id/titleText"
             app:layout_constraintEnd_toStartOf="@+id/titleText"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titleText" />
+            app:layout_constraintTop_toTopOf="@+id/titleText"
+            android:contentDescription="@string/backbutton" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/change_theme"
-            android:textColor="@color/black"
+            android:theme="@style/CustomTextTheme"
             android:fontFamily="@font/inter_light"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleText"
             app:layout_constraintVertical_bias="0.9" />

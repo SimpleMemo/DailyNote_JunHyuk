@@ -16,21 +16,20 @@
         android:theme="@style/CustomBackground"
         tools:context=".view.post.PostActivity">
 
-        <TextView
+        <ImageButton
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:fontFamily="@font/inter_medium"
-            android:padding="10dp"
-            android:text="@string/back_text"
-            android:textSize="16sp"
-            android:theme="@style/CustomTextTheme"
+            android:padding="5dp"
+            android:theme="@style/CustomBackButtonTheme"
+            android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="@+id/titleText"
             app:layout_constraintEnd_toStartOf="@+id/titleText"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titleText" />
+            app:layout_constraintTop_toTopOf="@+id/titleText"
+            android:contentDescription="@string/backbutton" />
 
         <TextView
             android:id="@+id/titleText"
@@ -39,7 +38,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/inter_bold"
             android:text="@string/add_diary_text"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:theme="@style/CustomItemTextTheme"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -51,7 +50,7 @@
             android:id="@+id/nextButton"
             android:layout_width="96dp"
             android:layout_height="51dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="40dp"
             android:background="#5DB075"
             android:elevation="4dp"
@@ -70,9 +69,9 @@
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/inter_bold"
-                android:textSize="16sp"
                 android:text="@string/next_text"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </com.google.android.material.card.MaterialCardView>
 

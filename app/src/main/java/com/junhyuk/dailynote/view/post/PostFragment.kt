@@ -49,12 +49,6 @@ class PostFragment : Fragment() {
         //theme 설정
         requireActivity().theme.resolveAttribute(R.attr.colorPrimary, typed, true)
 
-        //상단 Text 를 어떤 작업을 하느냐에 따라서 변경
-        when (viewModel.stateData.value) {
-            "UPDATE" -> binding.titleText.text = "Update Diary"
-            "INSERT" -> binding.titleText.text = "Post Diary"
-        }
-
         //제목과 내용을 Text 에 입력
         with(viewModel) {
             if (MemoObject.title.isNotEmpty()) {

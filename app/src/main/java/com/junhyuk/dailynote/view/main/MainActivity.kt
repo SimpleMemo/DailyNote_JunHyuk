@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                     //삭제할 것인지 묻는 Dialog
                     val checkDialog = DeleteDialog()
                     checkDialog.show(supportFragmentManager, binding.myAdapter!!.peek(viewHolder.absoluteAdapterPosition)!!.memoId.toString())
+                    binding.myAdapter!!.notifyItemChanged(viewHolder.absoluteAdapterPosition)
                 }
             }
         }
