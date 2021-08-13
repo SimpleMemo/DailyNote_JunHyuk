@@ -67,4 +67,9 @@
         <item name="android:background">@color/black</item>
     </style>
 
+    <!--    settingIcon-->
+    <style name="CustomSettingButtonTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:src">@drawable/ic_settings_dark</item>
+    </style>
+
 </resources>

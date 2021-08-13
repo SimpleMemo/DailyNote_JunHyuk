@@ -67,4 +67,9 @@
         <item name="android:background">@color/backgroundLight</item>
     </style>
 
+<!--    settingIcon-->
+    <style name="CustomSettingButtonTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:src">@drawable/ic_settings_light</item>
+    </style>
+
 </resources>

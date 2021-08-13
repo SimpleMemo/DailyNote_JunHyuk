@@ -69,7 +69,7 @@ class InputFragment : Fragment() {
             }
 
             //Post
-            postButton.setOnClickListener {
+            nextButton.setOnClickListener {
 
                 //textNullCheck 변수 초기화
                 textNullCheck =

@@ -7,7 +7,7 @@
     <string name="add">일기 작성</string>
     <string name="edit_title">제목</string>
     <string name="edit_content">내용</string>
-    <string name="post">Save</string>
+    <string name="post">저장</string>
     <string name="delete_text">삭제</string>
     <string name="Description_text">해당 일기를 삭제하시겠습니까?\n삭제된 내용은 되돌릴수 없습니다.</string>
     <string name="cancel_text">취소</string>
@@ -19,10 +19,12 @@
     <string name="post_diary">일기 저장</string>
     <string name="posting_this_memo">일기를 저장하시겠습니까?</string>
     <string name="none_text">작셩한 일기가 존재하지 않습니다.</string>
-    <string name="setting_text">Settings</string>
+    <string name="setting_text">설정</string>
     <string name="delete_text_kr">삭제</string>
     <string name="how_was_your_day">How was your day?</string>
     <string name="share_text">일기 공유</string>
     <string name="Description_text2">해당 일기를 공유하시겠습니까?</string>
     <string name="share_text_kr">공유하고 저장</string>
+    <string name="setting_button">setting_button</string>
+    <string name="change_theme">테마 변경</string>
 </resources>
