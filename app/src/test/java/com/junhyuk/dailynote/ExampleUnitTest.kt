@@ -1,4 +1,4 @@
-package com.junhyuk.simplememojunhyuk
+package com.junhyuk.dailynote
 
 import org.junit.Test
 
