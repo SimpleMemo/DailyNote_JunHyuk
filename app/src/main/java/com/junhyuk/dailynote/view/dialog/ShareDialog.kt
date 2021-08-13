@@ -151,7 +151,6 @@ class ShareDialog : BottomSheetDialogFragment() {
     }
 
     //Memo DB 수정
-    // (UPDATE 'memo' SET title = :titleEdit, content = :contentEdit WHERE memoId = :id)
     private suspend fun update(memo: MemoData) {
         MyApplication.memoRepository.update(memo)
     }

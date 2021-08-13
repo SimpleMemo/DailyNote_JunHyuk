@@ -8,12 +8,9 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.application.MyApplication
-import com.junhyuk.dailynote.databinding.DialogCheckBinding
+import com.junhyuk.dailynote.databinding.DialogDeleteBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.model.database.MemoData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 /*
 *
@@ -23,10 +20,11 @@ import kotlinx.coroutines.launch
 *
 * */
 
-class CheckDialog : BottomSheetDialogFragment() {
+class DeleteDialog : BottomSheetDialogFragment() {
 
     //binding, viewModel, viewModelFactory 선언
-    private val binding by lazy { DialogCheckBinding.inflate(layoutInflater) }
+    private val binding by lazy { DialogDeleteBinding.inflate(layoutInflater) }
+    private var memoId: Int? = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,24 +32,20 @@ class CheckDialog : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        //getMemoId
+        memoId = tag?.toInt()
+
         //view 접근
         with(binding) {
 
             //deleteButtonClickAction
             deleteButton.setOnClickListener {
-
-                //getMemoId
-                val memoId: Int? = tag?.toInt()
-
-                //delete
-                CoroutineScope(Dispatchers.IO).launch {
-                    if(tag?.isNotEmpty() == true){
-                        deleteMemo(MemoData(memoId!!, MemoObject.title,  MemoObject.content))
-                        dismiss()
-                    }else{
-                        Toast.makeText(activity, "Error", Toast.LENGTH_LONG).show()
-                        dismiss()
-                    }
+                if(tag?.isNotEmpty() == true){
+                    deleteMemo(MemoData(memoId!!, MemoObject.title,  MemoObject.content))
+                    dismiss()
+                }else{
+                    Toast.makeText(activity, "Error", Toast.LENGTH_LONG).show()
+                    dismiss()
                 }
             }
 

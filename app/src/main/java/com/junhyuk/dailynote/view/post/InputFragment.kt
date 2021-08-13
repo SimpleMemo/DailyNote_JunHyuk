@@ -64,8 +64,8 @@ class InputFragment : Fragment() {
 
             //상단 Text 를 어떤 작업을 하느냐에 따라서 변경
             when(viewModel.stateData.value){
-                "UPDATE" -> titleText.text = "Edit Diary"
-                "INSERT" -> titleText.text = "Add Diary"
+                "UPDATE" -> titleText.text = "일기 수정"
+                "INSERT" -> titleText.text = "일기 작성"
             }
 
             //Post

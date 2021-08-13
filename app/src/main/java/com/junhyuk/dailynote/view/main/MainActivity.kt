@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.junhyuk.dailynote.databinding.ActivityMainBinding
 import com.junhyuk.dailynote.adapter.MemoRecyclerViewAdapter
 import com.junhyuk.dailynote.model.`object`.MemoObject
-import com.junhyuk.dailynote.view.dialog.CheckDialog
+import com.junhyuk.dailynote.view.dialog.DeleteDialog
 import com.junhyuk.dailynote.view.post.PostActivity
 import com.junhyuk.dailynote.view.setting.SettingActivity
 import com.junhyuk.dailynote.viewmodel.main.MainActivityViewModel
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 lifecycleScope.launch(Dispatchers.IO) {
                     //삭제할 것인지 묻는 Dialog
-                    val checkDialog = CheckDialog()
+                    val checkDialog = DeleteDialog()
                     checkDialog.show(supportFragmentManager, binding.myAdapter!!.peek(viewHolder.absoluteAdapterPosition)!!.memoId.toString())
                 }
             }
