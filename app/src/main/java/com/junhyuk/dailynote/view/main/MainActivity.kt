@@ -6,12 +6,14 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.junhyuk.dailynote.databinding.ActivityMainBinding
 import com.junhyuk.dailynote.adapter.MemoRecyclerViewAdapter
 import com.junhyuk.dailynote.model.`object`.MemoObject
+import com.junhyuk.dailynote.model.database.MemoData
 import com.junhyuk.dailynote.view.dialog.CheckDialog
 import com.junhyuk.dailynote.view.post.PostActivity
 import com.junhyuk.dailynote.view.setting.SettingActivity
@@ -33,7 +35,6 @@ class MainActivity : AppCompatActivity() {
     //binding, viewModel, viewModelFactory, adapter 선언
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val viewModel by viewModels<MainActivityViewModel>()
-    private lateinit var adapter: MemoRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,9 +67,8 @@ class MainActivity : AppCompatActivity() {
                 lifecycleScope.launch(Dispatchers.IO) {
                     //삭제할 것인지 묻는 Dialog
                     val checkDialog = CheckDialog()
-                    checkDialog.show(supportFragmentManager, adapter.list.currentList[viewHolder.absoluteAdapterPosition].memoId.toString())
+                    checkDialog.show(supportFragmentManager, binding.myAdapter.peek(viewHolder.absoluteAdapterPosition)!!.memoId.toString())
                     binding.myAdapter!!.notifyItemChanged(viewHolder.absoluteAdapterPosition)
-                    adapter.refresh()
                 }
             }
 
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             itemTouchHelper.attachToRecyclerView(memoRecyclerView)
 
             //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
-            isNoneTextVisible = adapter.itemCount != 0
+            isNoneTextVisible = myAdapter.itemCount != 0
 
             //메모를 추가하는 PostActivity 로 이동
             addButton.setOnClickListener {
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 
             //refresh
             refreshLayout.setOnRefreshListener {
-                adapter.refresh()
+                myAdapter.refresh()
                 refreshLayout.isRefreshing = false
             }
 
@@ -118,16 +118,19 @@ class MainActivity : AppCompatActivity() {
     private fun initMemoJob(){
         lifecycleScope.launch {
             viewModel.getContent().collectLatest {
-                adapter.submitData(it)
+                binding.myAdapter.submitData(it)
             }
         }
     }
 
     //Adapter 초기화
     private fun initAdapter() {
-        adapter = MemoRecyclerViewAdapter(this@MainActivity)
-        binding.myAdapter = adapter
+        binding.myAdapter = MemoRecyclerViewAdapter(this@MainActivity)
         initMemoJob()
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        binding.myAdapter.refresh()
+    }
 }
