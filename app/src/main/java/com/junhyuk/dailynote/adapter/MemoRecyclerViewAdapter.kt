@@ -30,6 +30,7 @@ class MemoRecyclerViewAdapter(private val context: Context) :
         MEMO_DIFF
     ) {
 
+    //Paging Differ
     companion object {
         private val MEMO_DIFF = object: DiffUtil.ItemCallback<MemoData>() {
             override fun areItemsTheSame(oldItem: MemoData, newItem: MemoData): Boolean {
@@ -43,8 +44,6 @@ class MemoRecyclerViewAdapter(private val context: Context) :
         }
     }
 
-    val list = AsyncListDiffer(this, MEMO_DIFF)
-
     //view 객체 선언
     inner class Holder(private val binding: ItemMemoBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -57,8 +56,7 @@ class MemoRecyclerViewAdapter(private val context: Context) :
                 //메모 클릭시
                 itemView.setOnClickListener {
                     val intent = Intent(context, PostActivity::class.java)
-                    Log.d("size", "data: ${list.currentList.size}")
-                    MemoObject.setAll(item.memoId,title.text.toString(), content.text.toString(), "UPDATE") //MemoObject Instance 전체 설정
+                    MemoObject.setAll(item.memoId, title.text.toString(), content.text.toString(), "UPDATE") //MemoObject Instance 전체 설정
                     context.startActivity(intent) //PostActivity 로 이동
                 }
             }
