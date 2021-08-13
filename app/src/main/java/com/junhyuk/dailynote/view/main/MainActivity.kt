@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                     binding.myAdapter!!.notifyItemChanged(viewHolder.absoluteAdapterPosition)
                 }
             }
+
         }
 
         //view 접근
@@ -128,7 +129,7 @@ class MainActivity : AppCompatActivity() {
 
     //Adapter 초기화
     private fun initAdapter() {
-        binding.myAdapter = MemoRecyclerViewAdapter(this@MainActivity)
+        binding.myAdapter = MemoRecyclerViewAdapter()
         initMemoJob()
     }
 

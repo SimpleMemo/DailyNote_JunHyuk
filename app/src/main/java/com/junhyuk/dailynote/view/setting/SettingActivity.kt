@@ -83,10 +83,4 @@ class SettingActivity : AppCompatActivity() {
         MyApplication.pref.darkModeState = themeState
     }
 
-    //뒤로가기 액션
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
-    }
-
 }

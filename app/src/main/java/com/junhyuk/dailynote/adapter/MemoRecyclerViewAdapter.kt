@@ -1,14 +1,12 @@
 package com.junhyuk.dailynote.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.junhyuk.dailynote.R
@@ -25,7 +23,7 @@ import com.junhyuk.dailynote.view.post.PostActivity
 *
 * */
 
-class MemoRecyclerViewAdapter(private val context: Context) :
+class MemoRecyclerViewAdapter :
     PagingDataAdapter<MemoData, MemoRecyclerViewAdapter.Holder>(
         MEMO_DIFF
     ) {
@@ -55,9 +53,9 @@ class MemoRecyclerViewAdapter(private val context: Context) :
 
                 //메모 클릭시
                 itemView.setOnClickListener {
-                    val intent = Intent(context, PostActivity::class.java)
+                    val intent = Intent(itemView.context, PostActivity::class.java)
                     MemoObject.setAll(item.memoId, title.text.toString(), content.text.toString(), "UPDATE") //MemoObject Instance 전체 설정
-                    context.startActivity(intent) //PostActivity 로 이동
+                    ContextCompat.startActivity(itemView.context, intent, null)
                 }
             }
         }
