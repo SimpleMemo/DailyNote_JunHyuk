@@ -6,14 +6,12 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.junhyuk.dailynote.databinding.ActivityMainBinding
 import com.junhyuk.dailynote.adapter.MemoRecyclerViewAdapter
 import com.junhyuk.dailynote.model.`object`.MemoObject
-import com.junhyuk.dailynote.model.database.MemoData
 import com.junhyuk.dailynote.view.dialog.CheckDialog
 import com.junhyuk.dailynote.view.post.PostActivity
 import com.junhyuk.dailynote.view.setting.SettingActivity
