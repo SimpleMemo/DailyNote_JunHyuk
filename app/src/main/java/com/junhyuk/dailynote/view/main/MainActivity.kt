@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -65,11 +66,9 @@ class MainActivity : AppCompatActivity() {
                 lifecycleScope.launch(Dispatchers.IO) {
                     //삭제할 것인지 묻는 Dialog
                     val checkDialog = CheckDialog()
-                    checkDialog.show(supportFragmentManager, binding.myAdapter.peek(viewHolder.absoluteAdapterPosition)!!.memoId.toString())
-                    binding.myAdapter!!.notifyItemChanged(viewHolder.absoluteAdapterPosition)
+                    checkDialog.show(supportFragmentManager, binding.myAdapter!!.peek(viewHolder.absoluteAdapterPosition)!!.memoId.toString())
                 }
             }
-
         }
 
         //view 접근
@@ -83,7 +82,12 @@ class MainActivity : AppCompatActivity() {
             itemTouchHelper.attachToRecyclerView(memoRecyclerView)
 
             //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
-            isNoneTextVisible = myAdapter.itemCount != 0
+            viewModel.getAllDiary().asLiveData().observe(this@MainActivity, {
+
+                myAdapter!!.refresh()
+                isNoneTextVisible = it.isEmpty()
+
+            })
 
             //메모를 추가하는 PostActivity 로 이동
             addButton.setOnClickListener {
@@ -104,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 
             //refresh
             refreshLayout.setOnRefreshListener {
-                myAdapter.refresh()
+                myAdapter!!.refresh()
                 refreshLayout.isRefreshing = false
             }
 
@@ -116,7 +120,7 @@ class MainActivity : AppCompatActivity() {
     private fun initMemoJob(){
         lifecycleScope.launch {
             viewModel.getContent().collectLatest {
-                binding.myAdapter.submitData(it)
+                binding.myAdapter!!.submitData(it)
             }
         }
     }
@@ -129,6 +133,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        binding.myAdapter.refresh()
+        binding.myAdapter!!.refresh()
     }
 }

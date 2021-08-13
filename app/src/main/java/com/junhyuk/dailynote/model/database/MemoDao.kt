@@ -1,6 +1,7 @@
 package com.junhyuk.dailynote.model.database
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 /*
 *
@@ -12,6 +13,9 @@ import androidx.room.*
 
 @Dao
 interface MemoDao {
+
+    @Query("SELECT * FROM memo ORDER BY memoId DESC")
+    fun getAll(): Flow<List<MemoData>> //모든 Data 를 불러옴
 
     @Query("SELECT * FROM memo ORDER BY memoId DESC LIMIT :loadSize OFFSET (:page-1) * :loadSize")
     suspend fun getMemoContentsByPaging(page: Int, loadSize: Int): List<MemoData> //paging
