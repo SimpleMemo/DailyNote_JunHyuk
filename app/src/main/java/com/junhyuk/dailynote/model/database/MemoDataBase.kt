@@ -11,7 +11,7 @@ import androidx.room.RoomDatabase
 *
 * */
 
-@Database(entities = [MemoData::class], version = 1)
+@Database(entities = [MemoData::class], version = 1, exportSchema = false)
 abstract class MemoDataBase : RoomDatabase() {
     abstract fun memoDao(): MemoDao
 }
