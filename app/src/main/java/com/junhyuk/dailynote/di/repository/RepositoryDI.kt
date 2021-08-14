@@ -1,4 +1,4 @@
-package com.junhyuk.dailynote.di.room
+package com.junhyuk.dailynote.di.repository
 
 import com.junhyuk.dailynote.model.database.MemoDao
 import com.junhyuk.dailynote.model.repository.MemoRepository
