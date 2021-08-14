@@ -43,6 +43,9 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainActivityViewModel by viewModels { viewModelFactory }
 
+    @Inject
+    lateinit var adapter: MemoRecyclerViewAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -74,8 +77,8 @@ class MainActivity : AppCompatActivity() {
                 lifecycleScope.launch(Dispatchers.IO) {
                     //삭제할 것인지 묻는 Dialog
                     val checkDialog = DeleteDialog()
-                    checkDialog.show(supportFragmentManager, binding.myAdapter!!.peek(viewHolder.absoluteAdapterPosition)!!.memoId.toString())
-                    binding.myAdapter!!.notifyItemChanged(viewHolder.absoluteAdapterPosition)
+                    checkDialog.show(supportFragmentManager, adapter.peek(viewHolder.absoluteAdapterPosition)!!.memoId.toString())
+                    adapter.notifyItemChanged(viewHolder.absoluteAdapterPosition)
                 }
             }
 
@@ -94,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
             viewModel.getAllDiary().asLiveData().observe(this@MainActivity, {
 
-                myAdapter!!.refresh()
+                adapter.refresh()
                 isNoneTextVisible = it.isEmpty()
 
             })
@@ -118,7 +121,7 @@ class MainActivity : AppCompatActivity() {
 
             //refresh
             refreshLayout.setOnRefreshListener {
-                myAdapter!!.refresh()
+                adapter.refresh()
                 refreshLayout.isRefreshing = false
             }
 
@@ -130,19 +133,19 @@ class MainActivity : AppCompatActivity() {
     private fun initMemoJob(){
         lifecycleScope.launch {
             viewModel.getContent().collectLatest {
-                binding.myAdapter!!.submitData(it)
+                adapter.submitData(it)
             }
         }
     }
 
     //Adapter 초기화
     private fun initAdapter() {
-        binding.myAdapter = MemoRecyclerViewAdapter()
+        binding.myAdapter = adapter
         initMemoJob()
     }
 
     override fun onRestart() {
         super.onRestart()
-        binding.myAdapter!!.refresh()
+        adapter.refresh()
     }
 }
