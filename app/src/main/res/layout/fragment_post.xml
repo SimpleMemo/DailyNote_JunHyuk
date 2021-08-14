@@ -21,15 +21,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:padding="5dp"
-            android:theme="@style/CustomBackButtonTheme"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/backbutton"
+            android:padding="10dp"
+            android:scaleType="center"
+            android:theme="@style/CustomBackButtonTheme"
             app:layout_constraintBottom_toBottomOf="@+id/titleText"
             app:layout_constraintEnd_toStartOf="@+id/titleText"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titleText"
-            android:contentDescription="@string/backbutton" />
+            app:layout_constraintTop_toTopOf="@+id/titleText" />
 
         <TextView
             android:id="@+id/titleText"
