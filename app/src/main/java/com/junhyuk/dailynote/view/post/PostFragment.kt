@@ -53,7 +53,7 @@ class PostFragment : Fragment() {
         with(viewModel) {
             if (MemoObject.title.isNotEmpty()) {
 
-                setTextValue(MemoObject.id, MemoObject.title, MemoObject.content)
+                setValue(MemoObject.id, MemoObject.title, MemoObject.content, MemoObject.state)
                 setContentTextData()
 
             } else {

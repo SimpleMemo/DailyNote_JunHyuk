@@ -29,109 +29,104 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/backbutton"
             android:padding="5dp"
             android:theme="@style/CustomBackButtonTheme"
-            android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="@+id/titleText"
             app:layout_constraintEnd_toStartOf="@+id/titleText"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titleText"
-            android:contentDescription="@string/backbutton" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/change_theme"
-            android:theme="@style/CustomTextTheme"
-            android:fontFamily="@font/inter_light"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleText"
-            app:layout_constraintVertical_bias="0.9" />
+            app:layout_constraintTop_toTopOf="@+id/titleText" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:orientation="vertical"
-            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleText"
             app:layout_constraintVertical_bias="0.0">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/lightMode"
-                android:layout_width="110dp"
-                android:layout_height="70dp"
-                android:layout_marginBottom="20dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_light_mode" />
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleText"
+                app:layout_constraintVertical_bias="0.0">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/darkMode"
-                android:layout_width="110dp"
-                android:layout_height="70dp"
-                android:layout_marginBottom="20dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_dark_mode" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/lightMode"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_light_mode" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/systemMode"
-                android:layout_width="110dp"
-                android:layout_height="70dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_system_mode" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/darkMode"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_dark_mode" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/systemMode"
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_system_mode" />
+
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/selectedTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <RadioButton
+                    android:id="@+id/lightCheck"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="90dp"
+                    android:background="@drawable/ic_check_box"
+                    android:button="@null" />
+
+                <RadioButton
+                    android:id="@+id/darkCheck"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="90dp"
+                    android:background="@drawable/ic_check_box"
+                    android:button="@null" />
+
+                <RadioButton
+                    android:id="@+id/systemCheck"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_check_box"
+                    android:button="@null" />
+
+
+            </RadioGroup>
 
         </LinearLayout>
-
-        <RadioGroup
-            android:id="@+id/selectedTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout">
-
-            <RadioButton
-                android:id="@+id/lightCheck"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="70dp"
-                android:background="@drawable/ic_check_box"
-                android:button="@null" />
-
-            <RadioButton
-                android:id="@+id/darkCheck"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginBottom="70dp"
-                android:background="@drawable/ic_check_box"
-                android:button="@null" />
-
-            <RadioButton
-                android:id="@+id/systemCheck"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/ic_check_box"
-                android:button="@null" />
-
-        </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

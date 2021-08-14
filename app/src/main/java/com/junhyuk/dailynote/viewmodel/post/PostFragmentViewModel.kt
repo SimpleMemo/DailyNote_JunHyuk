@@ -36,10 +36,11 @@ class PostFragmentViewModel : ViewModel() {
     private val id = MutableLiveData<Int>()
 
     //title, content 초기화
-    fun setTextValue(id: Int, title: String, content: String){
+    fun setValue(id: Int, title: String, content: String, state: String){
         this.id.value = id
         this.title.value = title
         this.content.value = content
+        this.state.value = state
     }
 
     //Object 저장

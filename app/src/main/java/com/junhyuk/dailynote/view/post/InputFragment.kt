@@ -49,12 +49,12 @@ class InputFragment : Fragment() {
             if(stateData.value?.isNotEmpty() == true){
                 setObject()
             }else{
-                setTitleAndContent(MemoObject.id, MemoObject.title, MemoObject.content, MemoObject.state)
+                setValue(MemoObject.id, MemoObject.title, MemoObject.content, MemoObject.state)
             }
 
             //해당 position 에 해당하는 제목과 내용을 EditText 에 입력(Update)
             if(isUpdate){
-                viewModel.setTitleAndContent(MemoObject.id, MemoObject.title, MemoObject.content, MemoObject.state)
+                viewModel.setValue(MemoObject.id, MemoObject.title, MemoObject.content, MemoObject.state)
             }
         }
 
