@@ -17,9 +17,12 @@ import com.junhyuk.dailynote.view.dialog.DeleteDialog
 import com.junhyuk.dailynote.view.post.PostActivity
 import com.junhyuk.dailynote.view.setting.SettingActivity
 import com.junhyuk.dailynote.viewmodel.main.MainActivityViewModel
+import com.junhyuk.dailynote.viewmodel.main.MainActivityViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /*
 *
@@ -29,11 +32,16 @@ import kotlinx.coroutines.launch
 *
 * */
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     //binding, viewModel, viewModelFactory, adapter 선언
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private val viewModel by viewModels<MainActivityViewModel>()
+
+    @Inject
+    lateinit var viewModelFactory: MainActivityViewModelFactory
+
+    private val viewModel: MainActivityViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

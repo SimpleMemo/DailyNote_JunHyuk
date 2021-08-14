@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.junhyuk.dailynote.R
-import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.databinding.DialogDeleteBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.model.database.MemoData
+import com.junhyuk.dailynote.model.repository.MemoRepository
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /*
 *
@@ -20,11 +22,16 @@ import com.junhyuk.dailynote.model.database.MemoData
 *
 * */
 
+@AndroidEntryPoint
 class DeleteDialog : BottomSheetDialogFragment() {
 
     //binding, viewModel, viewModelFactory 선언
     private val binding by lazy { DialogDeleteBinding.inflate(layoutInflater) }
     private var memoId: Int? = 0
+
+    //Inject
+    @Inject
+    lateinit var repository: MemoRepository
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,7 +73,7 @@ class DeleteDialog : BottomSheetDialogFragment() {
 
     //Memo 삭제
     private fun deleteMemo(memo: MemoData){
-        MyApplication.memoRepository.deleteMemo(memo)
+        repository.deleteMemo(memo)
     }
 
 }

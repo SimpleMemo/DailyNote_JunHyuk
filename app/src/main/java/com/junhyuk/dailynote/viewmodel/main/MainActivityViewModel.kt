@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.model.database.MemoData
+import com.junhyuk.dailynote.model.repository.MemoRepository
 import com.junhyuk.dailynote.paging.MemoPageRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -19,17 +19,14 @@ import kotlinx.coroutines.flow.Flow
 
 
 //MainActivityViewModel
-class MainActivityViewModel: ViewModel() {
+class MainActivityViewModel constructor(
+    private val memoPageRepository: MemoPageRepository,
+    private val memoRepository: MemoRepository): ViewModel() {
 
-    //MemoList 불러오기
-    private var memoList: Flow<List<MemoData>> = MyApplication.memoRepository.getAllDiary()
-
-    //pagingRepository 선언 및 초기화
-    private var memoPageRepository: MemoPageRepository = MemoPageRepository(MyApplication.memoRepository.getDao())
 
     //Diary 데이터
-    fun getAllDiary() : Flow<List<MemoData>>{
-        return memoList
+    fun getAllDiary(): Flow<List<MemoData>> {
+        return memoRepository.getAllDiary()
     }
 
     fun getContent(): Flow<PagingData<MemoData>> {

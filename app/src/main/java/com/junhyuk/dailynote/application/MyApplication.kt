@@ -1,11 +1,10 @@
 package com.junhyuk.dailynote.application
 
 import android.app.Application
-import android.content.Context
 import com.junhyuk.dailynote.model.`object`.Constants
 import com.junhyuk.dailynote.model.`object`.ThemeManager
 import com.junhyuk.dailynote.model.database.SharedPreferenceData
-import com.junhyuk.dailynote.model.repository.MemoRepository
+import dagger.hilt.android.HiltAndroidApp
 
 /*
 *
@@ -15,11 +14,8 @@ import com.junhyuk.dailynote.model.repository.MemoRepository
 *
 * */
 
+@HiltAndroidApp
 class MyApplication : Application() {
-
-    init {
-        INSTANCE = this
-    }
 
     override fun onCreate() {
         super.onCreate()
@@ -29,19 +25,10 @@ class MyApplication : Application() {
         if(pref.darkModeState == Constants.DARK_MODE_STATE) ThemeManager.applyTheme(
             pref.darkModeState)
         else ThemeManager.applyTheme(pref.darkModeState)
-
-        memoRepository = MemoRepository(
-            INSTANCE
-        ) //Repository 선언
     }
 
     companion object {
-        lateinit var INSTANCE: MyApplication
-        fun applicationContext() : Context {
-            return INSTANCE.applicationContext
-        }
         lateinit var pref: SharedPreferenceData
-        lateinit var memoRepository: MemoRepository
     }
 
 }

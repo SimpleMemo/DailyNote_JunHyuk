@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -73,7 +74,15 @@ dependencies {
     // alternatively - without Android dependencies for testing
     testImplementation "androidx.paging:paging-common-ktx:$paging_version" // For Kotlin use paging-common-ktx11
 
-    //markwon 4.6.2
-    def markwonVersion = "4.6.2"
-    implementation "io.noties.markwon:core:${markwonVersion}"
+    //markWon 4.6.2
+    def markWonVersion = "4.6.2"
+    implementation "io.noties.markwon:core:${markWonVersion}"
+
+    //dagger hilt
+    //noinspection GradleDependency
+    def lifecycle_version = "2.3.1"
+
+    implementation "com.google.dagger:hilt-android:$hlit_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hlit_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 }

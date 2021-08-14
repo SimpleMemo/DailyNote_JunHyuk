@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.Flow
 *
 * */
 
-class MemoPageRepository (private val memoDao: MemoDao){
+class MemoPageRepository constructor(private val memoDao: MemoDao){
 
     fun getDiaryContentItemsByPaging(): Flow<PagingData<MemoData>> {
         return Pager(

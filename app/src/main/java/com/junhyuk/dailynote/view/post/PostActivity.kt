@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.junhyuk.dailynote.databinding.ActivityPostBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
+import dagger.hilt.android.AndroidEntryPoint
 
 /*
 *
@@ -13,6 +14,7 @@ import com.junhyuk.dailynote.model.`object`.MemoObject
 *
 * */
 
+@AndroidEntryPoint
 class PostActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityPostBinding.inflate(layoutInflater) }

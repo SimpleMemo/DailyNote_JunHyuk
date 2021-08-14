@@ -15,16 +15,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.junhyuk.dailynote.R
-import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.databinding.DialogShareBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.model.database.MemoData
+import com.junhyuk.dailynote.model.repository.MemoRepository
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import javax.inject.Inject
 
 /*
 *
@@ -34,10 +36,15 @@ import java.io.OutputStream
 *
 * */
 
+@AndroidEntryPoint
 class ShareDialog : BottomSheetDialogFragment() {
 
     //binding, viewModel, viewModelFactory 선언
     private val binding by lazy { DialogShareBinding.inflate(layoutInflater) }
+
+    //Inject
+    @Inject
+    lateinit var repository: MemoRepository
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,7 +64,7 @@ class ShareDialog : BottomSheetDialogFragment() {
                 intent.type = "image/png"
                 intent.putExtra(Intent.EXTRA_STREAM, uri)
                 startActivity(Intent.createChooser(intent, "Share"))
-                Toast.makeText(MyApplication.INSTANCE, "갤러리에 일기가 저장되었습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "갤러리에 일기가 저장되었습니다.", Toast.LENGTH_SHORT).show()
 
                 insertOrUpdate() //저장 혹은 수정(수정)
                 dismiss() //다이얼로그 종료
@@ -144,7 +151,7 @@ class ShareDialog : BottomSheetDialogFragment() {
 
             //만약 아무런 값도 입력이 안되어 있다면
             else -> {
-                Toast.makeText(MyApplication.applicationContext(), "오류가 생겼습니다. 개발자에게 문의해주세요!", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "오류가 생겼습니다. 개발자에게 문의해주세요!", Toast.LENGTH_LONG).show()
                 requireActivity().finish()
             }
         }
@@ -152,12 +159,12 @@ class ShareDialog : BottomSheetDialogFragment() {
 
     //Memo DB 수정
     private suspend fun update(memo: MemoData) {
-        MyApplication.memoRepository.update(memo)
+        repository.update(memo)
     }
 
     //Memo DB 삽입
     private suspend fun insert(memo: MemoData) {
-        MyApplication.memoRepository.insert(memo)
+        repository.insert(memo)
     }
 
 }

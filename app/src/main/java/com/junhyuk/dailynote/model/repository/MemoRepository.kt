@@ -1,9 +1,7 @@
 package com.junhyuk.dailynote.model.repository
 
-import android.app.Application
 import com.junhyuk.dailynote.model.database.MemoDao
 import com.junhyuk.dailynote.model.database.MemoData
-import com.junhyuk.dailynote.model.database.MemoDataBase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -17,20 +15,9 @@ import kotlinx.coroutines.launch
 *
 * */
 
-class MemoRepository(application: Application?) {
+class MemoRepository(private val memoDao: MemoDao) {
 
-    //선언
-    private lateinit var memoDao: MemoDao
-    private var memoList: Flow<List<MemoData>>
-
-    //초기화
-    init {
-        val db: MemoDataBase? = MemoDataBase.getAppDatabase(application)
-        if (db != null) {
-            memoDao = db.memoDao()!!
-        }
-        memoList = memoDao.getAll() //메모 전체 불러오기
-    }
+    private var memoList: Flow<List<MemoData>> = memoDao.getAll()
 
     //메모 전체를 return
     fun getAllDiary(): Flow<List<MemoData>>{
@@ -52,10 +39,6 @@ class MemoRepository(application: Application?) {
         CoroutineScope(Dispatchers.IO).launch {
             memoDao.delete(memo)
         }
-    }
-
-    fun getDao(): MemoDao {
-        return memoDao
     }
 
 }
