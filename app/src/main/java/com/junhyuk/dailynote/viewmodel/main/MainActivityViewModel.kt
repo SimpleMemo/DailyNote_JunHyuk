@@ -1,13 +1,17 @@
 package com.junhyuk.dailynote.viewmodel.main
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.junhyuk.dailynote.model.database.MemoData
 import com.junhyuk.dailynote.model.repository.MemoRepository
 import com.junhyuk.dailynote.paging.MemoPageRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 /*
 *
@@ -19,14 +23,13 @@ import kotlinx.coroutines.flow.Flow
 
 
 //MainActivityViewModel
-class MainActivityViewModel constructor(
+@HiltViewModel
+class MainActivityViewModel @Inject constructor(
     private val memoPageRepository: MemoPageRepository,
     private val memoRepository: MemoRepository): ViewModel() {
 
-
-    //Diary 데이터
-    fun getAllDiary(): Flow<List<MemoData>> {
-        return memoRepository.getAllDiary()
+    val diaryData = liveData {
+        memoRepository.getAllDiary().collect { emit(it) }
     }
 
     fun getContent(): Flow<PagingData<MemoData>> {

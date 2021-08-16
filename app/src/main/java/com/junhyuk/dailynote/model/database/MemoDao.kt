@@ -1,6 +1,8 @@
 package com.junhyuk.dailynote.model.database
 
+import androidx.paging.PagingSource
 import androidx.room.*
+import com.junhyuk.dailynote.paging.MemoPageRepository
 import kotlinx.coroutines.flow.Flow
 
 /*
@@ -27,6 +29,6 @@ interface MemoDao {
     suspend fun insert(memo: MemoData) //메모장 Insert
 
     @Delete
-    fun delete(memo: MemoData) //메모장 전체 Delete
+    suspend fun delete(memo: MemoData) //메모장 전체 Delete
 
 }

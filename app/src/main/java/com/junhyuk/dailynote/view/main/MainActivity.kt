@@ -17,7 +17,6 @@ import com.junhyuk.dailynote.view.dialog.DeleteDialog
 import com.junhyuk.dailynote.view.post.PostActivity
 import com.junhyuk.dailynote.view.setting.SettingActivity
 import com.junhyuk.dailynote.viewmodel.main.MainActivityViewModel
-import com.junhyuk.dailynote.viewmodel.main.MainActivityViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -38,13 +37,10 @@ class MainActivity : AppCompatActivity() {
     //binding, viewModel, viewModelFactory, adapter 선언
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
-    @Inject
-    lateinit var viewModelFactory: MainActivityViewModelFactory
-
-    private val viewModel: MainActivityViewModel by viewModels { viewModelFactory }
+    private val viewModel: MainActivityViewModel by viewModels()
 
     @Inject
-    lateinit var adapter: MemoRecyclerViewAdapter
+    lateinit var memoAdapter: MemoRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,12 +73,20 @@ class MainActivity : AppCompatActivity() {
                 lifecycleScope.launch(Dispatchers.IO) {
                     //삭제할 것인지 묻는 Dialog
                     val checkDialog = DeleteDialog()
-                    checkDialog.show(supportFragmentManager, adapter.peek(viewHolder.absoluteAdapterPosition)!!.memoId.toString())
-                    adapter.notifyItemChanged(viewHolder.absoluteAdapterPosition)
+                    checkDialog.show(supportFragmentManager, memoAdapter.peek(viewHolder.absoluteAdapterPosition)!!.memoId.toString())
+                    memoAdapter.notifyItemChanged(viewHolder.absoluteAdapterPosition)
                 }
             }
 
         }
+
+        //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
+        viewModel.diaryData.observe(this@MainActivity, {
+
+            memoAdapter.refresh()
+            binding.isNoneTextVisible = it.isEmpty()
+
+        })
 
         //view 접근
         with(binding) {
@@ -93,14 +97,6 @@ class MainActivity : AppCompatActivity() {
             //itemTouchHelper 초기화
             val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
             itemTouchHelper.attachToRecyclerView(memoRecyclerView)
-
-            //메모 DB 에서 메모 Data 를 불러와서 recyclerview 에 적용
-            viewModel.getAllDiary().asLiveData().observe(this@MainActivity, {
-
-                adapter.refresh()
-                isNoneTextVisible = it.isEmpty()
-
-            })
 
             //메모를 추가하는 PostActivity 로 이동
             addButton.setOnClickListener {
@@ -121,7 +117,7 @@ class MainActivity : AppCompatActivity() {
 
             //refresh
             refreshLayout.setOnRefreshListener {
-                adapter.refresh()
+                memoAdapter.refresh()
                 refreshLayout.isRefreshing = false
             }
 
@@ -133,19 +129,19 @@ class MainActivity : AppCompatActivity() {
     private fun initMemoJob(){
         lifecycleScope.launch {
             viewModel.getContent().collectLatest {
-                adapter.submitData(it)
+                memoAdapter.submitData(it)
             }
         }
     }
 
     //Adapter 초기화
     private fun initAdapter() {
-        binding.myAdapter = adapter
+        binding.myAdapter = memoAdapter
         initMemoJob()
     }
 
     override fun onRestart() {
         super.onRestart()
-        adapter.refresh()
+        memoAdapter.refresh()
     }
 }

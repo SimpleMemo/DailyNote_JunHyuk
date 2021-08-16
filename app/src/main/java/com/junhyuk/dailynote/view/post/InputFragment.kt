@@ -83,9 +83,7 @@ class InputFragment : Fragment() {
                         "UPDATE" -> {
 
                             //object 초기화
-                            with(viewModel) {
-                                setObject()
-                            }
+                            viewModel.setObject()
 
                             //PostFragment 로 이동
                             findNavController().navigate(R.id.action_inputFragment_to_postFragment)
@@ -96,9 +94,7 @@ class InputFragment : Fragment() {
                         "INSERT" -> {
 
                             //object 초기화
-                            with(viewModel) {
-                                setObject()
-                            }
+                            viewModel.setObject()
 
                             //PostFragment 로 이동
                             findNavController().navigate(R.id.action_inputFragment_to_postFragment)

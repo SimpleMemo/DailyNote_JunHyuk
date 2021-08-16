@@ -52,7 +52,7 @@ class ShareDialog : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        //view 접근
+        //view 접근a
         with(binding) {
 
             //shareButtonClickAction
@@ -157,6 +157,7 @@ class ShareDialog : BottomSheetDialogFragment() {
         }
     }
 
+    //viewModel 로
     //Memo DB 수정
     private suspend fun update(memo: MemoData) {
         repository.update(memo)

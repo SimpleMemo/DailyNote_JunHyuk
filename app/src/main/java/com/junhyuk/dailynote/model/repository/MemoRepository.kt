@@ -2,10 +2,7 @@ package com.junhyuk.dailynote.model.repository
 
 import com.junhyuk.dailynote.model.database.MemoDao
 import com.junhyuk.dailynote.model.database.MemoData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 /*
 *
@@ -35,10 +32,8 @@ class MemoRepository(private val memoDao: MemoDao) {
     }
 
     //메모 삭제
-    fun deleteMemo(memo: MemoData){
-        CoroutineScope(Dispatchers.IO).launch {
-            memoDao.delete(memo)
-        }
+    suspend fun deleteMemo(memo: MemoData){
+        memoDao.delete(memo)
     }
 
 }

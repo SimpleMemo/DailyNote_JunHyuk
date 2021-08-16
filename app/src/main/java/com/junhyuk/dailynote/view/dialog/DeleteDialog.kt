@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.databinding.DialogDeleteBinding
@@ -12,6 +13,8 @@ import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.model.database.MemoData
 import com.junhyuk.dailynote.model.repository.MemoRepository
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /*
@@ -73,7 +76,9 @@ class DeleteDialog : BottomSheetDialogFragment() {
 
     //Memo 삭제
     private fun deleteMemo(memo: MemoData){
-        repository.deleteMemo(memo)
+        lifecycleScope.launch(Dispatchers.IO){
+            repository.deleteMemo(memo)
+        }
     }
 
 }
