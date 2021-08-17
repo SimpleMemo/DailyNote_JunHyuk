@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 
-class DailyWidget : AppWidgetProvider() {
+class DailyWidgetProvider : AppWidgetProvider() {
 
     private val job = SupervisorJob()
     private val myScope = CoroutineScope(Dispatchers.Main + job)

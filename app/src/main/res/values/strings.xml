@@ -28,4 +28,6 @@
     <string name="setting_button">setting_button</string>
     <string name="change_theme">테마 변경</string>
     <string name="backbutton">backButton</string>
+    <string name="today_s_diary">Today\'s Diary</string>
+    <string name="title">Title</string>
 </resources>

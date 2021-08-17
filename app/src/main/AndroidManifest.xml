@@ -28,9 +28,9 @@
             </intent-filter>
         </activity>
         
-        <receiver android:name=".view.widget.DailyWidget">
+        <receiver android:name=".view.widget.DailyWidgetProvider">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data android:name="android.appwidget.provider"
                 android:resource="@xml/appwidget_info"/>
