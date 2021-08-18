@@ -35,5 +35,4 @@ class MemoRepository(private val memoDao: MemoDao) {
     suspend fun deleteMemo(memo: MemoData){
         memoDao.delete(memo)
     }
-
 }

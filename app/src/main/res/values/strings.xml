@@ -2,8 +2,8 @@
     <string name="app_name">DailyNote</string>
     <string name="AppName">Daily Note</string>
     <string name="PostName">일기 저장</string>
-    <string name="title_sample">2021.07.28 수요일</string>
-    <string name="content_sample">안녕하세요 저는 양준혁입니다. 저는 안드로이드 개…</string>
+    <string name="title_sample">작성된 일기가 없습니다.</string>
+    <string name="content_sample">작성된 일기가 없습니다.</string>
     <string name="add">일기 작성</string>
     <string name="edit_title">제목(날짜)</string>
     <string name="edit_content">내용</string>
