@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     app:cardCornerRadius="10dp"
-    android:background="@drawable/ic_widget_back">
+    android:theme="@style/CustomWidgetBackground">
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,7 +13,7 @@
         android:text="@string/today_s_diary"
         android:fontFamily="@font/inter_bold"
         android:textSize="20sp"
-        android:textColor="@color/black"
+        android:theme="@style/CustomItemTextTheme"
         android:textStyle="bold"
         android:layout_marginStart="10dp"
         android:layout_marginTop="22dp"/>
@@ -22,10 +22,11 @@
         android:id="@+id/widgetTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
         android:text="@string/title_sample"
         android:fontFamily="@font/inter_bold"
         android:textSize="15sp"
-        android:textColor="@color/black"
+        android:theme="@style/CustomItemTextTheme"
         android:textStyle="bold"
         android:layout_marginStart="14dp"
         android:layout_marginTop="6dp"/>
@@ -34,11 +35,11 @@
         android:id="@+id/widgetContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
         android:text="@string/content_sample"
-        android:fontFamily="@font/inter_light"
+        android:theme="@style/CustomItemTextTheme"
         android:ellipsize="end"
         android:textSize="15sp"
-        android:textColor="@color/black"
         android:layout_marginStart="14dp"
         android:layout_marginTop="6dp"/>
 

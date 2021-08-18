@@ -88,8 +88,13 @@ class DailyWidgetProvider : AppWidgetProvider() {
         myScope.launch(Dispatchers.IO) {
 
             memoDao.getAll().collectLatest {
-                title = it[0].memoTitle
-                content = it[0].memoContent
+                if(it.isNotEmpty()){
+                    title = it[0].memoTitle
+                    content = it[0].memoContent
+                }else{
+                    title = "작성된 일기가 없습니다."
+                    content = "작성된 일기가 없습니다."
+                }
 
                 if(widgetIds.isNotEmpty()){
                     this@DailyWidgetProvider.onUpdate(context, appWidgetManager, widgetIds)

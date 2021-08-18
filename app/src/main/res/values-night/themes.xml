@@ -77,4 +77,9 @@
         <item name="android:src">@drawable/ic_back_dark</item>
     </style>
 
+    <!-- widgetBackground-->
+    <style name="CustomWidgetBackground" parent="Theme.MaterialComponents.DayNight">
+        <item name="background">@drawable/ic_widget_back_dark</item>
+    </style>
+
 </resources>
