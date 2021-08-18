@@ -54,8 +54,9 @@
 ------------   
     
 ## [⚒️사용 기술]  
-- viewModel
-- dagger hilt
+- ViewModel
+- Dagger hilt
+- Navigation Component
     
 ------------   
     
