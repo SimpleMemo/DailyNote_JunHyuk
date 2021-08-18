@@ -7,10 +7,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.RemoteViews
+import androidx.lifecycle.liveData
 import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.model.database.MemoDao
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
@@ -48,6 +50,7 @@ class DailyWidgetProvider : AppWidgetProvider() {
         val widgetIds = appWidgetManager.getAppWidgetIds((widgetName))
 
         myScope.launch(Dispatchers.IO) {
+
             memoDao.getAll().collectLatest {
                 title = it[0].memoTitle
                 content = it[0].memoContent
@@ -56,11 +59,30 @@ class DailyWidgetProvider : AppWidgetProvider() {
                     this@DailyWidgetProvider.onUpdate(context, appWidgetManager, widgetIds)
                 }
             }
+
         }
     }
 
     override fun onEnabled(context: Context?) {
         super.onEnabled(context)
+
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        val widgetName = context?.packageName?.let { ComponentName(it, DailyWidgetProvider::class.java.name) }
+        val widgetIds = appWidgetManager.getAppWidgetIds((widgetName))
+
+        myScope.launch(Dispatchers.IO) {
+
+            memoDao.getAll().collectLatest {
+                title = it[0].memoTitle
+                content = it[0].memoContent
+
+                if(widgetIds.isNotEmpty()){
+                    this@DailyWidgetProvider.onUpdate(context, appWidgetManager, widgetIds)
+                }
+            }
+
+        }
+
     }
 
     override fun onDisabled(context: Context?) {
