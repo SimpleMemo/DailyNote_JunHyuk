@@ -7,12 +7,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.RemoteViews
-import androidx.lifecycle.liveData
 import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.model.database.MemoDao
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
@@ -49,18 +47,10 @@ class DailyWidgetProvider : AppWidgetProvider() {
         val widgetName = context?.packageName?.let { ComponentName(it, DailyWidgetProvider::class.java.name) }
         val widgetIds = appWidgetManager.getAppWidgetIds((widgetName))
 
-        myScope.launch(Dispatchers.IO) {
-
-            memoDao.getAll().collectLatest {
-                title = it[0].memoTitle
-                content = it[0].memoContent
-
-                if(widgetIds.isNotEmpty()){
-                    this@DailyWidgetProvider.onUpdate(context, appWidgetManager, widgetIds)
-                }
-            }
-
+        if (context != null) {
+            getDiaryData(appWidgetManager, widgetIds, context)
         }
+
     }
 
     override fun onEnabled(context: Context?) {
@@ -70,17 +60,8 @@ class DailyWidgetProvider : AppWidgetProvider() {
         val widgetName = context?.packageName?.let { ComponentName(it, DailyWidgetProvider::class.java.name) }
         val widgetIds = appWidgetManager.getAppWidgetIds((widgetName))
 
-        myScope.launch(Dispatchers.IO) {
-
-            memoDao.getAll().collectLatest {
-                title = it[0].memoTitle
-                content = it[0].memoContent
-
-                if(widgetIds.isNotEmpty()){
-                    this@DailyWidgetProvider.onUpdate(context, appWidgetManager, widgetIds)
-                }
-            }
-
+        if (context != null) {
+            getDiaryData(appWidgetManager, widgetIds, context)
         }
 
     }
@@ -101,6 +82,21 @@ class DailyWidgetProvider : AppWidgetProvider() {
         newOptions: Bundle?
     ) {
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions)
+    }
+
+    private fun getDiaryData(appWidgetManager: AppWidgetManager, widgetIds: IntArray, context: Context){
+        myScope.launch(Dispatchers.IO) {
+
+            memoDao.getAll().collectLatest {
+                title = it[0].memoTitle
+                content = it[0].memoContent
+
+                if(widgetIds.isNotEmpty()){
+                    this@DailyWidgetProvider.onUpdate(context, appWidgetManager, widgetIds)
+                }
+            }
+
+        }
     }
 
 }
