@@ -3,11 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/widget_margin">
+    android:minWidth="250dp"
+    android:minHeight="250dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:minWidth="250dp"
+        android:minHeight="250dp"
         android:orientation="vertical"
         android:theme="@style/CustomWidgetBackground"
         tools:ignore="UselessParent">
