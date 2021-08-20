@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/inter_light"
                 android:text="@string/post"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -169,12 +169,13 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/inter_bold"
                     android:text="@string/image_preview"
                     android:textSize="16sp"
-                    android:fontFamily="@font/inter_bold"
                     android:theme="@style/CustomTextTheme"
-                    app:layout_constraintStart_toStartOf="@+id/materialCardView"
+                    app:layout_constraintStart_toStartOf="@+id/contentText"
                     app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
                 <TextView

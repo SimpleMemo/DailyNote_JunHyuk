@@ -2,6 +2,7 @@ package com.junhyuk.dailynote.view.main
 
 import android.Manifest
 import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
@@ -89,9 +90,12 @@ class MainActivity : AppCompatActivity() {
             binding.isNoneTextVisible = it.isEmpty()
 
             //위젯 갱신
-            val widgetIntent = Intent(this, DailyWidgetProvider::class.java)
-            widgetIntent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-            this.sendBroadcast(widgetIntent)
+            val intentAction = Intent(this@MainActivity, DailyWidgetProvider::class.java)
+            intentAction.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+            val ids = AppWidgetManager.getInstance(this@MainActivity).getAppWidgetIds(ComponentName(this@MainActivity, DailyWidgetProvider::class.java))
+            intentAction.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+            this@MainActivity.sendBroadcast(intentAction)
+
 
         })
 

@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/inter_light"
                 android:text="@string/next_text"
                 android:textColor="@color/white"
                 android:textSize="16sp" />

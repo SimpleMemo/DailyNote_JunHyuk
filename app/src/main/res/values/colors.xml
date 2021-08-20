@@ -12,5 +12,5 @@
     <color name="backgroundDark">#FF000000</color>
     <color name="mainButtonColor">#0381fe</color>
     <color name="lineColorLight">#ECECEC</color>
-    <color name="lineColorDark">#626262</color>
+    <color name="lineColorDark">#333333</color>
 </resources>

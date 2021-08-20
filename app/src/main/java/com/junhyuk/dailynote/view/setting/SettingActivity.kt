@@ -1,5 +1,6 @@
 package com.junhyuk.dailynote.view.setting
 
+import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.application.MyApplication
 import com.junhyuk.dailynote.databinding.ActivitySettingBinding
 import com.junhyuk.dailynote.model.`object`.ThemeManager
+import com.junhyuk.dailynote.view.developer_info.DeveloperInfoActivity
 
 /*
 *
@@ -65,6 +67,11 @@ class SettingActivity : AppCompatActivity() {
 
                 }
 
+            }
+
+            developerInfo.setOnClickListener {
+                val intent = Intent(this@SettingActivity, DeveloperInfoActivity::class.java)
+                startActivity(intent)
             }
 
         }

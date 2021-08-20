@@ -1,21 +1,21 @@
 package com.junhyuk.dailynote.view.widget
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.RemoteViews
 import com.junhyuk.dailynote.R
-import com.junhyuk.dailynote.application.MyApplication
-import com.junhyuk.dailynote.model.`object`.ThemeManager
 import com.junhyuk.dailynote.model.database.MemoDao
+import com.junhyuk.dailynote.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class DailyWidgetProvider : AppWidgetProvider() {
@@ -44,18 +44,28 @@ class DailyWidgetProvider : AppWidgetProvider() {
         views.setTextViewText(R.id.widgetContent, content)
         appWidgetManager?.updateAppWidget(appWidgetIds, views)
 
+        //앱 실행
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_LAUNCHER)
+        intent.component = ComponentName(context!!, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+        views.setOnClickPendingIntent(R.id.widget, pendingIntent)
+        appWidgetManager?.updateAppWidget(appWidgetIds, views)
+
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
         super.onReceive(context, intent)
 
+        val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context!!, DailyWidgetProvider::class.java))
+        val myWidget = DailyWidgetProvider()
+        myWidget.onUpdate(context, AppWidgetManager.getInstance(context), ids)
+
         val appWidgetManager = AppWidgetManager.getInstance(context)
-        val widgetName = context?.packageName?.let { ComponentName(it, DailyWidgetProvider::class.java.name) }
+        val widgetName = context.packageName?.let { ComponentName(it, DailyWidgetProvider::class.java.name) }
         val widgetIds = appWidgetManager.getAppWidgetIds((widgetName))
 
-        if (context != null) {
-            getDiaryData(appWidgetManager, widgetIds, context)
-        }
+        getDiaryData(appWidgetManager, widgetIds, context)
 
     }
 

@@ -7,14 +7,14 @@
     <string name="add">일기 작성</string>
     <string name="edit_title">제목(날짜)</string>
     <string name="edit_content">내용</string>
-    <string name="post">Save</string>
+    <string name="post">저장</string>
     <string name="delete_text">Delete</string>
     <string name="Description_text">해당 일기를 삭제하시겠습니까?\n삭제된 내용은 되돌릴수 없습니다.</string>
     <string name="cancel_text">취소</string>
     <string name="share_cancel_text">공유하지 않고 저장</string>
     <string name="settings_text">설정</string>
     <string name="add_diary_text">일기 작성</string>
-    <string name="next_text">Next</string>
+    <string name="next_text">다음</string>
     <string name="back_text">뒤로 가기</string>
     <string name="post_diary">일기 저장</string>
     <string name="posting_this_memo">일기를 저장하시겠습니까?</string>
@@ -28,7 +28,7 @@
     <string name="setting_button">setting_button</string>
     <string name="change_theme">테마 변경</string>
     <string name="backbutton">backButton</string>
-    <string name="today_s_diary">Today\'s Diary</string>
+    <string name="today_s_diary">오늘의 일기</string>
     <string name="title">Title</string>
     <string name="image_preview">이미지 미리보기</string>
     <string name="lightmode">LightMode</string>
@@ -36,4 +36,8 @@
     <string name="dark_mode">어두운 화면</string>
     <string name="system_mode">시스템 설정</string>
     <string name="developer_info">개발자 정보</string>
+    <string name="developprofile">developProfile</string>
+    <string name="yang_junhyuk">Yang JunHyuk 양준혁</string>
+    <string name="android_developer">Android Developer</string>
+    <string name="designed_by_junhyuk">Designed By JunHyuk</string>
 </resources>
