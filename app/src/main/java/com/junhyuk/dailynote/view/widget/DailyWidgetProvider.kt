@@ -5,9 +5,12 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.RemoteViews
 import com.junhyuk.dailynote.R
+import com.junhyuk.dailynote.application.MyApplication
+import com.junhyuk.dailynote.model.`object`.ThemeManager
 import com.junhyuk.dailynote.model.database.MemoDao
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
@@ -16,6 +19,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class DailyWidgetProvider : AppWidgetProvider() {
+    
+    //TODO: 테마 오류 수정하기
 
     private val job = SupervisorJob()
     private val myScope = CoroutineScope(Dispatchers.Main + job)
@@ -38,6 +43,7 @@ class DailyWidgetProvider : AppWidgetProvider() {
         views.setTextViewText(R.id.widgetTitle, title)
         views.setTextViewText(R.id.widgetContent, content)
         appWidgetManager?.updateAppWidget(appWidgetIds, views)
+
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {

@@ -1,6 +1,8 @@
 package com.junhyuk.dailynote.view.main
 
 import android.Manifest
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
@@ -9,18 +11,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.junhyuk.dailynote.databinding.ActivityMainBinding
+import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.adapter.MemoRecyclerViewAdapter
+import com.junhyuk.dailynote.databinding.ActivityMainBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.view.dialog.DeleteDialog
 import com.junhyuk.dailynote.view.post.PostActivity
 import com.junhyuk.dailynote.view.setting.SettingActivity
+import com.junhyuk.dailynote.view.widget.DailyWidgetProvider
 import com.junhyuk.dailynote.viewmodel.main.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 /*
 *
@@ -85,6 +90,10 @@ class MainActivity : AppCompatActivity() {
             memoAdapter.refresh()
             binding.isNoneTextVisible = it.isEmpty()
 
+            //위젯 갱신
+            val appWidgetManager = AppWidgetManager.getInstance(this@MainActivity)
+            val appWidgetIds = appWidgetManager.getAppWidgetIds(ComponentName(this@MainActivity, DailyWidgetProvider::class.java))
+            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.layout.widget_daily)
         })
 
         //view 접근
