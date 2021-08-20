@@ -88,4 +88,14 @@
         <item name="android:background">@color/white</item>
     </style>
 
+<!--    SettingBackground-->
+    <style name="CustomSettingBackground" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:background">@drawable/ic_theme_setting_back</item>
+    </style>
+
+    <!--    SettingBackground-->
+    <style name="CustomSettingLineColor" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:background">@color/lineColorLight</item>
+    </style>
+
 </resources>

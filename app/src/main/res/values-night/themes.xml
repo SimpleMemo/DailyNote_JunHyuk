@@ -88,4 +88,15 @@
         <item name="android:background">@color/black</item>
     </style>
 
+    <!--    SettingBackground-->
+    <style name="CustomSettingBackground" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:background">@drawable/ic_theme_setting_back_dark</item>
+    </style>
+
+    <!--    SettingBackground-->
+    <style name="CustomSettingLineColor" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:background">@color/lineColorDark</item>
+    </style>
+
+
 </resources>

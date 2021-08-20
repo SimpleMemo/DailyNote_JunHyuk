@@ -14,9 +14,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/inter_bold"
+            android:fontFamily="@font/inter_light"
             android:text="@string/setting_text"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:theme="@style/CustomItemTextTheme"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -40,74 +40,175 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/titleText" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent="0.95"
+            android:layout_height="0dp"
             android:layout_marginTop="50dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
+            android:theme="@style/CustomSettingBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleText"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent="0.9">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginStart="15dp"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/selectedTheme"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleText"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UseCompoundDrawables">
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/lightMode"
-                    android:layout_width="110dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="10dp"
-                    android:layout_marginBottom="20dp"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/lightmode"
                     android:src="@drawable/ic_light_mode" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/darkMode"
-                    android:layout_width="110dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="10dp"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
                     android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/lightmode"
                     android:src="@drawable/ic_dark_mode" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/systemMode"
-                    android:layout_width="110dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="10dp"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/lightmode"
                     android:src="@drawable/ic_system_mode" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toStartOf="@+id/selectedTheme"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/inter_light"
+                    android:text="@string/light_mode_kr"
+                    android:textSize="15sp"
+                    android:theme="@style/CustomItemTextTheme" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="15dp"
+                android:theme="@style/CustomSettingLineColor"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.004"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                app:layout_constraintEnd_toStartOf="@+id/selectedTheme"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/inter_light"
+                    android:text="@string/dark_mode"
+                    android:textSize="15sp"
+                    android:theme="@style/CustomItemTextTheme" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="15dp"
+                android:theme="@style/CustomSettingLineColor"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.004"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                app:layout_constraintEnd_toStartOf="@+id/selectedTheme"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/inter_light"
+                    android:text="@string/system_mode"
+                    android:textSize="15sp"
+                    android:theme="@style/CustomItemTextTheme" />
 
             </LinearLayout>
 
             <RadioGroup
                 android:id="@+id/selectedTheme"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:gravity="center">
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <RadioButton
                     android:id="@+id/lightCheck"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_gravity="start"
+                    android:layout_gravity="center"
                     android:background="@drawable/ic_check_box"
                     android:button="@null" />
 
@@ -116,8 +217,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="110dp"
-                    android:layout_marginEnd="110dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
                     android:background="@drawable/ic_check_box"
                     android:button="@null" />
 
@@ -125,14 +226,54 @@
                     android:id="@+id/systemCheck"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_gravity="end"
+                    android:layout_gravity="center"
                     android:background="@drawable/ic_check_box"
                     android:button="@null" />
 
-
             </RadioGroup>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/developerInfo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+            android:theme="@style/CustomSettingBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent="0.9">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/lightmode"
+                android:src="@drawable/ic_developer_info"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/inter_light"
+                android:text="@string/developer_info"
+                android:textSize="15sp"
+                android:theme="@style/CustomItemTextTheme"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

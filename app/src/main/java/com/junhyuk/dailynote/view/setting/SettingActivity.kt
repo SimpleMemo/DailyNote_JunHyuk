@@ -41,18 +41,6 @@ class SettingActivity : AppCompatActivity() {
                 }
             }else systemCheck.isChecked = true //위의 항목에 해당되지 않는다면 systemCheck 버튼 활성화
 
-            lightMode.setOnClickListener {
-                lightCheck.isChecked = true
-            }
-
-            darkMode.setOnClickListener {
-                darkCheck.isChecked = true
-            }
-
-            systemMode.setOnClickListener {
-                systemCheck.isChecked = true
-            }
-
             //테마 설정 선택
             selectedTheme.setOnCheckedChangeListener { group, checkedId ->
                 when(checkedId){
