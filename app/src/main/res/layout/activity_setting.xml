@@ -41,8 +41,9 @@
             app:layout_constraintTop_toTopOf="@+id/titleText" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.95"
             android:layout_marginTop="50dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,9 +56,7 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:orientation="horizontal"
-                android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -69,6 +68,7 @@
                     android:id="@+id/lightMode"
                     android:layout_width="110dp"
                     android:layout_height="70dp"
+                    android:layout_margin="10dp"
                     android:layout_marginBottom="20dp"
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
@@ -78,7 +78,7 @@
                     android:id="@+id/darkMode"
                     android:layout_width="110dp"
                     android:layout_height="70dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_margin="10dp"
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_dark_mode" />
@@ -87,6 +87,7 @@
                     android:id="@+id/systemMode"
                     android:layout_width="110dp"
                     android:layout_height="70dp"
+                    android:layout_margin="10dp"
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_system_mode" />
@@ -95,17 +96,18 @@
 
             <RadioGroup
                 android:id="@+id/selectedTheme"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:gravity="center">
 
                 <RadioButton
                     android:id="@+id/lightCheck"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="90dp"
+                    android:layout_gravity="start"
                     android:background="@drawable/ic_check_box"
                     android:button="@null" />
 
@@ -113,7 +115,9 @@
                     android:id="@+id/darkCheck"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="90dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="110dp"
+                    android:layout_marginEnd="110dp"
                     android:background="@drawable/ic_check_box"
                     android:button="@null" />
 
@@ -121,6 +125,7 @@
                     android:id="@+id/systemCheck"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_gravity="end"
                     android:background="@drawable/ic_check_box"
                     android:button="@null" />
 

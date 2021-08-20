@@ -20,7 +20,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DailyWidgetProvider : AppWidgetProvider() {
     
-    //TODO: 테마 오류 수정하기
+    //TODO: 수정 시 갱신
 
     private val job = SupervisorJob()
     private val myScope = CoroutineScope(Dispatchers.Main + job)

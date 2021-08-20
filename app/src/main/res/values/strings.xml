@@ -30,4 +30,5 @@
     <string name="backbutton">backButton</string>
     <string name="today_s_diary">Today\'s Diary</string>
     <string name="title">Title</string>
+    <string name="image_preview">이미지 미리보기</string>
 </resources>

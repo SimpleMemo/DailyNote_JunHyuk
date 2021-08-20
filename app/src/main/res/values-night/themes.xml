@@ -82,4 +82,10 @@
         <item name="android:background">@drawable/ic_widget_back_dark</item>
     </style>
 
+    <!--BitmapBackground-->
+    <style name="CustomBitmapBackground" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/black</item>
+    </style>
+
 </resources>

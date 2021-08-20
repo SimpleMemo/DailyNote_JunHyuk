@@ -2,7 +2,6 @@ package com.junhyuk.dailynote.view.main
 
 import android.Manifest
 import android.appwidget.AppWidgetManager
-import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
@@ -11,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.adapter.MemoRecyclerViewAdapter
 import com.junhyuk.dailynote.databinding.ActivityMainBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
@@ -91,9 +89,10 @@ class MainActivity : AppCompatActivity() {
             binding.isNoneTextVisible = it.isEmpty()
 
             //위젯 갱신
-            val appWidgetManager = AppWidgetManager.getInstance(this@MainActivity)
-            val appWidgetIds = appWidgetManager.getAppWidgetIds(ComponentName(this@MainActivity, DailyWidgetProvider::class.java))
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.layout.widget_daily)
+            val widgetIntent = Intent(this, DailyWidgetProvider::class.java)
+            widgetIntent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+            this.sendBroadcast(widgetIntent)
+
         })
 
         //view 접근
