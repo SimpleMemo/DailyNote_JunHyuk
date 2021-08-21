@@ -52,7 +52,7 @@ class ShareDialog : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        //view 접근a
+        //view 접근
         with(binding) {
 
             //shareButtonClickAction

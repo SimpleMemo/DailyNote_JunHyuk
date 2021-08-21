@@ -12,64 +12,94 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/delete_text"
-            android:textSize="24sp"
-            android:theme="@style/CustomItemTextTheme" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:background="@android:color/transparent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="77dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/inter_medium"
-            android:gravity="center"
-            android:text="@string/Description_text"
-            android:textSize="16sp"
-            android:theme="@style/CustomItemTextTheme" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/deleteButton"
-            android:layout_width="327dp"
-            android:layout_height="51dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="146dp"
-            android:theme="@style/CustomButtonTheme"
-            app:cardCornerRadius="25dp">
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="50dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/delete_text"
+                    android:textSize="24sp"
+                    android:theme="@style/CustomItemTextTheme"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/inter_bold"
-                android:text="@string/delete_text_kr"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="center"
+                    android:text="@string/Description_text"
+                    android:textSize="16sp"
+                    android:theme="@style/CustomItemTextTheme"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView6" />
 
-        </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/deleteButton"
+                    android:layout_width="0dp"
+                    android:layout_height="51dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="35dp"
+                    android:theme="@style/CustomButtonTheme"
+                    app:cardCornerRadius="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView5"
+                    app:layout_constraintWidth_percent="0.9">
 
-        <TextView
-            android:id="@+id/cancelButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="200dp"
-            android:layout_marginBottom="30dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/inter_medium"
-            android:padding="10dp"
-            android:text="@string/cancel_text"
-            android:textSize="16sp"
-            android:theme="@style/CustomTextTheme" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="@string/delete_text_kr"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
 
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/cancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/cancel_text"
+                    android:textSize="16sp"
+                    android:theme="@style/CustomTextTheme"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/deleteButton" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
     </com.google.android.material.card.MaterialCardView>
 
 </layout>

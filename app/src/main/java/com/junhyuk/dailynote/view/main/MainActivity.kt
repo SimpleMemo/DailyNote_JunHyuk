@@ -36,6 +36,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    
+    //TODO: saveStateHandle 추가하기
 
     //binding, viewModel, viewModelFactory, adapter 선언
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
