@@ -19,6 +19,8 @@ import com.junhyuk.dailynote.view.developer_info.DeveloperInfoActivity
 * */
 
 class SettingActivity : AppCompatActivity() {
+    
+    //TODO: 설정 가로모드(휴대폰)일때 레이아웃, 세로모드(테블릿일때) 레이아웃
 
     //binding 선언
     private val binding by lazy { ActivitySettingBinding.inflate(layoutInflater) }

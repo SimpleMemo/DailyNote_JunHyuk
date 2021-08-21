@@ -27,48 +27,82 @@
         android:theme="@style/CustomBackground"
         tools:context=".view.main.MainActivity">
 
-        <TextView
-            android:id="@+id/titleText"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:fontFamily="@font/inter_light"
-            android:text="@string/AppName"
-            android:textSize="30sp"
-            android:theme="@style/CustomItemTextTheme"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-
-        <TextView
-            android:id="@+id/subContentText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:fontFamily="@font/inter_light"
-            android:text="@string/how_was_your_day"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/titleText"
-            app:layout_constraintStart_toStartOf="@+id/titleText"
-            app:layout_constraintTop_toBottomOf="@+id/titleText" />
-
-        <ImageButton
-            android:id="@+id/settingText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/setting_button"
-            android:padding="10dp"
-            android:theme="@style/CustomSettingButtonTheme"
-            app:layout_constraintBottom_toBottomOf="@+id/subContentText"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/titleText"
-            app:layout_constraintTop_toTopOf="@+id/titleText" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/titleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="18dp"
+                        android:fontFamily="@font/inter_light"
+                        android:text="@string/AppName"
+                        android:textSize="30sp"
+                        android:theme="@style/CustomItemTextTheme"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/subContentText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/inter_light"
+                        android:text="@string/how_was_your_day"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/titleText"
+                        app:layout_constraintStart_toStartOf="@+id/titleText"
+                        app:layout_constraintTop_toBottomOf="@+id/titleText" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/settingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/setting_button"
+                    android:padding="10dp"
+                    android:scaleType="center"
+                    android:theme="@style/CustomSettingButtonTheme"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+
 
         <TextView
             android:id="@+id/basicText"
@@ -88,12 +122,12 @@
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:visibility="@{isNoneTextVisible ?  View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subContentText">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/memoRecyclerView"
