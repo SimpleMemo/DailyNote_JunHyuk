@@ -137,7 +137,8 @@ class ShareDialog : BottomSheetDialogFragment() {
         when (MemoObject.state) {
             "UPDATE" -> {
                 CoroutineScope(Dispatchers.IO).launch {
-                    update(MemoData(MemoObject.id, MemoObject.title, MemoObject.content))
+                    val now: Long = System.currentTimeMillis()
+                    update(MemoData(MemoObject.id, MemoObject.title, MemoObject.content, now.toInt()))
                 }
             }
 
@@ -145,7 +146,7 @@ class ShareDialog : BottomSheetDialogFragment() {
             "INSERT" -> {
                 CoroutineScope(Dispatchers.IO).launch {
                     val now: Long = System.currentTimeMillis()
-                    insert(MemoData(now.toInt(), MemoObject.title, MemoObject.content))
+                    insert(MemoData(now.toInt(), MemoObject.title, MemoObject.content, now.toInt()))
                 }
             }
 

@@ -51,7 +51,8 @@ class DeleteDialog : BottomSheetDialogFragment() {
             //deleteButtonClickAction
             deleteButton.setOnClickListener {
                 if(tag?.isNotEmpty() == true){
-                    deleteMemo(MemoData(memoId!!, MemoObject.title,  MemoObject.content))
+                    val now: Long = System.currentTimeMillis()
+                    deleteMemo(MemoData(memoId!!, MemoObject.title,  MemoObject.content, now.toInt()))
                     dismiss()
                 }else{
                     Toast.makeText(activity, "Error", Toast.LENGTH_LONG).show()

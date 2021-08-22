@@ -17,7 +17,7 @@ interface MemoDao {
     @Query("SELECT * FROM memo ORDER BY memoId DESC")
     fun getAll(): Flow<List<MemoData>> //모든 Data 를 불러옴
 
-    @Query("SELECT * FROM memo ORDER BY memoId DESC LIMIT :loadSize OFFSET (:page-1) * :loadSize")
+    @Query("SELECT * FROM memo ORDER BY updated DESC LIMIT :loadSize OFFSET (:page-1) * :loadSize")
     suspend fun getMemoContentsByPaging(page: Int, loadSize: Int): List<MemoData> //paging
 
     @Update

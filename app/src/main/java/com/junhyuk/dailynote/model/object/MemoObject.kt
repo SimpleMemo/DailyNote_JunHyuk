@@ -16,7 +16,6 @@ object MemoObject {
     var content: String = "" //contentData
     var state: String = "" //Post Or Update State
     var bitmap: Bitmap? = null //bitmapData
-
     //데이터 전체 설정
     fun setAll(id: Int, title: String, content: String, state: String){
         this.title = title

@@ -16,5 +16,6 @@ import androidx.room.PrimaryKey
 data class MemoData(
     @PrimaryKey var memoId: Int, //기본키, memoId
     @ColumnInfo(name = "title") val memoTitle: String, //title
-    @ColumnInfo(name = "content") val memoContent: String //content
+    @ColumnInfo(name = "content") val memoContent: String, //content
+    @ColumnInfo(name = "updated") val updated: Int //updated
 )
