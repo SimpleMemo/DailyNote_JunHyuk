@@ -15,6 +15,7 @@ import com.junhyuk.dailynote.databinding.FragmentPostBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.view.dialog.ShareDialog
 import com.junhyuk.dailynote.viewmodel.post.PostFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import io.noties.markwon.AbstractMarkwonPlugin
 import io.noties.markwon.Markwon
 import io.noties.markwon.SoftBreakAddsNewLinePlugin
@@ -28,6 +29,7 @@ import io.noties.markwon.core.MarkwonTheme
 *
 * */
 
+@AndroidEntryPoint
 class PostFragment : Fragment() {
 
     //binding, viewModel, viewModelFactory 선언

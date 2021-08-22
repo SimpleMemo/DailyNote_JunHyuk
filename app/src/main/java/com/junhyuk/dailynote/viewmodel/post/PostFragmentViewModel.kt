@@ -2,8 +2,11 @@ package com.junhyuk.dailynote.viewmodel.post
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.junhyuk.dailynote.model.`object`.MemoObject
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 /*
 *
@@ -13,9 +16,12 @@ import com.junhyuk.dailynote.model.`object`.MemoObject
 *
 * */
 
-class PostFragmentViewModel : ViewModel() {
+@HiltViewModel
+class PostFragmentViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle
+): ViewModel() {
 
-    //title, content, state, dataIndex 변수 선언
+    //title, content, state, id 변수 선언
 
     //title
     private val title = MutableLiveData<String>()
@@ -35,12 +41,22 @@ class PostFragmentViewModel : ViewModel() {
     //id
     private val id = MutableLiveData<Int>()
 
+    init {
+        if(savedStateHandle.get<String>("title") != null) {
+            title.value = savedStateHandle.get<String>("title")
+            content.value = savedStateHandle.get<String>("content")
+            state.value = savedStateHandle.get<String>("state")
+            id.value = savedStateHandle.get<Int>("id")
+        }
+    }
+
     //title, content 초기화
     fun setValue(id: Int, title: String, content: String, state: String){
         this.id.value = id
         this.title.value = title
         this.content.value = content
         this.state.value = state
+        setSavedData()
     }
 
     //Object 저장
@@ -50,6 +66,15 @@ class PostFragmentViewModel : ViewModel() {
         }
         MemoObject.title = title.value.toString()
         MemoObject.content = content.value.toString()
-        MemoObject.state = stateData.value.toString()
+        MemoObject.state = state.value.toString()
+
+        setSavedData()
+    }
+
+    private fun setSavedData(){
+        savedStateHandle.set("title", title.value)
+        savedStateHandle.set("content", content.value)
+        savedStateHandle.set("state", state.value)
+        savedStateHandle.set("id", id.value)
     }
 }

@@ -13,6 +13,8 @@ import com.junhyuk.dailynote.R
 import com.junhyuk.dailynote.databinding.FragmentInputBinding
 import com.junhyuk.dailynote.model.`object`.MemoObject
 import com.junhyuk.dailynote.viewmodel.post.InputFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
+
 /*
 *
 * 파일명: InputFragment
@@ -21,11 +23,12 @@ import com.junhyuk.dailynote.viewmodel.post.InputFragmentViewModel
 *
 * */
 
+@AndroidEntryPoint
 class InputFragment : Fragment() {
 
     //binding, viewModel, viewModelFactory 선언
     private val binding by lazy { FragmentInputBinding.inflate(layoutInflater) }
-    private val viewModel  by viewModels<InputFragmentViewModel>()
+    private val viewModel by viewModels<InputFragmentViewModel>()
 
     //Boolean 변수 선언
     private var textNullCheck: Boolean? = null

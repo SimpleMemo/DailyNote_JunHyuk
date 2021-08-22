@@ -17,22 +17,15 @@ class MemoRepository(private val memoDao: MemoDao) {
     private var memoList: Flow<List<MemoData>> = memoDao.getAll()
 
     //메모 전체를 return
-    fun getAllDiary(): Flow<List<MemoData>>{
-        return memoList
-    }
+    fun getAllDiary(): Flow<List<MemoData>> = memoList
 
     //메모 삽입
-    suspend fun insert(memo: MemoData) {
-        memoDao.insert(memo)
-    }
+    suspend fun insert(memo: MemoData) = memoDao.insert(memo)
 
     //메모 수정
-    suspend fun update(memo: MemoData){
-        memoDao.update(memo)
-    }
+    suspend fun update(memo: MemoData) = memoDao.update(memo)
+
 
     //메모 삭제
-    suspend fun deleteMemo(memo: MemoData){
-        memoDao.delete(memo)
-    }
+    suspend fun deleteMemo(memo: MemoData) = memoDao.delete(memo)
 }
