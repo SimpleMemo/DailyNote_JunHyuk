@@ -1,5 +1,6 @@
 package com.junhyuk.dailynote.model.database
 
+import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -14,8 +15,15 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "memo")
 data class MemoData(
-    @PrimaryKey var memoId: Int, //기본키, memoId
-    @ColumnInfo(name = "title") val memoTitle: String, //title
-    @ColumnInfo(name = "content") val memoContent: String, //content
-    @ColumnInfo(name = "updated") val updated: Int //updated
+    @PrimaryKey
+    var memoId: Int, //기본키, memoId
+
+    @ColumnInfo(name = "title")
+    val memoTitle: String, //title
+
+    @ColumnInfo(name = "content")
+    val memoContent: String, //content
+
+    @ColumnInfo(name = "updated", defaultValue = "0")
+    val updated: Int //updated
 )
