@@ -4,8 +4,6 @@ import android.app.Application
 import androidx.room.Room
 import com.junhyuk.dailynote.model.database.MemoDao
 import com.junhyuk.dailynote.model.database.MemoDataBase
-import com.junhyuk.dailynote.model.repository.MemoRepository
-import com.junhyuk.dailynote.paging.MemoPageRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
