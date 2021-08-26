@@ -57,6 +57,7 @@
 - ViewModel
 - Dagger hilt
 - Navigation Component
+- room
     
 ------------   
     
